@@ -1,4 +1,4 @@
-package com.henrique.openbreweryandroid.extension
+package com.henrique.app.extension
 
 import android.view.View
 
