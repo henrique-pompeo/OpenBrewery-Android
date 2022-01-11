@@ -32,6 +32,7 @@
             tools:text="Address, Country..."/>
 
         <TextView
+            android:id="@+id/brewery_phone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="Phone: 00000000"/>

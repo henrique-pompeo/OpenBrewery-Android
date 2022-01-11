@@ -1,38 +1,34 @@
 package com.henrique.app.ui.brewerylist
 
-import android.text.Layout
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import androidx.viewbinding.ViewBinding
-import com.henrique.app.R
-import com.henrique.app.databinding.BreweryListFragmentBinding
+import com.henrique.app.databinding.BreweryItemBinding
 import com.henrique.domain.model.Brewery
-import kotlin.properties.Delegates
 
-class BreweriesAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class BreweriesAdapter(var breweryList: List<Brewery>) :
+    RecyclerView.Adapter<BreweriesAdapter.BreweryViewHolder>() {
 
-    var mBreweryList: List<Brewery> by Delegates.observable(emptyList()) {
-        _, _, _ -> notifyDataSetChanged()
-    }
-
-    private lateinit var binding: BreweryListFragmentBinding
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        val holderBrewery = BreweryListFragmentBinding.inflate(LayoutInflater.from(parent.context))
-        return BreweryListViewM
-    }
-
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BreweriesAdapter.BreweryViewHolder {
+        val binding = BreweryItemBinding
+            .inflate(LayoutInflater.from(parent.context), parent, false)
+        return BreweryViewHolder(binding)
     }
 
     override fun getItemCount(): Int {
-
+        return breweryList.size
     }
 
-    private inner class BreweryViewHolder(private val viewBinding: ViewBinding) :
-        RecyclerView.ViewHolder(viewBinding.root) {
+    inner class BreweryViewHolder(val binding: BreweryItemBinding) :
+        RecyclerView.ViewHolder(binding.root)
 
+    override fun onBindViewHolder(holder: BreweryViewHolder, position: Int) {
+        with(holder) {
+            with (breweryList[position]) {
+                binding.breweryTitle.text = this.name
+                binding.breweryAddress.text = this.country
+                binding.breweryPhone.text = this.phone
+            }
         }
+    }
 }

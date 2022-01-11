@@ -12,7 +12,7 @@ object ApplicationDI {
     val module = module {
 
         viewModel {
-            BreweryListViewModel()
+            BreweryListViewModel(get())
         }
 
         single { Network.createGetBreweriesUseCase(get()) }

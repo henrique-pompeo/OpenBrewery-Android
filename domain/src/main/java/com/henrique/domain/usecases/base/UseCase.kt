@@ -1,7 +1,8 @@
 package com.henrique.domain.usecases.base
 
 import com.android.post.domain.usecase.base.UseCaseResponse
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
 import java.util.concurrent.CancellationException
 
 abstract class UseCase<Type, in Params>() where Type : Any {
