@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.henrique.app.ui.MainActivity">
+    tools:context="com.henrique.openbreweryandroid.app.feature.MainActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/brewery_list"
