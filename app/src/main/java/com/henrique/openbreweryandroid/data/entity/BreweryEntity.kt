@@ -1,42 +1,45 @@
 package com.henrique.openbreweryandroid.data.entity
 
-import com.google.gson.annotations.SerializedName
+
 import com.henrique.openbreweryandroid.domain.entity.BreweryEntity
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 import java.util.Date
 
+@JsonClass(generateAdapter = true)
 data class BreweryEntity(
-    @SerializedName("id")
+    @Json(name = "id")
     override val id: Long,
-    @SerializedName("name")
+    @Json(name = "name")
     override val name: String?,
-    @SerializedName("brewery_type")
-    override val brewery_type: String?,
-    @SerializedName("street")
+    @Json(name = "brewery_type")
+    override val breweryType: String?,
+    @Json(name = "street")
     override val street: String?,
-    @SerializedName("address_2")
-    override val address_2: String?,
-    @SerializedName("address_3")
-    override val address_3: String?,
-    @SerializedName("city")
+    @Json(name = "address_2")
+    override val address2: String?,
+    @Json(name = "address_3")
+    override val address3: String?,
+    @Json(name = "city")
     override val city: String?,
-    @SerializedName("state")
+    @Json(name = "state")
     override val state: String?,
-    @SerializedName("county_province")
-    override val county_province: String?,
-    @SerializedName("postal_code")
-    override val postal_code: String?,
-    @SerializedName("country")
+    @Json(name = "county_province")
+    override val countyProvince: String?,
+    @Json(name = "postal_code")
+    override val postalCode: String?,
+    @Json(name = "country")
     override val country: String?,
-    @SerializedName("longitude")
+    @Json(name = "longitude")
     override val longitude: String?,
-    @SerializedName("latitude")
+    @Json(name = "latitude")
     override val latitude: String?,
-    @SerializedName("phone")
+    @Json(name = "phone")
     override val phone: String?,
-    @SerializedName("website_url")
-    override val website_url: String?,
-    @SerializedName("updated_at")
-    override val updated_at: Date?,
-    @SerializedName("created_at")
-    override val created_at: Date?
+    @Json(name = "website_url")
+    override val websiteUrl: String?,
+    @Json(name = "updated_at")
+    override val updatedAt: Date?,
+    @Json(name = "created_at")
+    override val createdAt: Date?
 ) : BreweryEntity
