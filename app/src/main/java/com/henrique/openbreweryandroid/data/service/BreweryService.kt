@@ -8,7 +8,7 @@ import retrofit2.http.Url
 interface BreweryService {
 
     @GET suspend fun getBreweryById(@Url id: String) : BreweryEntity?
-    @GET suspend fun getBreweryList() : List<BreweryEntity>?
+    @GET suspend fun getBreweryList(@Url baseUrl: String) : List<BreweryEntity>?
     @GET suspend fun searchBrewery(
         @Url search: String,
         @Query("query") query: String

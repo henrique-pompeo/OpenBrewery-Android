@@ -1,7 +1,8 @@
-package com.henrique.openbreweryandroid.app.feature
+package com.henrique.openbreweryandroid.app
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.fragment.NavHostFragment
 import com.henrique.openbreweryandroid.R
 import org.koin.core.component.KoinApiExtension
 
@@ -10,12 +11,12 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        //openBreweryList()
+        openBreweryList()
     }
 
     private fun openBreweryList() {
-//        val navHost = supportFragmentManager.findFragmentById(R.id.nav_host) as NavHostFragment
-//        val navController = navHost.navController
-//        navController.navigate(R.id.breweryListFragment)
+        val navHost = supportFragmentManager.findFragmentById(R.id.nav_host) as NavHostFragment
+        val navController = navHost.navController
+        navController.navigate(R.id.breweryListFragment)
     }
 }

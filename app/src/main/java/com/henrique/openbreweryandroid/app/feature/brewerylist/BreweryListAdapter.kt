@@ -4,10 +4,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.henrique.openbreweryandroid.databinding.BreweryItemBinding
-import com.henrique.domain.model.Brewery
+import com.henrique.openbreweryandroid.domain.entity.BreweryEntity
 
-class BreweriesAdapter(var breweryList: List<Brewery>) :
-    RecyclerView.Adapter<BreweriesAdapter.BreweryViewHolder>() {
+class BreweryListAdapter(var breweryList: List<BreweryEntity>) :
+    RecyclerView.Adapter<BreweryListAdapter.BreweryViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BreweryViewHolder {
         val binding = BreweryItemBinding
@@ -16,7 +16,7 @@ class BreweriesAdapter(var breweryList: List<Brewery>) :
     }
 
     override fun getItemCount(): Int {
-        return breweryList.size
+        return breweryList.let { it.size }
     }
 
     inner class BreweryViewHolder(val binding: BreweryItemBinding) :

@@ -9,6 +9,7 @@ import com.henrique.openbreweryandroid.R
 import com.henrique.openbreweryandroid.databinding.BreweryListFragmentBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.component.KoinApiExtension
+import kotlin.reflect.KProperty
 
 @KoinApiExtension
 class BreweryListFragment : Fragment(R.layout.brewery_list_fragment) {
@@ -16,9 +17,9 @@ class BreweryListFragment : Fragment(R.layout.brewery_list_fragment) {
     private var _binding: BreweryListFragmentBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var breweriesAdapter: BreweriesAdapter
+    private lateinit var breweryListAdapter: BreweryListAdapter
 
-    private val viewModel by viewModel<BreweryListViewModel>()
+    private val viewModel: BreweryListViewModel by viewModel()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = BreweryListFragmentBinding.inflate(inflater, container, false)
@@ -39,10 +40,10 @@ class BreweryListFragment : Fragment(R.layout.brewery_list_fragment) {
 
     private fun setupObservers() {
         with (viewModel) {
-            breweriesData.observe(viewLifecycleOwner, {
+            breweryList.observe(viewLifecycleOwner, {
                 it?.let {
-                    breweriesAdapter = BreweriesAdapter(it)
-                    binding.breweryList.adapter = breweriesAdapter
+                    breweryListAdapter = BreweryListAdapter(it)
+                    binding.breweryList.adapter = breweryListAdapter
                 }
             })
         }

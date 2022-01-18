@@ -1,11 +1,14 @@
 package com.henrique.openbreweryandroid.data.dataprovider
 
+import com.henrique.openbreweryandroid.data.base.BaseDataProvider
 import com.henrique.openbreweryandroid.data.repository.BreweryRepository
 import com.henrique.openbreweryandroid.domain.entity.BreweryEntity
-import com.henrique.openbreweryandroid.domain.gateway.GetBreweryListGateway
+import com.henrique.openbreweryandroid.domain.dataprovider.BreweryListDataProvider
+import org.koin.core.component.KoinApiExtension
 
-class GetBreweryListDataProvider(private val repository: BreweryRepository) :
-    GetBreweryListGateway {
+@KoinApiExtension
+class BreweryListDataProviderImpl(private val repository: BreweryRepository) :
+    BaseDataProvider(), BreweryListDataProvider {
 
     override suspend fun getBreweryList(): List<BreweryEntity> {
         val breweryList = repository.getBreweryList()

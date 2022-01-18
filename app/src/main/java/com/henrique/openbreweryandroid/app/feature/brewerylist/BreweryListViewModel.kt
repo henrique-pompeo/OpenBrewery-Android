@@ -1,45 +1,24 @@
 package com.henrique.openbreweryandroid.app.feature.brewerylist
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.android.post.domain.usecase.base.UseCaseResponse
-import com.henrique.domain.model.Brewery
-import com.henrique.domain.usecases.GetBreweriesUseCase
-import kotlinx.coroutines.cancel
+import com.henrique.openbreweryandroid.app.base.BaseViewModel
+import com.henrique.openbreweryandroid.domain.entity.BreweryEntity
+import com.henrique.openbreweryandroid.domain.dataprovider.BreweryListDataProvider
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.koin.core.component.KoinApiExtension
-import java.lang.Exception
 
 @KoinApiExtension
-class BreweryListViewModel constructor(private val getBreweriesUseCase: GetBreweriesUseCase) :
-    ViewModel() {
+class BreweryListViewModel(private val dataProvider: BreweryListDataProvider) : BaseViewModel() {
 
-    val breweriesData = MutableLiveData<List<Brewery>>()
-    val showLoading = MutableLiveData<Boolean>()
-    val messageData = MutableLiveData<String>()
+    private val _breweryList = MutableLiveData<List<BreweryEntity>>()
+    val breweryList: LiveData<List<BreweryEntity>> get() = _breweryList
 
     fun getBreweries() {
-
-        showLoading.value = true
-        getBreweriesUseCase.invoke(viewModelScope, null, object :
-            UseCaseResponse<List<Brewery>> {
-
-                override fun onSuccess(result: List<Brewery>) {
-                    breweriesData.value = result
-                    showLoading.value = false
-                }
-
-                override fun onError(apiError: Exception) {
-                    messageData.value = apiError.message
-                    showLoading.value = false
-                }
-            },
-        )
+        CoroutineScope(Dispatchers.Main).launch {
+            _breweryList.value = dataProvider.getBreweryList()
+        }
     }
-
-    override fun onCleared() {
-        viewModelScope.cancel()
-        super.onCleared()
-    }
-
 }
