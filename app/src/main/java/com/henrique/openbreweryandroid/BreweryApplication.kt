@@ -10,7 +10,6 @@ import org.koin.core.context.startKoin
 @KoinApiExtension
 class BreweryApplication : Application() {
 
-
     override fun onCreate() {
         super.onCreate()
         setupKoin()
@@ -18,13 +17,11 @@ class BreweryApplication : Application() {
 
     private fun setupKoin() {
         startKoin {
+            androidContext(this@BreweryApplication)
             modules(
+                BreweryDI.retrofitModule +
                 BreweryDI.module
-            ).androidContext(
-                provideAndroidContext()
-            ).androidLogger()
+            )
         }
     }
-
-    private fun provideAndroidContext(): Application = this
 }
