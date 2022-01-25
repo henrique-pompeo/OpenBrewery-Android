@@ -48,8 +48,8 @@ class BreweryListFragment : Fragment(R.layout.brewery_list_fragment) {
             breweryList.observe(viewLifecycleOwner, {
                 it?.let {
                     breweryListAdapter = BreweryListAdapter(it)
-                    binding.breweryList.adapter = breweryListAdapter
-                    binding.breweryList.layoutManager = layoutManager
+                    binding.breweryListRv.adapter = breweryListAdapter
+                    binding.breweryListRv.layoutManager = layoutManager
                 }
             })
         }
@@ -58,7 +58,7 @@ class BreweryListFragment : Fragment(R.layout.brewery_list_fragment) {
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
-        binding.breweryList.adapter = null
+        binding.breweryListRv.adapter = null
     }
 
 }

@@ -3,13 +3,13 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
-        android:id="@+id/brewery_item_ll"
-        android:layout_width="0dp"
+        android:id="@+id/brewery_list_item_ll"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_margin="10dp"
@@ -20,7 +20,7 @@
         app:layout_constraintEnd_toEndOf="parent">
 
         <TextView
-            android:id="@+id/brewery_title"
+            android:id="@+id/brewery_list_item_title"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_weight="1"
@@ -30,14 +30,14 @@
             tools:text="Brewery Name" />
 
         <TextView
-            android:id="@+id/brewery_address"
+            android:id="@+id/brewery_list_item_address"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_weight="1"
             tools:text="Address, Country..."/>
 
         <TextView
-            android:id="@+id/brewery_phone"
+            android:id="@+id/brewery_list_item_phone"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_weight="1"
@@ -46,12 +46,12 @@
     </LinearLayout>
 
     <View
-        android:id="@+id/divider"
+        android:id="@+id/brewery_list_item_divider"
         android:layout_width="0dp"
         android:layout_height="1dp"
-        android:background="#828282"
+        android:background="#C1C1C1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/brewery_item_ll" />
+        app:layout_constraintTop_toBottomOf="@+id/brewery_list_item_ll" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

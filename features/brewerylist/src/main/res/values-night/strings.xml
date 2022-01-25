@@ -1,6 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Open Brewery Android</string>
     <string name="filter_brewery_icon">filter brewery icon</string>
     <string name="sort_brewery_icon">sort brewery icon</string>
-    <string name="search_brewery_name">Search brewery name</string>
 </resources>
