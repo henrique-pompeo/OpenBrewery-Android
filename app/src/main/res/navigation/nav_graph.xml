@@ -5,6 +5,6 @@
 
     <fragment
         android:id="@+id/breweryListFragment"
-        android:name="com.henrique.openbreweryandroid.app.feature.brewerylist.BreweryListFragment"
+        android:name="com.henrique.brewerylist.ui.brewerylist.BreweryListFragment"
         android:label="BreweryListFragment" />
 </navigation>
