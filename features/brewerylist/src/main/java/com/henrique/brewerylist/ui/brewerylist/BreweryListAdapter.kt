@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.henrique.brewerylist.databinding.BreweryListItemBinding
-import com.henrique.brewerylist.domain.model.Brewery
+import com.henrique.featurecommons.domain.model.Brewery
 
 class BreweryListAdapter(private var breweryList: List<Brewery>) :
     RecyclerView.Adapter<BreweryListAdapter.BreweryViewHolder>() {

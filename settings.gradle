@@ -3,4 +3,10 @@ include ':app'
 include ':brewerylist'
 project(':brewerylist').projectDir = new File(rootDir, 'features/brewerylist')
 
+include ':breweryDetail'
+project(':breweryDetail').projectDir = new File(rootDir, 'features/breweryDetail')
+
+include ':featureCommons'
+project(':featureCommons').projectDir = new File(rootDir, 'features/featureCommons')
+
 rootProject.name = "Open Brewery Android"

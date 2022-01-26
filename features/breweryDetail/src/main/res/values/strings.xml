@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Open Brewery Android</string>
+    <string name="brewery_photo">Brewery photo</string>
+    <string name="address_title">Address</string>
+    <string name="brewery_street">Street: %s</string>
+    <string name="brewery_address2">Address 2: %s</string>
+    <string name="brewery_address3">Address 3: %s</string>
+    <string name="brewery_city">City: %s</string>
+    <string name="brewery_state">State: %s</string>
+    <string name="brewery_county_province">County province: %s</string>
+    <string name="brewery_postal_code">Postal code: %s</string>
+    <string name="brewery_country">Country: %s</string>
+    <string name="contact_title">Contact</string>
+    <string name="brewery_phone">Phone: %s</string>
+    <string name="brewery_website_url">Website url: %s</string>
+</resources>

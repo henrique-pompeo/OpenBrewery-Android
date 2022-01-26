@@ -33,8 +33,8 @@ class BreweryListFragment : Fragment(R.layout.brewery_list_fragment) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        getBreweries()
         setupObservers()
+        getBreweries()
     }
 
     private fun getBreweries() {

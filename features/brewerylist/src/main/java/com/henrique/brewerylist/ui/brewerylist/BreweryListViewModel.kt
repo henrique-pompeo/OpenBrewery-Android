@@ -2,9 +2,9 @@ package com.henrique.brewerylist.ui.brewerylist
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.henrique.brewerylist.ui.base.BaseViewModel
+import com.henrique.featurecommons.ui.base.BaseViewModel
 import com.henrique.brewerylist.data.repository.BreweryRepository
-import com.henrique.brewerylist.domain.model.Brewery
+import com.henrique.featurecommons.domain.model.Brewery
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
