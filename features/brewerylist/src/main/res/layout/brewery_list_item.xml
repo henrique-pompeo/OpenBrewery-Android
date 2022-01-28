@@ -45,13 +45,4 @@
 
     </LinearLayout>
 
-    <View
-        android:id="@+id/brewery_list_item_divider"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:background="#C1C1C1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/brewery_list_item_ll" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

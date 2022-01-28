@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/brewerylist_nav"
+    app:startDestination="@id/breweryListFragment">
+
+    <fragment
+        android:id="@+id/breweryListFragment"
+        android:name="com.henrique.brewerylist.ui.BreweryListFragment"
+        android:label="BreweryListFragment" >
+        <action
+            android:id="@+id/action_breweryListFragment_to_breweryDetailFragment"
+            app:destination="@id/breweryDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/breweryDetailFragment"
+        android:name="com.henrique.brewerydetail.ui.BreweryDetailFragment"
+        android:label="BreweryDetailFragment" >
+        <argument
+            android:name="id"
+            app:argType="string" />
+    </fragment>
+</navigation>

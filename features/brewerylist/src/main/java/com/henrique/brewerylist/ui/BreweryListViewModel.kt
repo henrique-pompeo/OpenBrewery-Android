@@ -1,4 +1,4 @@
-package com.henrique.brewerylist.ui.brewerylist
+package com.henrique.brewerylist.ui
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -18,10 +18,10 @@ class BreweryListViewModel(private val breweryRepository: BreweryRepository) : B
     val breweryList: LiveData<List<Brewery>> get() = _breweryList
 
     private val viewModelJob = SupervisorJob()
-    private val viewModeScope = CoroutineScope(Dispatchers.Main + viewModelJob)
+    private val viewModelScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
     fun getBreweries() {
-        viewModeScope.launch {
+        viewModelScope.launch {
             _breweryList.value = breweryRepository.getBreweryList()
         }
     }

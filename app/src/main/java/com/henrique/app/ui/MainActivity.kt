@@ -2,21 +2,33 @@ package com.henrique.app.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.ActionOnlyNavDirections
+import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupActionBarWithNavController
 import com.henrique.app.R
+import com.henrique.app.databinding.ActivityMainBinding
+import com.henrique.brewerylist.ui.BreweryListFragmentDirections
 import org.koin.core.component.KoinApiExtension
 
 @KoinApiExtension
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var navController: NavController
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        openBreweryList()
+
+        val navHostFragment = supportFragmentManager
+            .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+
+        navController = navHostFragment.navController
+
+        setupActionBarWithNavController(navController)
     }
 
-    private fun openBreweryList() {
-        val navHost = supportFragmentManager.findFragmentById(R.id.nav_host) as NavHostFragment
-        val navController = navHost.navController
-        navController.navigate(R.id.breweryListFragment)
+    override fun onSupportNavigateUp(): Boolean {
+        return navController.navigateUp() || super.onSupportNavigateUp()
     }
 }

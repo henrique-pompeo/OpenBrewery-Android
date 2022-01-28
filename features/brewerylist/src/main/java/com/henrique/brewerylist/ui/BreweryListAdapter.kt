@@ -1,10 +1,12 @@
-package com.henrique.brewerylist.ui.brewerylist
+package com.henrique.brewerylist.ui
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.henrique.brewerylist.databinding.BreweryListItemBinding
 import com.henrique.featurecommons.domain.model.Brewery
+
 
 class BreweryListAdapter(private var breweryList: List<Brewery>) :
     RecyclerView.Adapter<BreweryListAdapter.BreweryViewHolder>() {
@@ -24,10 +26,15 @@ class BreweryListAdapter(private var breweryList: List<Brewery>) :
 
     override fun onBindViewHolder(holder: BreweryViewHolder, position: Int) {
         with(holder) {
-            with (breweryList[position]) {
+            with(breweryList[position]) {
                 binding.breweryListItemTitle.text = this.name
                 binding.breweryListItemAddress.text = this.country
                 binding.breweryListItemPhone.text = this.phone
+                binding.breweryListItemLl.setOnClickListener {
+                    val action = BreweryListFragmentDirections
+                        .actionBreweryListFragmentToBreweryDetailFragment(this.id)
+                    itemView.findNavController().navigate(action)
+                }
             }
         }
     }

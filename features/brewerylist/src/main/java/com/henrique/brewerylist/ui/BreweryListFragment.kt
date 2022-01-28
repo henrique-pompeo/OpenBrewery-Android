@@ -1,10 +1,16 @@
-package com.henrique.brewerylist.ui.brewerylist
+package com.henrique.brewerylist.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.fragment.app.Fragment
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.ActionOnlyNavDirections
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.henrique.brewerylist.R
@@ -19,10 +25,6 @@ class BreweryListFragment : Fragment(R.layout.brewery_list_fragment) {
     private val binding get() = _binding!!
 
     private lateinit var breweryListAdapter: BreweryListAdapter
-
-    private val layoutManager: LinearLayoutManager by lazy {
-        LinearLayoutManager(context, RecyclerView.VERTICAL, false)
-    }
 
     private val viewModel: BreweryListViewModel by viewModel()
 
@@ -45,11 +47,14 @@ class BreweryListFragment : Fragment(R.layout.brewery_list_fragment) {
 
     private fun setupObservers() {
         with (viewModel) {
-            breweryList.observe(viewLifecycleOwner, {
+            breweryList.observe(viewLifecycleOwner, { it ->
                 it?.let {
-                    breweryListAdapter = BreweryListAdapter(it)
-                    binding.breweryListRv.adapter = breweryListAdapter
-                    binding.breweryListRv.layoutManager = layoutManager
+                    val recyclerView = binding.breweryListRv
+                    recyclerView.layoutManager = LinearLayoutManager(requireContext())
+                    recyclerView.adapter = BreweryListAdapter(it)
+                    recyclerView.addItemDecoration(
+                        DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
+                    )
                 }
             })
         }

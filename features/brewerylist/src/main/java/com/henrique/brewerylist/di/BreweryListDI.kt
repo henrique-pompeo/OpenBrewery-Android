@@ -1,6 +1,6 @@
 package com.henrique.brewerylist.di
 
-import com.henrique.brewerylist.ui.brewerylist.BreweryListViewModel
+import com.henrique.brewerylist.ui.BreweryListViewModel
 import com.henrique.brewerylist.data.repository.BreweryRepository
 import com.henrique.brewerylist.data.repository.BreweryRepositoryImpl
 import com.henrique.brewerylist.data.service.BreweryService
