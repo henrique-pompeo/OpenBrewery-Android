@@ -1,18 +1,14 @@
 package com.henrique.brewerydetail.data.repository
 
-import com.henrique.brewerydetail.data.service.BreweryDetailService
-import com.henrique.featurecommons.data.response.model
-import com.henrique.featurecommons.domain.model.Brewery
-import kotlinx.coroutines.coroutineScope
+import com.henrique.brewerydetail.data.datasource.BreweryDetailDataSource
+import com.henrique.shared.domain.model.Brewery
 import org.koin.core.component.KoinApiExtension
 import org.koin.core.component.KoinComponent
 
 @KoinApiExtension
-class BreweryDetailRepositoryImpl(private val breweryDetailService: BreweryDetailService) :
+class BreweryDetailRepositoryImpl(private val breweryDetailDataSource: BreweryDetailDataSource) :
     KoinComponent, BreweryDetailRepository {
 
-    override suspend fun getBreweryById(id: String): Brewery = coroutineScope {
-        breweryDetailService.getBreweryById(id)
-    }.model()
-
+    override suspend fun getBreweryById(id: String): Brewery =
+        breweryDetailDataSource.getBreweryById(id)
 }

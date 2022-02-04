@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.henrique.brewerylist.databinding.BreweryListItemBinding
-import com.henrique.featurecommons.domain.model.Brewery
+import com.henrique.shared.domain.model.Brewery
 
 
 class BreweryListAdapter(private var breweryList: List<Brewery>) :

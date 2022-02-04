@@ -1,6 +1,6 @@
 package com.henrique.brewerydetail.data.service
 
-import com.henrique.featurecommons.data.response.BreweryResponse
+import com.henrique.shared.data.response.BreweryResponse
 import retrofit2.http.GET
 import retrofit2.http.Url
 

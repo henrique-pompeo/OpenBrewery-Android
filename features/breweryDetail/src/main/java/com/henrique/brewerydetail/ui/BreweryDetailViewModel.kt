@@ -3,8 +3,8 @@ package com.henrique.brewerydetail.ui
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.henrique.brewerydetail.data.repository.BreweryDetailRepository
-import com.henrique.featurecommons.domain.model.Brewery
-import com.henrique.featurecommons.ui.base.BaseViewModel
+import com.henrique.shared.domain.model.Brewery
+import com.henrique.shared.ui.base.BaseViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
