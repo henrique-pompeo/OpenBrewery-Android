@@ -2,4 +2,5 @@
 <resources>
     <string name="filter_brewery_icon">filter brewery icon</string>
     <string name="sort_brewery_icon">sort brewery icon</string>
+    <string name="retry">Retry</string>
 </resources>
