@@ -9,6 +9,7 @@ import androidx.navigation.fragment.navArgs
 import com.henrique.brewerydetail.R
 import com.henrique.brewerydetail.databinding.BreweryDetailFragmentBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import com.henrique.shared.data.Result
 import org.koin.core.component.KoinApiExtension
 
 @KoinApiExtension
@@ -29,6 +30,9 @@ class BreweryDetailFragment : Fragment(R.layout.brewery_detail_fragment) {
         super.onViewCreated(view, savedInstanceState)
         setupObservers()
         getBreweryById(args.id)
+        binding.retryBt.setOnClickListener {
+            getBreweryById(args.id)
+        }
     }
 
     private fun getBreweryById(id: String) {
@@ -40,42 +44,66 @@ class BreweryDetailFragment : Fragment(R.layout.brewery_detail_fragment) {
     private fun setupObservers() {
         with (viewModel) {
             breweryDetail.observe(viewLifecycleOwner, {
-                it?.let {
 
-                    binding.breweryDetailFragmentBreweryNameTv.text = it.name
-                    binding.breweryDetailFragmentBreweryTypeTv.text = it.breweryType
+                when (it) {
+                    is Result.Loading -> {
+                        binding.breweryDetailLoadingPb.visibility = View.VISIBLE
+                        binding.breweryDetailFragmentHeaderLl.visibility = View.GONE
+                        binding.breweryDetailFragmentAddressLl.visibility = View.GONE
+                        binding.breweryDetailFragmentContactLl.visibility = View.GONE
+                        binding.breweryDetailErrorCl.visibility  = View.GONE
+                    }
+                    is Result.Success -> {
+                        it.data.let { brewery ->
+                            binding.breweryDetailFragmentBreweryNameTv.text = brewery.name
+                            binding.breweryDetailFragmentBreweryTypeTv.text = brewery.breweryType
 
-                    binding.breweryDetailFragmentBreweryStreetTv.text = getString(
-                        R.string.brewery_street, it.street
-                    )
-                    binding.breweryDetailFragmentBreweryAddress2Tv.text = getString(
-                        R.string.brewery_address2, it.address2
-                    )
-                    binding.breweryDetailFragmentBreweryAddress3Tv.text = getString(
-                        R.string.brewery_address3, it.address3
-                    )
-                    binding.breweryDetailFragmentBreweryCityTv.text = getString(
-                        R.string.brewery_city, it.city
-                    )
-                    binding.breweryDetailFragmentBreweryStateTv.text = getString(
-                        R.string.brewery_state, it.state
-                    )
-                    binding.breweryDetailFragmentBreweryCountyProvinceTv.text = getString(
-                        R.string.brewery_county_province, it.countyProvince
-                    )
-                    binding.breweryDetailFragmentBreweryPostalCodeTv.text = getString(
-                        R.string.brewery_postal_code, it.postalCode
-                    )
-                    binding.breweryDetailFragmentBreweryCountryTv.text = getString(
-                        R.string.brewery_country, it.country
-                    )
+                            binding.breweryDetailFragmentBreweryStreetTv.text = getString(
+                                R.string.brewery_street, brewery.street
+                            )
+                            binding.breweryDetailFragmentBreweryAddress2Tv.text = getString(
+                                R.string.brewery_address2, brewery.address2
+                            )
+                            binding.breweryDetailFragmentBreweryAddress3Tv.text = getString(
+                                R.string.brewery_address3, brewery.address3
+                            )
+                            binding.breweryDetailFragmentBreweryCityTv.text = getString(
+                                R.string.brewery_city, brewery.city
+                            )
+                            binding.breweryDetailFragmentBreweryStateTv.text = getString(
+                                R.string.brewery_state, brewery.state
+                            )
+                            binding.breweryDetailFragmentBreweryCountyProvinceTv.text = getString(
+                                R.string.brewery_county_province, brewery.countyProvince
+                            )
+                            binding.breweryDetailFragmentBreweryPostalCodeTv.text = getString(
+                                R.string.brewery_postal_code, brewery.postalCode
+                            )
+                            binding.breweryDetailFragmentBreweryCountryTv.text = getString(
+                                R.string.brewery_country, brewery.country
+                            )
 
-                    binding.breweryDetailFragmentBreweryPhoneTv.text = getString(
-                        R.string.brewery_phone, it.phone
-                    )
-                    binding.breweryDetailFragmentBreweryWebsiteUrlTv.text = getString(
-                        R.string.brewery_website_url, it.websiteUrl
-                    )
+                            binding.breweryDetailFragmentBreweryPhoneTv.text = getString(
+                                R.string.brewery_phone, brewery.phone
+                            )
+                            binding.breweryDetailFragmentBreweryWebsiteUrlTv.text = getString(
+                                R.string.brewery_website_url, brewery.websiteUrl
+                            )
+                        }
+                        binding.breweryDetailLoadingPb.visibility = View.GONE
+                        binding.breweryDetailFragmentHeaderLl.visibility = View.VISIBLE
+                        binding.breweryDetailFragmentAddressLl.visibility = View.VISIBLE
+                        binding.breweryDetailFragmentContactLl.visibility = View.VISIBLE
+                        binding.breweryDetailErrorCl.visibility  = View.GONE
+                    }
+                    is Result.Error -> {
+                        binding.breweryDetailLoadingPb.visibility = View.GONE
+                        binding.breweryDetailFragmentHeaderLl.visibility = View.GONE
+                        binding.breweryDetailFragmentAddressLl.visibility = View.GONE
+                        binding.breweryDetailFragmentContactLl.visibility = View.GONE
+                        binding.breweryDetailErrorCl.visibility  = View.VISIBLE
+                        binding.errorTv.text = it.exception.message
+                    }
                 }
             })
         }

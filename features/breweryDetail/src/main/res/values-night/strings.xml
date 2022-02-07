@@ -14,4 +14,5 @@
     <string name="contact_title">Contact</string>
     <string name="brewery_phone">Phone: %s</string>
     <string name="brewery_website_url">Website url: %s</string>
+    <string name="error_icon">Error icon</string>
 </resources>

@@ -3,6 +3,7 @@ package com.henrique.brewerydetail.ui
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.henrique.brewerydetail.data.repository.BreweryDetailRepository
+import com.henrique.shared.data.Result
 import com.henrique.shared.domain.model.Brewery
 import com.henrique.shared.ui.base.BaseViewModel
 import kotlinx.coroutines.CoroutineScope
@@ -15,15 +16,19 @@ import org.koin.core.component.KoinApiExtension
 class BreweryDetailViewModel(private val breweryDetailRepository: BreweryDetailRepository) :
     BaseViewModel() {
 
-    private val _breweryDetail = MutableLiveData<Brewery>()
-    val breweryDetail: LiveData<Brewery> get() = _breweryDetail
+    val breweryDetail = MutableLiveData<Result<Brewery>>()
 
     private val viewModelJob = SupervisorJob()
     private val viewModelScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
     fun getBreweryById(id: String) {
+        breweryDetail.value = Result.Loading
         viewModelScope.launch {
-            _breweryDetail.value = breweryDetailRepository.getBreweryById(id)
+            try {
+                breweryDetail.value = Result.Success(breweryDetailRepository.getBreweryById(id))
+            } catch (e: Exception) {
+                breweryDetail.value = Result.Error(e)
+            }
         }
     }
 
