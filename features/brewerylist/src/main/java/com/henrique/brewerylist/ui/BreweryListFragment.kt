@@ -16,13 +16,12 @@ import org.koin.core.component.KoinApiExtension
 @KoinApiExtension
 class BreweryListFragment : Fragment(R.layout.brewery_list_fragment) {
 
-    private var _binding: BreweryListFragmentBinding? = null
-    private val binding get() = _binding!!
+    private lateinit var binding: BreweryListFragmentBinding
 
     private val viewModel: BreweryListViewModel by viewModel()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        _binding = BreweryListFragmentBinding.inflate(inflater, container, false)
+        binding = BreweryListFragmentBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -71,12 +70,6 @@ class BreweryListFragment : Fragment(R.layout.brewery_list_fragment) {
                 }
             })
         }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
-        binding.breweryListRv.adapter = null
     }
 
 }

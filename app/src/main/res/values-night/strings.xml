@@ -1,8 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Open Brewery Android</string>
     <string name="brewery_list">Brewery list</string>
     <string name="brewery_detail">Brewery detail</string>
     <string name="enter_brewery_id_hint">Enter brewery ID</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

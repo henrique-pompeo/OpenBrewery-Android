@@ -10,10 +10,10 @@
         android:label="BreweryListFragment" >
         <action
             android:id="@+id/action_breweryListFragment_to_breweryDetailFragment"
-            app:destination="@id/breweryDetailFragment" />
+            app:destination="@id/breweryDetailFragmentMain" />
     </fragment>
     <fragment
-        android:id="@+id/breweryDetailFragment"
+        android:id="@+id/breweryDetailFragmentMain"
         android:name="com.henrique.brewerydetail.ui.BreweryDetailFragment"
         android:label="BreweryDetailFragment" >
         <argument

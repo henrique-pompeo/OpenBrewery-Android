@@ -2,13 +2,10 @@ package com.henrique.app.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.ActionOnlyNavDirections
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.henrique.app.R
-import com.henrique.app.databinding.ActivityMainBinding
-import com.henrique.brewerylist.ui.BreweryListFragmentDirections
 import org.koin.core.component.KoinApiExtension
 
 @KoinApiExtension
