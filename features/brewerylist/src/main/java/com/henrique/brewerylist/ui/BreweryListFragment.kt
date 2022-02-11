@@ -28,15 +28,15 @@ class BreweryListFragment : Fragment(R.layout.brewery_list_fragment) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupObservers()
-        getBreweries()
+        getBreweryList()
         binding.retryBt.setOnClickListener {
-            getBreweries()
+            getBreweryList()
         }
     }
 
-    private fun getBreweries() {
+    private fun getBreweryList() {
         with (viewModel) {
-            getBreweries()
+            getBreweryList()
         }
     }
 
@@ -52,13 +52,14 @@ class BreweryListFragment : Fragment(R.layout.brewery_list_fragment) {
                     is Result.Success -> {
                         binding.breweryListLoadingPb.visibility = View.GONE
                         it.let {
-                            val recyclerView = binding.breweryListRv
-                            recyclerView.visibility = View.VISIBLE
-                            recyclerView.layoutManager = LinearLayoutManager(requireContext())
-                            recyclerView.adapter = BreweryListAdapter(it.data)
-                            recyclerView.addItemDecoration(
-                                DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
-                            )
+                            binding.breweryListRv.apply {
+                                visibility = View.VISIBLE
+                                layoutManager = LinearLayoutManager(requireContext())
+                                adapter = BreweryListAdapter(it.data)
+                                addItemDecoration(
+                                    DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
+                                )
+                            }
                         }
                     }
                     is Result.Error -> {

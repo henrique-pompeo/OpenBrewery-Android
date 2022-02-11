@@ -1,7 +1,5 @@
 package com.henrique.shared.domain.model
 
-import java.util.Date
-
 data class Brewery(
     val id: String,
     val name: String?,
@@ -18,6 +16,6 @@ data class Brewery(
     val latitude: String?,
     val phone: String?,
     val websiteUrl: String?,
-    val updatedAt: Date?,
-    val createdAt: Date?
+    val updatedAt: String?,
+    val createdAt: String?
 )

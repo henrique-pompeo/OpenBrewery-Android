@@ -20,8 +20,8 @@ class BreweryResponse(
     @SerializedName("latitude") val latitude: String?,
     @SerializedName("phone") val phone: String?,
     @SerializedName("website_url") val websiteUrl: String?,
-    @SerializedName("updated_at") val updatedAt: Date?,
-    @SerializedName("created_at") val createdAt: Date?
+    @SerializedName("updated_at") val updatedAt: String?,
+    @SerializedName("created_at") val createdAt: String?
 )
 
 fun BreweryResponse.model() =

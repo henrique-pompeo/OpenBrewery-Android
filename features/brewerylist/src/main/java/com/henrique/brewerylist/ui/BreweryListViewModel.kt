@@ -18,7 +18,7 @@ class BreweryListViewModel(private val breweryListRepository: BreweryListReposit
     private val viewModelScope = CoroutineScope(Dispatchers.Main + viewModelJob)
     val breweryList = MutableLiveData<Result<List<Brewery>>>()
 
-    fun getBreweries() {
+    fun getBreweryList() {
         breweryList.value = Result.Loading
         viewModelScope.launch {
             try {
