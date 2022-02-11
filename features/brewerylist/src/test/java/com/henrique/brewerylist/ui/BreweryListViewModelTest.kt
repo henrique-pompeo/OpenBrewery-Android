@@ -1,13 +1,13 @@
 package com.henrique.brewerylist.ui
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.lifecycle.Observer
 import com.henrique.brewerylist.BreweryListTest
 import com.henrique.brewerylist.data.repository.BreweryListRepository
 import com.henrique.shared.data.Result
-import io.mockk.coEvery
-import io.mockk.coVerify
-import io.mockk.confirmVerified
-import io.mockk.mockk
+import com.henrique.shared.domain.model.Brewery
+import io.kotlintest.shouldBe
+import io.mockk.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
@@ -28,11 +28,13 @@ import org.koin.test.KoinTestRule
 @ExperimentalCoroutinesApi
 class BreweryListViewModelTest : BreweryListTest() {
 
-    private val testDispatcher =  TestCoroutineDispatcher()
-
     private lateinit var breweryListViewModel: BreweryListViewModel
 
+    private val breweryListObserver = mockk<Observer<Result<List<Brewery>>>>()
+
     private val breweryListRepository = mockk<BreweryListRepository>()
+
+    private val testDispatcher =  TestCoroutineDispatcher()
 
     @get:Rule
     val rule: TestRule = InstantTaskExecutorRule()
@@ -58,20 +60,26 @@ class BreweryListViewModelTest : BreweryListTest() {
     @Test
     fun `SHOULD call getBreweryList() and THEN post success WHEN the call succeeds`() = runBlocking {
 
-        breweryListViewModel.getBreweryList()
-
-        breweryListViewModel.breweryList.value.let {
-            Assert.assertEquals(it, Result.Success(listOf(brewery)))
+        with(breweryListViewModel) {
+            breweryList.observeForever(breweryListObserver)
+            getBreweryList()
+            breweryList.value.let {
+                Assert.assertEquals(it, Result.Success(listOf(brewery)))
+            }
         }
 
         coVerify(exactly = 1) { breweryListRepository.getBreweryList() }
+
+        // TODO - no answer found for: Observer(#1).onChanged(com.henrique.shared.data.Result$Loading@62da83ed)
+//        verify { breweryListObserver.onChanged(Result.Success(listOf(brewery))) }
+//        Result.Success(listOf(brewery)).data shouldBe listOf(brewery)
 
         confirmVerified(breweryListRepository)
     }
 
     @Test
     fun `SHOULD Call getBreweryList() and THEN post error WHEN the call fails`() = runBlocking {
-
+        // TODO
     }
 
     @After
