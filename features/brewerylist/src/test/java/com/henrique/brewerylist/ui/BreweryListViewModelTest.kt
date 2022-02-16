@@ -6,12 +6,10 @@ import com.henrique.brewerylist.BreweryListTest
 import com.henrique.brewerylist.data.repository.BreweryListRepository
 import com.henrique.shared.data.Result
 import com.henrique.shared.domain.model.Brewery
-import io.kotlintest.matchers.exactly
 import io.kotlintest.shouldBe
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.confirmVerified
-import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
 import kotlinx.coroutines.Dispatchers
@@ -23,7 +21,6 @@ import kotlinx.coroutines.test.setMain
 import org.junit.Before
 import org.junit.Rule
 import org.junit.After
-import org.junit.Assert
 import org.junit.Test
 import org.junit.rules.TestRule
 import org.koin.core.component.KoinApiExtension
@@ -89,9 +86,30 @@ class BreweryListViewModelTest : BreweryListTest() {
         }
 
     @Test
-    fun `SHOULD Call getBreweryList() and THEN post error WHEN the call fails`() = runBlocking {
-        // TODO
-    }
+    fun `SHOULD Call getBreweryList() and THEN post error WHEN the call fails`() =
+        runBlocking {
+
+            val exception = Exception()
+
+            coEvery { breweryListRepository.getBreweryList() } throws exception
+
+            with(breweryListViewModel) {
+                breweryList.observeForever(breweryListObserver)
+                getBreweryList()
+            }
+
+            coVerify { breweryListRepository.getBreweryList() }
+
+            verify { breweryListObserver.onChanged(capture(breweryListStates)) }
+
+            breweryListStates shouldBe listOf(
+                Result.Loading,
+                Result.Error(exception)
+            )
+
+            confirmVerified(breweryListRepository)
+
+        }
 
     @After
     fun tearDown() {

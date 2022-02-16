@@ -1,6 +1,5 @@
 package com.henrique.brewerydetail.ui
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.henrique.brewerydetail.data.repository.BreweryDetailRepository
 import com.henrique.shared.data.Result
