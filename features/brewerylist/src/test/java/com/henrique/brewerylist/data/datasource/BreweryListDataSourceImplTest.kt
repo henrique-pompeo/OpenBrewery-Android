@@ -7,10 +7,12 @@ import io.mockk.coVerify
 import io.mockk.confirmVerified
 import org.junit.Test
 import io.mockk.mockk
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert
 import org.koin.core.component.KoinApiExtension
 
+@ExperimentalCoroutinesApi
 @KoinApiExtension
 class BreweryListDataSourceImplTest : BreweryListTest() {
 

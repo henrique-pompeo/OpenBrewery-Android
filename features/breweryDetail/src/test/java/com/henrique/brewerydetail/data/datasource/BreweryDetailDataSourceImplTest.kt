@@ -6,11 +6,13 @@ import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.confirmVerified
 import io.mockk.mockk
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert
 import org.junit.Test
 import org.koin.core.component.KoinApiExtension
 
+@ExperimentalCoroutinesApi
 @KoinApiExtension
 class BreweryDetailDataSourceImplTest : BreweryDetailTest() {
 

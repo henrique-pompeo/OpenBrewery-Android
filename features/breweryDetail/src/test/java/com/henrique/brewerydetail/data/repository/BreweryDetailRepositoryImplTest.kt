@@ -7,14 +7,14 @@ import io.mockk.coVerify
 import io.mockk.confirmVerified
 import org.koin.core.component.KoinApiExtension
 import io.mockk.mockk
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert
 import org.junit.Test
 
+@ExperimentalCoroutinesApi
 @KoinApiExtension
 class BreweryDetailRepositoryImplTest : BreweryDetailTest() {
-
-    private lateinit var breweryDetailRepository: BreweryDetailRepository
 
     private val breweryDetailDataSource = mockk<BreweryDetailDataSource>()
 
