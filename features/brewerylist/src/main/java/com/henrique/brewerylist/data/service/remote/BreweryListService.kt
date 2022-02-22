@@ -1,6 +1,6 @@
-package com.henrique.brewerylist.data.service
+package com.henrique.brewerylist.data.service.remote
 
-import com.henrique.shared.data.response.BreweryResponse
+import com.henrique.shared.data.remote.response.BreweryResponse
 import retrofit2.http.GET
 import retrofit2.http.Url
 

@@ -1,6 +1,6 @@
 package com.henrique.brewerylist.data.datasource
 
-import com.henrique.brewerylist.data.service.BreweryListService
+import com.henrique.brewerylist.data.service.remote.BreweryListService
 import com.henrique.brewerylist.BreweryListTest
 import io.mockk.coEvery
 import io.mockk.coVerify

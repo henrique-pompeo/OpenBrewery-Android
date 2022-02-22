@@ -1,8 +1,7 @@
-package com.henrique.shared.data.response
+package com.henrique.shared.data.remote.response
 
 import com.google.gson.annotations.SerializedName
 import com.henrique.shared.domain.model.Brewery
-import java.util.Date
 
 class BreweryResponse(
     @SerializedName("id") val id: String,

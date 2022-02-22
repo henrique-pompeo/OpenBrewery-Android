@@ -3,7 +3,7 @@ package com.henrique.brewerylist
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.henrique.brewerylist.data.repository.BreweryListRepository
 import com.henrique.brewerylist.ui.BreweryListViewModel
-import com.henrique.shared.data.response.BreweryResponse
+import com.henrique.shared.data.remote.response.BreweryResponse
 import com.henrique.shared.domain.model.Brewery
 import io.mockk.mockk
 import kotlinx.coroutines.Dispatchers

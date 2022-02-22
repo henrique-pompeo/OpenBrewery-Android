@@ -1,4 +1,4 @@
-package com.henrique.shared.data.response
+package com.henrique.shared.data.remote.response
 
 import com.henrique.shared.domain.model.Brewery
 import org.junit.Assert

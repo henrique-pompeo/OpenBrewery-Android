@@ -1,7 +1,7 @@
 package com.henrique.brewerylist.data.datasource
 
-import com.henrique.brewerylist.data.service.BreweryListService
-import com.henrique.shared.data.response.model
+import com.henrique.brewerylist.data.service.remote.BreweryListService
+import com.henrique.shared.data.remote.response.model
 import com.henrique.shared.domain.model.Brewery
 import kotlinx.coroutines.coroutineScope
 import org.koin.core.component.KoinApiExtension
