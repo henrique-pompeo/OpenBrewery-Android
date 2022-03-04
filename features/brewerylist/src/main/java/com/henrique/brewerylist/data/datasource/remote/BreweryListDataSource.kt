@@ -1,4 +1,4 @@
-package com.henrique.brewerylist.data.datasource
+package com.henrique.brewerylist.data.datasource.remote
 
 import com.henrique.shared.domain.model.Brewery
 

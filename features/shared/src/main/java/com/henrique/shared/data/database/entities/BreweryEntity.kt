@@ -1,4 +1,4 @@
-package com.henrique.shared.data.local
+package com.henrique.shared.data.database.entities
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 import com.henrique.shared.domain.model.Brewery
 
 @Entity(tableName = "breweries")
-data class BreweryEntity(
+class BreweryEntity(
     @PrimaryKey(autoGenerate = false)
     @ColumnInfo(name = "id") val id: String,
     @ColumnInfo(name = "name") val name: String?,

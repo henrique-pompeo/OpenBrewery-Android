@@ -3,6 +3,7 @@ package com.henrique.app
 import android.app.Application
 import com.henrique.brewerydetail.di.BreweryDetailDI
 import com.henrique.brewerylist.di.BreweryListDI
+import com.henrique.shared.di.DatabaseDI
 import com.henrique.shared.di.RetrofitDI
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.component.KoinApiExtension
@@ -21,6 +22,7 @@ class BreweryApplication : Application() {
             androidContext(this@BreweryApplication)
             modules(
                 RetrofitDI.module +
+                DatabaseDI.module +
                 BreweryListDI.module +
                 BreweryDetailDI.module
             )
