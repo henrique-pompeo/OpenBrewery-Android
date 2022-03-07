@@ -1,5 +1,7 @@
 package com.henrique.brewerylist.di
 
+import com.henrique.brewerylist.data.datasource.local.BreweryListLocalDataSource
+import com.henrique.brewerylist.data.datasource.local.BreweryListLocalDataSourceImpl
 import com.henrique.brewerylist.data.datasource.remote.BreweryListDataSource
 import com.henrique.brewerylist.data.datasource.remote.BreweryListDataSourceImpl
 import com.henrique.brewerylist.ui.BreweryListViewModel
@@ -17,7 +19,8 @@ object BreweryListDI {
     val module = module {
         single<BreweryListService> { get<Retrofit>().create(BreweryListService::class.java) }
         single<BreweryListDataSource> { BreweryListDataSourceImpl(get()) }
-        single<BreweryListRepository> { BreweryListRepositoryImpl(get()) }
+        single<BreweryListLocalDataSource> { BreweryListLocalDataSourceImpl(get()) }
+        single<BreweryListRepository> { BreweryListRepositoryImpl(get(), get()) }
         viewModel { BreweryListViewModel(get()) }
     }
 }

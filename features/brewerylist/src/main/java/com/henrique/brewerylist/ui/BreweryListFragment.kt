@@ -42,7 +42,7 @@ class BreweryListFragment : Fragment(R.layout.brewery_list_fragment) {
 
     private fun setupObservers() {
         with (viewModel) {
-            breweryList.observe(viewLifecycleOwner, { it ->
+            breweryListLiveData.observe(viewLifecycleOwner, { it ->
                 when (it) {
                     is Result.Loading -> {
                         binding.breweryListLoadingPb.visibility = View.VISIBLE
@@ -52,25 +52,29 @@ class BreweryListFragment : Fragment(R.layout.brewery_list_fragment) {
                     is Result.Success -> {
                         binding.breweryListLoadingPb.visibility = View.GONE
                         it.let {
-                            binding.breweryListRv.apply {
-                                visibility = View.VISIBLE
-                                layoutManager = LinearLayoutManager(requireContext())
-                                adapter = BreweryListAdapter(it.data)
-                                addItemDecoration(
-                                    DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
-                                )
-                            }
+                            if (it.data.isNotEmpty()) {
+                                binding.breweryListRv.apply {
+                                    visibility = View.VISIBLE
+                                    layoutManager = LinearLayoutManager(requireContext())
+                                    adapter = BreweryListAdapter(it.data)
+                                    addItemDecoration(
+                                        DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
+                                    )
+                                }
+                                updateDatabase(it.data)
+                            } else showLayoutError("No data available")
                         }
                     }
-                    is Result.Error -> {
-                        binding.breweryListLoadingPb.visibility = View.GONE
-                        binding.breweryListRv.visibility = View.GONE
-                        binding.breweryListErrorCl.visibility = View.VISIBLE
-                        binding.errorTv.text = it.exception.message
-                    }
+                    is Result.Error -> showLayoutError(it.exception.message)
                 }
             })
         }
     }
 
+    private fun showLayoutError(message: String?) {
+        binding.breweryListLoadingPb.visibility = View.GONE
+        binding.breweryListRv.visibility = View.GONE
+        binding.breweryListErrorCl.visibility = View.VISIBLE
+        binding.errorTv.text = message
+    }
 }

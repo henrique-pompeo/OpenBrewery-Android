@@ -30,7 +30,7 @@ class BreweryListViewModelTest : BreweryListTest() {
             coEvery { breweryListRepository.getBreweryList() } returns listOf(brewery)
 
             with(breweryListViewModel) {
-                breweryList.observeForever(breweryListObserver)
+                breweryListLiveData.observeForever(breweryListObserver)
                 getBreweryList()
             }
 
@@ -55,7 +55,7 @@ class BreweryListViewModelTest : BreweryListTest() {
             coEvery { breweryListRepository.getBreweryList() } throws exception
 
             with(breweryListViewModel) {
-                breweryList.observeForever(breweryListObserver)
+                breweryListLiveData.observeForever(breweryListObserver)
                 getBreweryList()
             }
 
