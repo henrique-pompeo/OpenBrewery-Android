@@ -9,7 +9,7 @@ import androidx.navigation.fragment.navArgs
 import com.henrique.brewerydetail.R
 import com.henrique.brewerydetail.databinding.BreweryDetailFragmentBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import com.henrique.shared.data.Result
+import com.henrique.shared.data.ResultStatus
 import org.koin.core.component.KoinApiExtension
 
 @KoinApiExtension
@@ -43,17 +43,17 @@ class BreweryDetailFragment : Fragment(R.layout.brewery_detail_fragment) {
 
     private fun setupObservers() {
         with (viewModel) {
-            breweryDetail.observe(viewLifecycleOwner, {
+            breweryDetailLiveData.observe(viewLifecycleOwner, {
 
                 when (it) {
-                    is Result.Loading -> {
+                    is ResultStatus.Loading -> {
                         binding.breweryDetailLoadingPb.visibility = View.VISIBLE
                         binding.breweryDetailFragmentHeaderLl.visibility = View.GONE
                         binding.breweryDetailFragmentAddressLl.visibility = View.GONE
                         binding.breweryDetailFragmentContactLl.visibility = View.GONE
                         binding.breweryDetailErrorCl.visibility  = View.GONE
                     }
-                    is Result.Success -> {
+                    is ResultStatus.Success -> {
                         it.data.let { brewery ->
                             binding.breweryDetailFragmentBreweryNameTv.text = brewery.name
                             binding.breweryDetailFragmentBreweryTypeTv.text = brewery.breweryType
@@ -96,7 +96,7 @@ class BreweryDetailFragment : Fragment(R.layout.brewery_detail_fragment) {
                         binding.breweryDetailFragmentContactLl.visibility = View.VISIBLE
                         binding.breweryDetailErrorCl.visibility  = View.GONE
                     }
-                    is Result.Error -> {
+                    is ResultStatus.Error -> {
                         binding.breweryDetailLoadingPb.visibility = View.GONE
                         binding.breweryDetailFragmentHeaderLl.visibility = View.GONE
                         binding.breweryDetailFragmentAddressLl.visibility = View.GONE

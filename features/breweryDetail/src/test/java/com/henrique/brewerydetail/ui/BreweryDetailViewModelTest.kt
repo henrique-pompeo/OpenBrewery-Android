@@ -2,7 +2,7 @@ package com.henrique.brewerydetail.ui
 
 import androidx.lifecycle.Observer
 import com.henrique.brewerydetail.BreweryDetailTest
-import com.henrique.shared.data.Result
+import com.henrique.shared.data.ResultStatus
 import com.henrique.shared.domain.model.Brewery
 import io.kotlintest.shouldBe
 import io.mockk.coEvery
@@ -10,11 +10,8 @@ import io.mockk.coVerify
 import io.mockk.confirmVerified
 import io.mockk.mockk
 import io.mockk.verify
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.test.resetMain
-import org.junit.After
 import org.junit.Test
 import org.koin.core.component.KoinApiExtension
 
@@ -22,9 +19,9 @@ import org.koin.core.component.KoinApiExtension
 @ExperimentalCoroutinesApi
 class BreweryDetailViewModelTest : BreweryDetailTest() {
 
-    private val breweryDetailObserver = mockk<Observer<Result<Brewery>>>(relaxed = true)
+    private val breweryDetailObserver = mockk<Observer<ResultStatus<Brewery>>>(relaxed = true)
 
-    private val breweryDetailStates = mutableListOf<Result<Brewery>>()
+    private val breweryDetailStates = mutableListOf<ResultStatus<Brewery>>()
 
     @Test
     fun `SHOULD call getBreweryDetail() and THEN post success WHEN the call succeeds`() =
@@ -33,7 +30,7 @@ class BreweryDetailViewModelTest : BreweryDetailTest() {
             coEvery { breweryDetailRepository.getBreweryById("id") } returns brewery
 
             with(breweryDetailViewModel) {
-                breweryDetail.observeForever(breweryDetailObserver)
+                breweryDetailLiveData.observeForever(breweryDetailObserver)
                 getBreweryById("id")
             }
 
@@ -42,8 +39,8 @@ class BreweryDetailViewModelTest : BreweryDetailTest() {
             verify { breweryDetailObserver.onChanged(capture(breweryDetailStates)) }
 
             breweryDetailStates shouldBe listOf(
-                Result.Loading,
-                Result.Success(brewery)
+                ResultStatus.Loading,
+                ResultStatus.Success(brewery)
             )
 
             confirmVerified(breweryDetailRepository)
@@ -58,7 +55,7 @@ class BreweryDetailViewModelTest : BreweryDetailTest() {
             coEvery { breweryDetailRepository.getBreweryById("id") } throws exception
 
             with(breweryDetailViewModel) {
-                breweryDetail.observeForever(breweryDetailObserver)
+                breweryDetailLiveData.observeForever(breweryDetailObserver)
                 getBreweryById("id")
             }
 
@@ -67,8 +64,8 @@ class BreweryDetailViewModelTest : BreweryDetailTest() {
             verify { breweryDetailObserver.onChanged(capture(breweryDetailStates)) }
 
             breweryDetailStates shouldBe listOf(
-                Result.Loading,
-                Result.Error(exception)
+                ResultStatus.Loading,
+                ResultStatus.Error(exception)
             )
 
             confirmVerified(breweryDetailRepository)

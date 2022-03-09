@@ -14,8 +14,14 @@ interface BreweryDao {
     @Query("SELECT * FROM breweries")
     suspend fun getBreweryList() : List<BreweryEntity>
 
+    @Query("SELECT * FROM breweries WHERE id = :id")
+    suspend fun getLocalBreweryById(id: String) : BreweryEntity
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertBrewery(brewery: BreweryEntity)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertBreweryList(breweryList: List<BreweryEntity>)
 
     @Update
     suspend fun updateBrewery(brewery: BreweryEntity)

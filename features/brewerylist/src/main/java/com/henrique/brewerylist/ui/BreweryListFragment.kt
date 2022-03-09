@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.henrique.brewerylist.R
 import com.henrique.brewerylist.databinding.BreweryListFragmentBinding
-import com.henrique.shared.data.Result
+import com.henrique.shared.data.ResultStatus
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.component.KoinApiExtension
 
@@ -44,12 +44,12 @@ class BreweryListFragment : Fragment(R.layout.brewery_list_fragment) {
         with (viewModel) {
             breweryListLiveData.observe(viewLifecycleOwner, { it ->
                 when (it) {
-                    is Result.Loading -> {
+                    is ResultStatus.Loading -> {
                         binding.breweryListLoadingPb.visibility = View.VISIBLE
                         binding.breweryListErrorCl.visibility = View.GONE
                         binding.breweryListRv.visibility = View.GONE
                     }
-                    is Result.Success -> {
+                    is ResultStatus.Success -> {
                         binding.breweryListLoadingPb.visibility = View.GONE
                         it.let {
                             if (it.data.isNotEmpty()) {
@@ -61,11 +61,10 @@ class BreweryListFragment : Fragment(R.layout.brewery_list_fragment) {
                                         DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
                                     )
                                 }
-                                updateDatabase(it.data)
                             } else showLayoutError("No data available")
                         }
                     }
-                    is Result.Error -> showLayoutError(it.exception.message)
+                    is ResultStatus.Error -> showLayoutError(it.exception.message)
                 }
             })
         }

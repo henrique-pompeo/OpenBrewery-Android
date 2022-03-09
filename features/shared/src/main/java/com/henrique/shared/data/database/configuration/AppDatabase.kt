@@ -8,7 +8,7 @@ import com.henrique.shared.data.database.entities.BreweryEntity
 @Database(entities = [BreweryEntity::class], version = AppDatabase.VERSION, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
     companion object {
-        const val VERSION = 1
+        const val VERSION = 3
         const val FILE_NAME = "brewery.db"
     }
 

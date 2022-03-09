@@ -2,7 +2,7 @@ package com.henrique.brewerylist.ui
 
 import androidx.lifecycle.Observer
 import com.henrique.brewerylist.BreweryListTest
-import com.henrique.shared.data.Result
+import com.henrique.shared.data.ResultStatus
 import com.henrique.shared.domain.model.Brewery
 import io.kotlintest.shouldBe
 import io.mockk.coEvery
@@ -19,9 +19,9 @@ import org.koin.core.component.KoinApiExtension
 @ExperimentalCoroutinesApi
 class BreweryListViewModelTest : BreweryListTest() {
 
-    private val breweryListObserver = mockk<Observer<Result<List<Brewery>>>>(relaxed = true)
+    private val breweryListObserver = mockk<Observer<ResultStatus<List<Brewery>>>>(relaxed = true)
 
-    private val breweryListStates = mutableListOf<Result<List<Brewery>>>()
+    private val breweryListStates = mutableListOf<ResultStatus<List<Brewery>>>()
 
     @Test
     fun `SHOULD call getBreweryList() and THEN post success WHEN the call succeeds`() =
@@ -39,8 +39,8 @@ class BreweryListViewModelTest : BreweryListTest() {
             verify { breweryListObserver.onChanged(capture(breweryListStates)) }
 
             breweryListStates shouldBe listOf(
-                Result.Loading,
-                Result.Success(listOf(brewery))
+                ResultStatus.Loading,
+                ResultStatus.Success(listOf(brewery))
             )
 
             confirmVerified(breweryListRepository)
@@ -64,8 +64,8 @@ class BreweryListViewModelTest : BreweryListTest() {
             verify { breweryListObserver.onChanged(capture(breweryListStates)) }
 
             breweryListStates shouldBe listOf(
-                Result.Loading,
-                Result.Error(exception)
+                ResultStatus.Loading,
+                ResultStatus.Error(exception)
             )
 
             confirmVerified(breweryListRepository)

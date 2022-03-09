@@ -9,7 +9,7 @@ import io.mockk.mockk
 import io.mockk.every
 import io.mockk.Runs
 import io.mockk.just
-import com.henrique.shared.data.Result
+import com.henrique.shared.data.ResultStatus
 import org.junit.runner.RunWith
 import org.koin.core.component.KoinApiExtension
 import org.koin.dsl.module
@@ -20,7 +20,7 @@ class BreweryDetailFragmentTest : InstrumentedTest() {
 
     private val breweryDetailViewModel = mockk<BreweryDetailViewModel>(relaxed = true)
 
-    private val breweryDetailMutableLiveData = MutableLiveData<Result<Brewery>>()
+    private val breweryDetailMutableLiveData = MutableLiveData<ResultStatus<Brewery>>()
 
     override fun getModule() = module(override = true) {
         single(override = true) { breweryDetailViewModel }
@@ -28,7 +28,7 @@ class BreweryDetailFragmentTest : InstrumentedTest() {
 
     override fun initialize() {
         every { breweryDetailViewModel.getBreweryById(any()) } just Runs
-        every { breweryDetailViewModel.breweryDetail } returns breweryDetailMutableLiveData
+        every { breweryDetailViewModel.breweryDetailLiveData } returns breweryDetailMutableLiveData
     }
 
 
