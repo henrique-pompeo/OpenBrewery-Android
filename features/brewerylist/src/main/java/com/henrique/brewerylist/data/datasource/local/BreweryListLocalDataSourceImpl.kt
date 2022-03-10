@@ -2,8 +2,6 @@ package com.henrique.brewerylist.data.datasource.local
 
 import com.henrique.shared.data.database.dao.BreweryDao
 import com.henrique.shared.data.database.entities.BreweryEntity
-import com.henrique.shared.data.database.entities.model
-import com.henrique.shared.domain.model.Brewery
 import kotlinx.coroutines.coroutineScope
 import org.koin.core.component.KoinApiExtension
 import org.koin.core.component.KoinComponent

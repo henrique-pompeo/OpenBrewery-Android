@@ -1,5 +1,6 @@
 package com.henrique.shared.data.remote.response
 
+import com.henrique.shared.data.extensions.model
 import com.henrique.shared.domain.model.Brewery
 import org.junit.Assert
 import org.junit.Test

@@ -4,8 +4,8 @@ import com.henrique.brewerylist.data.datasource.local.BreweryListLocalDataSource
 import com.henrique.brewerylist.data.datasource.remote.BreweryListDataSource
 import com.henrique.shared.data.ResultStatus
 import com.henrique.shared.data.database.entities.BreweryEntity
-import com.henrique.shared.data.database.entities.model
-import com.henrique.shared.data.remote.response.model
+import com.henrique.shared.data.extensions.model
+import com.henrique.shared.data.extensions.toEntity
 import com.henrique.shared.domain.model.Brewery
 import org.koin.core.component.KoinApiExtension
 import org.koin.core.component.KoinComponent
@@ -23,13 +23,13 @@ class BreweryListRepositoryImpl(
     override suspend fun getBreweryList(): ResultStatus<List<Brewery>> =
         try {
             val breweryList = breweryListDataSource.getBreweryList()
+            insertBreweryList(breweryList = breweryList.map { it.toEntity() })
             ResultStatus.Success(breweryList.map { it.model() })
         } catch (e: Exception) {
             when (e)  {
                 is IOException, is SocketException, is HttpException ->
                     try {
                         val breweryList = breweryListLocalDataSource.getBreweryList()
-                        breweryList.map { insertBrewery(it) }
                         ResultStatus.Success(breweryList.map { it.model() })
                     } catch (localEx: Exception) {
                         ResultStatus.Error(localEx)

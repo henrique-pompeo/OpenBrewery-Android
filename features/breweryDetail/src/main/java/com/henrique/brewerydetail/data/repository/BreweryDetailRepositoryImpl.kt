@@ -3,8 +3,7 @@ package com.henrique.brewerydetail.data.repository
 import com.henrique.brewerydetail.data.datasource.local.BreweryDetailLocalDataSource
 import com.henrique.brewerydetail.data.datasource.remote.BreweryDetailDataSource
 import com.henrique.shared.data.ResultStatus
-import com.henrique.shared.data.database.entities.model
-import com.henrique.shared.data.remote.response.model
+import com.henrique.shared.data.extensions.model
 import com.henrique.shared.domain.model.Brewery
 import org.koin.core.component.KoinApiExtension
 import org.koin.core.component.KoinComponent

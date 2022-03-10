@@ -3,7 +3,6 @@ package com.henrique.shared.data.database.entities
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.henrique.shared.domain.model.Brewery
 
 @Entity(tableName = "breweries")
 class BreweryEntity(
@@ -26,24 +25,3 @@ class BreweryEntity(
     @ColumnInfo(name = "updated_at") val updatedAt: String?,
     @ColumnInfo(name = "created_at") val createdAt: String?
 )
-
-fun BreweryEntity.model() =
-    Brewery(
-        id = id,
-        name = name,
-        breweryType = breweryType,
-        street = street,
-        address2 = address2,
-        address3 = address3,
-        city = city,
-        state = state,
-        countyProvince = countyProvince,
-        postalCode = postalCode,
-        country = country,
-        longitude = longitude,
-        latitude = latitude,
-        phone = phone,
-        websiteUrl = websiteUrl,
-        updatedAt = updatedAt,
-        createdAt = createdAt
-    )

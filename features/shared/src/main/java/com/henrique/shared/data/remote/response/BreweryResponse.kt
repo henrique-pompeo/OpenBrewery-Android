@@ -1,7 +1,6 @@
 package com.henrique.shared.data.remote.response
 
 import com.google.gson.annotations.SerializedName
-import com.henrique.shared.domain.model.Brewery
 
 class BreweryResponse(
     @SerializedName("id") val id: String,
@@ -22,24 +21,3 @@ class BreweryResponse(
     @SerializedName("updated_at") val updatedAt: String?,
     @SerializedName("created_at") val createdAt: String?
 )
-
-fun BreweryResponse.model() =
-    Brewery(
-        id = id,
-        name = name,
-        breweryType = breweryType,
-        street = street,
-        address2 = address2,
-        address3 = address3,
-        city = city,
-        state = state,
-        countyProvince = countyProvince,
-        postalCode = postalCode,
-        country = country,
-        longitude = longitude,
-        latitude = latitude,
-        phone = phone,
-        websiteUrl = websiteUrl,
-        updatedAt = updatedAt,
-        createdAt = createdAt
-    )
