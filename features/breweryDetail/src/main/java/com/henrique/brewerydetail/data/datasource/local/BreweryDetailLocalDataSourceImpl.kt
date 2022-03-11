@@ -11,6 +11,6 @@ class BreweryDetailLocalDataSourceImpl(private val breweryDao: BreweryDao) :
     KoinComponent, BreweryDetailLocalDataSource {
 
     override suspend fun getBreweryById(id: String): BreweryEntity = coroutineScope {
-        breweryDao.getLocalBreweryById(id)
+        breweryDao.getBreweryById(id)
     }
 }

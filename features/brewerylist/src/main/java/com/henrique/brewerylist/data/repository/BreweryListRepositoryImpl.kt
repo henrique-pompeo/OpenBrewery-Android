@@ -38,19 +38,7 @@ class BreweryListRepositoryImpl(
             }
         }
 
-    override suspend fun insertBrewery(brewery: BreweryEntity) {
-        breweryListLocalDataSource.insertBrewery(brewery = brewery)
-    }
-
     override suspend fun insertBreweryList(breweryList: List<BreweryEntity>) {
         breweryListLocalDataSource.insertBreweryList(breweryList = breweryList)
-    }
-
-    override suspend fun updateBrewery(brewery: BreweryEntity) {
-        breweryListLocalDataSource.updateBrewery(brewery)
-    }
-
-    override suspend fun deleteBrewery(breweryEntity: BreweryEntity) {
-        breweryListLocalDataSource.deleteBrewery(breweryEntity = breweryEntity)
     }
 }

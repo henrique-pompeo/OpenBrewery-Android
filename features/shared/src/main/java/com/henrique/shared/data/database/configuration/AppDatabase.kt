@@ -12,5 +12,5 @@ abstract class AppDatabase : RoomDatabase() {
         const val FILE_NAME = "brewery.db"
     }
 
-    abstract fun brewertDao(): BreweryDao
+    abstract fun breweryDao(): BreweryDao
 }

@@ -1,7 +1,7 @@
-package com.henrique.brewerylist.data.datasource
+package com.henrique.brewerylist.data.datasource.remote
 
 import com.henrique.brewerylist.data.service.BreweryListService
-import com.henrique.brewerylist.BreweryListTest
+import com.henrique.brewerylist.UnitTest
 import com.henrique.brewerylist.data.datasource.remote.BreweryListDataSource
 import com.henrique.brewerylist.data.datasource.remote.BreweryListDataSourceImpl
 import io.mockk.coEvery
@@ -16,14 +16,14 @@ import org.koin.core.component.KoinApiExtension
 
 @ExperimentalCoroutinesApi
 @KoinApiExtension
-class BreweryListDataSourceImplTest : BreweryListTest() {
+class BreweryListDataSourceImplTest : UnitTest() {
 
     private lateinit var breweryListDataSource: BreweryListDataSource
 
     private val breweryListService = mockk<BreweryListService>()
 
     @Test
-    fun `GIVEN BreweryListDataSource WHEN getBreweryList() is called SHOULD return a list of Brewery`() {
+    fun `GIVEN BreweryListDataSource WHEN getBreweryList() is called SHOULD return a list of BreweryResponse`() {
 
         breweryListDataSource = BreweryListDataSourceImpl(breweryListService)
 
@@ -31,7 +31,7 @@ class BreweryListDataSourceImplTest : BreweryListTest() {
 
         val response = runBlocking { breweryListDataSource.getBreweryList() }
 
-        Assert.assertEquals(response, listOf(brewery))
+        Assert.assertEquals(response, listOf(breweryResponse))
 
         coVerify(exactly = 1) { breweryListService.getBreweryList("") }
 

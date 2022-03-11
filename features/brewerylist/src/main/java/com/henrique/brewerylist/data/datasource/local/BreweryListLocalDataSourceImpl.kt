@@ -12,19 +12,7 @@ class BreweryListLocalDataSourceImpl(private val breweryDao: BreweryDao) : KoinC
         breweryDao.getBreweryList()
     }
 
-    override suspend fun insertBrewery(brewery: BreweryEntity) {
-        breweryDao.insertBrewery(brewery = brewery)
-    }
-
     override suspend fun insertBreweryList(breweryList: List<BreweryEntity>) = coroutineScope {
         breweryDao.insertBreweryList(breweryList = breweryList)
-    }
-
-    override suspend fun updateBrewery(brewery: BreweryEntity) {
-        breweryDao.updateBrewery(brewery)
-    }
-
-    override suspend fun deleteBrewery(breweryEntity: BreweryEntity) = coroutineScope {
-        breweryDao.deleteBrewery(breweryEntity)
     }
 }

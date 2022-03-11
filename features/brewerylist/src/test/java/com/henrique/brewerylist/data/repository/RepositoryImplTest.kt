@@ -1,7 +1,8 @@
 package com.henrique.brewerylist.data.repository
 
 import com.henrique.brewerylist.data.datasource.remote.BreweryListDataSource
-import com.henrique.brewerylist.BreweryListTest
+import com.henrique.brewerylist.UnitTest
+import com.henrique.brewerylist.data.datasource.local.BreweryListLocalDataSource
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.confirmVerified
@@ -14,16 +15,21 @@ import org.junit.Test
 
 @ExperimentalCoroutinesApi
 @KoinApiExtension
-class BreweryListRepositoryImplTest : BreweryListTest() {
+class RepositoryImplTest : UnitTest() {
 
     private val breweryListDataSource = mockk<BreweryListDataSource>()
+    private val breweryListLocalDataSource = mockk<BreweryListLocalDataSource>()
 
     @Test
     fun `GIVEN BreweryListRepository WHEN getBreweryList() is called SHOULD return a list of Brewery`() {
 
-        breweryListRepository = BreweryListRepositoryImpl(breweryListDataSource)
+        breweryListRepository = BreweryListRepositoryImpl(
+            breweryListDataSource,
+            breweryListLocalDataSource
+        )
 
-        coEvery { breweryListDataSource.getBreweryList() } returns listOf(brewery)
+        coEvery { breweryListDataSource.getBreweryList() } returns listOf(breweryResponse)
+        coEvery { breweryListLocalDataSource.getBreweryList() } returns listOf(breweryEntity)
 
         val response = runBlocking { breweryListRepository.getBreweryList() }
 

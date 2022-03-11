@@ -5,7 +5,6 @@ import com.henrique.shared.ui.base.BaseViewModel
 import com.henrique.brewerylist.data.repository.BreweryListRepository
 import com.henrique.shared.domain.model.Brewery
 import com.henrique.shared.data.ResultStatus
-import com.henrique.shared.data.database.entities.BreweryEntity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob

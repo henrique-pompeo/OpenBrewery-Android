@@ -3,16 +3,13 @@ package com.henrique.app.ui
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.findNavController
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.henrique.app.R
 import com.henrique.app.databinding.MainFragmentBinding
-import com.henrique.brewerylist.databinding.BreweryListFragmentBinding
-import com.henrique.brewerylist.ui.BreweryListFragmentDirections
 
 class MainFragment : Fragment(R.layout.main_fragment) {
 

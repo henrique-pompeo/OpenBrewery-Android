@@ -1,4 +1,4 @@
-package com.henrique.openbreweryandroid
+package com.henrique.app
 
 import org.junit.Test
 

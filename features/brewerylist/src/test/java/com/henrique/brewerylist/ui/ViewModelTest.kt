@@ -1,7 +1,7 @@
 package com.henrique.brewerylist.ui
 
 import androidx.lifecycle.Observer
-import com.henrique.brewerylist.BreweryListTest
+import com.henrique.brewerylist.UnitTest
 import com.henrique.shared.data.ResultStatus
 import com.henrique.shared.domain.model.Brewery
 import io.kotlintest.shouldBe
@@ -17,7 +17,7 @@ import org.koin.core.component.KoinApiExtension
 
 @KoinApiExtension
 @ExperimentalCoroutinesApi
-class BreweryListViewModelTest : BreweryListTest() {
+class ViewModelTest : UnitTest() {
 
     private val breweryListObserver = mockk<Observer<ResultStatus<List<Brewery>>>>(relaxed = true)
 
@@ -27,7 +27,8 @@ class BreweryListViewModelTest : BreweryListTest() {
     fun `SHOULD call getBreweryList() and THEN post success WHEN the call succeeds`() =
         runBlocking {
 
-            coEvery { breweryListRepository.getBreweryList() } returns listOf(brewery)
+            coEvery { breweryListRepository.getBreweryList() } returns
+                    ResultStatus.Success(listOf(brewery))
 
             with(breweryListViewModel) {
                 breweryListLiveData.observeForever(breweryListObserver)
