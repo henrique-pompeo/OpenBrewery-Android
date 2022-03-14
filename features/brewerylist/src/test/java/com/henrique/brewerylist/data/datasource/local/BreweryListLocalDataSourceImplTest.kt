@@ -15,34 +15,29 @@ import org.koin.core.component.KoinApiExtension
 @KoinApiExtension
 class BreweryListLocalDataSourceImplTest : UnitTest() {
 
-    private lateinit var breweryListLocalDataSource: BreweryListLocalDataSource
-
     private val breweryDao = mockk<BreweryDao>()
-
-    @Before
-    fun setUp() {
-
-        breweryListLocalDataSource = BreweryListLocalDataSourceImpl(breweryDao)
-
-        coEvery { breweryDao.getBreweryList() }  returns listOf(breweryEntity)
-    }
+    private val breweryListLocalDataSource = BreweryListLocalDataSourceImpl(breweryDao)
 
     @Test
-    fun `GIVEN BreweryListLocalDataSource WHEN getBreweryList() is called SHOULD return a list of BreweryEntity`() {
+    fun `GIVEN BreweryListLocalDataSource WHEN getBreweryList() is called SHOULD return a list of BreweryEntity`() =
+        runBlocking {
 
-        val response = runBlocking { breweryListLocalDataSource.getBreweryList() }
+            coEvery { breweryDao.getBreweryList() }  returns listOf(breweryEntity)
 
-        Assert.assertEquals(response.map { it.model() }, listOf(breweryEntity).map { it.model() })
+            val response = breweryListLocalDataSource.getBreweryList()
 
-        coVerify(exactly = 1) { breweryDao.getBreweryList() }
+            Assert.assertEquals(response.map { it.model() }, listOf(breweryEntity).map { it.model() })
 
-        confirmVerified(breweryDao)
+            coVerify(exactly = 1) { breweryDao.getBreweryList() }
+
+            confirmVerified(breweryDao)
     }
 
     @Test
     fun `GIVEN BreweryListLocalDataSource WHEN insertBreweryList() is called SHOULD insert a list of BreweryEntity in the database`() =
         runBlocking {
 
+            coEvery { breweryDao.getBreweryList() }  returns listOf(breweryEntity)
             coEvery { breweryDao.insertBreweryList(breweryList = listOf(breweryEntity)) } just Runs
 
             breweryListLocalDataSource.insertBreweryList(listOf(breweryEntity))

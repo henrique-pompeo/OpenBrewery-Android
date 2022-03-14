@@ -24,38 +24,24 @@ import org.koin.test.KoinTestRule
 @ExperimentalCoroutinesApi
 abstract class UnitTest {
 
-    lateinit var breweryListViewModel: BreweryListViewModel
-
-    var breweryListRepository = mockk<BreweryListRepository>()
-
-    private val testDispatcher =  TestCoroutineDispatcher()
-
-    @get:Rule
-    val rule: TestRule = InstantTaskExecutorRule()
-
-    @get:Rule
-    val koinTestRule = KoinTestRule.create {
-        modules(
-            module {
-                single { breweryListRepository }
-            }
-        )
-    }
-
-    @Before
-    fun setup() {
-        with(Dispatchers) { setMain(testDispatcher) }
-
-        breweryListViewModel = BreweryListViewModel(
-            breweryListRepository = breweryListRepository
-        )
-    }
-
-    @After
-    fun tearDown() {
-        Dispatchers.resetMain()
-        testDispatcher.cleanupTestCoroutines()
-    }
+//    @ExperimentalCoroutinesApi
+//    private val testDispatcher = TestCoroutineDispatcher()
+//
+//    @ExperimentalCoroutinesApi
+//    @Before
+//    fun setupTest() {
+//        initialize()
+//        with(Dispatchers) { setMain(testDispatcher) }
+//    }
+//
+//    abstract fun initialize()
+//
+//    @ExperimentalCoroutinesApi
+//    @After
+//    fun tearDown() {
+//        Dispatchers.resetMain()
+//        testDispatcher.cleanupTestCoroutines()
+//    }
 
     companion object {
 

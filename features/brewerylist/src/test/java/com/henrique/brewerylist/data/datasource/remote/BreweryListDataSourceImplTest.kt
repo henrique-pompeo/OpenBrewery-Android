@@ -18,14 +18,11 @@ import org.koin.core.component.KoinApiExtension
 @KoinApiExtension
 class BreweryListDataSourceImplTest : UnitTest() {
 
-    private lateinit var breweryListDataSource: BreweryListDataSource
-
     private val breweryListService = mockk<BreweryListService>()
+    private val breweryListDataSource = BreweryListDataSourceImpl(breweryListService)
 
     @Test
     fun `GIVEN BreweryListDataSource WHEN getBreweryList() is called SHOULD return a list of BreweryResponse`() {
-
-        breweryListDataSource = BreweryListDataSourceImpl(breweryListService)
 
         coEvery { breweryListService.getBreweryList(any()) } returns listOf(breweryResponse)
 
