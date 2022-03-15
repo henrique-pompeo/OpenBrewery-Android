@@ -19,9 +19,9 @@ class BreweryListViewModel(private val breweryListRepository: BreweryListReposit
     val breweryListLiveData = MutableLiveData<ResultStatus<List<Brewery>>>()
 
     fun getBreweryList() {
-        breweryListLiveData.value = ResultStatus.Loading
+        breweryListLiveData.postValue(ResultStatus.Loading)
         viewModelScope.launch {
-            breweryListLiveData.value = breweryListRepository.getBreweryList()
+            breweryListLiveData.postValue(breweryListRepository.getBreweryList())
         }
     }
 }

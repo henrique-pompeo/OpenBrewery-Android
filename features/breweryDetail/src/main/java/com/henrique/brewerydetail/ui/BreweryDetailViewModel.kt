@@ -21,9 +21,9 @@ class BreweryDetailViewModel(private val breweryDetailRepository: BreweryDetailR
     private val viewModelScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
     fun getBreweryById(id: String) {
-        breweryDetailLiveData.value = ResultStatus.Loading
+        breweryDetailLiveData.postValue(ResultStatus.Loading)
         viewModelScope.launch {
-            breweryDetailLiveData.value = breweryDetailRepository.getBreweryById(id)
+            breweryDetailLiveData.postValue(breweryDetailRepository.getBreweryById(id))
         }
     }
 }
