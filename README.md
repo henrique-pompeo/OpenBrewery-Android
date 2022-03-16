@@ -11,7 +11,7 @@ The results shown at brewery listing is gotten from https://api.openbrewerydb.or
 through HTTP request. This API returns a brewery objects JSON array and the application is 
 responsible for converting the data into a readable one.
 Example:
-```
+```yaml
 [
   ...
   {
@@ -54,7 +54,7 @@ brewery. The same approach is used to get the brewery details but
 the request is made, for example
 https://api.openbrewerydb.org/breweries/madtree-brewing-cincinnati
 and the result obtained is:
-```
+```yaml
 {
   id: "madtree-brewing-cincinnati",
   name: "MadTree Brewing",
@@ -86,4 +86,46 @@ Note that the brewery ID is passed at the and of the link.
 
 ## Dependencies
 
-## Tests
+For this app we are using Gradle as the build system.
+
+You can check below the complete list of Gradle dependencies separated by their functionalities
+
+#### Core
+- Core KTX: Common libraries that are part of the Android framework
+- Core Testing: Android Core-Testing
+
+#### Layout
+- Appcompat: Allows access to new APIs on older API versions
+- Material: Material components
+- ConstraintLayout: Allows create large and complex layouts with a flat view hierarchy
+- Jetpack RecyclerView: Creates dynamic lists
+
+#### Tests
+- JUnit: Unit tests
+- Mockk: Mocking library for Kotlin
+- Kotlintest Assertions: Assertions
+- Espresso: Integrated tests
+
+#### Dependency Injection (Koin)
+Kotlin injection library
+- Koin Scope: Manages Android Scopes
+- Koin Test: Injecting in Tests
+
+#### Kotlin coroutines
+- Coroutines core: Commons coroutines across all platforms
+- Coroutines Android: Coroutines dispatchers and logging unhandled exceptions
+- Coroutines Test: Utilities for testing coroutines
+
+#### Jetpack Navigation
+- Navigation Dynamic Features Fragment: Feature module Support
+- Navigation Testing: Testing Navigation
+
+#### HTTP API
+- Retrofit: A type-safe HTTP client
+- Gson: Convert a JSON string to an equivalent Kotlin object
+- Logging interceptor: OkHttp interceptor which logs request and response information
+
+#### Local database (Room)
+The Room persistence library provides an abstraction layer over SQLite
+- Room KTX: Kotlin Extensions and Coroutines support
+- Room Testing: Room Test helpers
