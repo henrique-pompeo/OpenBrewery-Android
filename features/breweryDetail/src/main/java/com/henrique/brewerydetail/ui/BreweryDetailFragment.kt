@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.henrique.brewerydetail.R
@@ -47,11 +48,11 @@ class BreweryDetailFragment : Fragment(R.layout.brewery_detail_fragment) {
 
                 when (it) {
                     is ResultStatus.Loading -> {
-                        binding.breweryDetailLoadingPb.visibility = View.VISIBLE
-                        binding.breweryDetailFragmentHeaderLl.visibility = View.GONE
-                        binding.breweryDetailFragmentAddressLl.visibility = View.GONE
-                        binding.breweryDetailFragmentContactLl.visibility = View.GONE
-                        binding.breweryDetailErrorCl.visibility  = View.GONE
+                        binding.breweryDetailLoadingPb.isVisible = true
+                        binding.breweryDetailFragmentHeaderLl.isVisible = false
+                        binding.breweryDetailFragmentAddressLl.isVisible = false
+                        binding.breweryDetailFragmentContactLl.isVisible = false
+                        binding.breweryDetailErrorCl.isVisible = false
                     }
                     is ResultStatus.Success -> {
                         it.data.let { brewery ->
@@ -90,18 +91,18 @@ class BreweryDetailFragment : Fragment(R.layout.brewery_detail_fragment) {
                                 R.string.brewery_website_url, brewery.websiteUrl
                             )
                         }
-                        binding.breweryDetailLoadingPb.visibility = View.GONE
-                        binding.breweryDetailFragmentHeaderLl.visibility = View.VISIBLE
-                        binding.breweryDetailFragmentAddressLl.visibility = View.VISIBLE
-                        binding.breweryDetailFragmentContactLl.visibility = View.VISIBLE
-                        binding.breweryDetailErrorCl.visibility  = View.GONE
+                        binding.breweryDetailLoadingPb.isVisible = false
+                        binding.breweryDetailFragmentHeaderLl.isVisible = true
+                        binding.breweryDetailFragmentAddressLl.isVisible = true
+                        binding.breweryDetailFragmentContactLl.isVisible = true
+                        binding.breweryDetailErrorCl.isVisible = false
                     }
                     is ResultStatus.Error -> {
-                        binding.breweryDetailLoadingPb.visibility = View.GONE
-                        binding.breweryDetailFragmentHeaderLl.visibility = View.GONE
-                        binding.breweryDetailFragmentAddressLl.visibility = View.GONE
-                        binding.breweryDetailFragmentContactLl.visibility = View.GONE
-                        binding.breweryDetailErrorCl.visibility  = View.VISIBLE
+                        binding.breweryDetailLoadingPb.isVisible = false
+                        binding.breweryDetailFragmentHeaderLl.isVisible = false
+                        binding.breweryDetailFragmentAddressLl.isVisible = false
+                        binding.breweryDetailFragmentContactLl.isVisible = false
+                        binding.breweryDetailErrorCl.isVisible = true
                         binding.errorTv.text = it.exception.message
                     }
                 }

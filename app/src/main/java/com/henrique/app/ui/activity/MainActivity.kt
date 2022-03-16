@@ -1,4 +1,4 @@
-package com.henrique.app.ui
+package com.henrique.app.ui.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

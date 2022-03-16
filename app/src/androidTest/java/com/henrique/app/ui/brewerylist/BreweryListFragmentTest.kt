@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.henrique.app.InstrumentedTest
 import com.henrique.brewerylist.data.repository.BreweryListRepository
-import com.henrique.brewerylist.ui.BreweryListViewModel
+import com.henrique.brewerylist.ui.viewmodel.BreweryListViewModel
 import com.henrique.shared.domain.model.Brewery
 import io.mockk.Runs
 import io.mockk.coEvery

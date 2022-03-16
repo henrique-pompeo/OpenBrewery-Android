@@ -1,4 +1,4 @@
-package com.henrique.brewerylist.ui
+package com.henrique.brewerylist.ui.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import com.henrique.shared.ui.base.BaseViewModel
