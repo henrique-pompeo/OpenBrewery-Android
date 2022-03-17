@@ -4,10 +4,10 @@ import com.henrique.brewerylist.data.datasource.remote.BreweryListDataSource
 import com.henrique.brewerylist.UnitTest
 import com.henrique.brewerylist.data.datasource.local.BreweryListLocalDataSource
 import com.henrique.shared.data.ResultStatus
+import io.kotlintest.matchers.exactly
 import io.mockk.Runs
 import io.mockk.coEvery
 import io.mockk.coVerify
-import io.mockk.confirmVerified
 import io.mockk.just
 import org.koin.core.component.KoinApiExtension
 import io.mockk.mockk
@@ -28,22 +28,35 @@ class BreweryListRepositoryImplTest : UnitTest() {
     )
 
     @Test
-    fun `GIVEN BreweryListRepository WHEN getBreweryList() is called SHOULD return a list of Brewery and INSERT it into database`() =
+    fun `GIVEN BreweryListRepository WHEN getBreweryList() is called AND it returns a list SHOULD insert this list into database AND return success`() =
         runBlocking {
 
-        coEvery { breweryListDataSource.getBreweryList() } returns listOf(breweryResponse)
-        coEvery { breweryListLocalDataSource.insertBreweryList(listOf(breweryEntity)) } just Runs
-        coEvery { breweryListLocalDataSource.getBreweryList() } returns listOf(breweryEntity)
+            coEvery { breweryListDataSource.getBreweryList() } returns listOf(breweryResponse)
+            coEvery { breweryListLocalDataSource.insertBreweryList(any()) } just Runs
 
-        val response = breweryListRepository.getBreweryList()
+            val response = breweryListRepository.getBreweryList()
 
-        Assert.assertEquals(response, ResultStatus.Success(listOf(brewery)))
+            Assert.assertEquals(response, ResultStatus.Success(listOf(brewery)))
 
-        coVerify(exactly = 1) { breweryListDataSource.getBreweryList() }
+            coVerify(exactly = 1) { breweryListDataSource.getBreweryList() }
+            coVerify(exactly = 1) { breweryListLocalDataSource.insertBreweryList(any()) }
     }
 
     @Test
-    fun `GIVEN BreweryListRepository WHEN getBreweryList() is called and throws exception SHOULD return a list of Brewery from local database`() =
+    fun `GIVEN BreweryListRepository WHEN getBreweryList() is called AND it returns an empty list SHOULD return error`() =
+        runBlocking {
+
+            coEvery { breweryListDataSource.getBreweryList() } returns listOf()
+
+            val response = breweryListRepository.getBreweryList()
+
+            Assert.assertEquals(response, ResultStatus.Error(errorMessage))
+
+            coVerify(exactly = 1) { breweryListDataSource.getBreweryList() }
+        }
+
+    @Test
+    fun `GIVEN BreweryListRepository WHEN getBreweryList() is called AND throws exception related to services SHOULD return success getting the list from local database`() =
         runBlocking {
 
         coEvery { breweryListDataSource.getBreweryList() } throws IOException()
@@ -54,10 +67,26 @@ class BreweryListRepositoryImplTest : UnitTest() {
         Assert.assertEquals(response, ResultStatus.Success(listOf(brewery)))
 
         coVerify(exactly = 1) { breweryListDataSource.getBreweryList() }
+        coVerify(exactly = 1) { breweryListLocalDataSource.getBreweryList() }
     }
 
     @Test
-    fun `GIVEN BreweryListRepository WHEN getBreweryList() is called throws exception for both datasources`() =
+    fun `GIVEN BreweryListRepository WHEN getBreweryList() is called AND throws exception not related to services SHOULD return error`() =
+        runBlocking {
+
+            val exception = Exception()
+
+            coEvery { breweryListDataSource.getBreweryList() } throws exception
+
+            val response = breweryListRepository.getBreweryList()
+
+            Assert.assertEquals(response, ResultStatus.Error(exception.message))
+
+            coVerify(exactly = 1) { breweryListDataSource.getBreweryList() }
+        }
+
+    @Test
+    fun `GIVEN BreweryListRepository WHEN trying to call getBreweryList() from both datasources AND they throws exception SHOULD return error`() =
         runBlocking {
 
             val exception = Exception()
@@ -67,8 +96,13 @@ class BreweryListRepositoryImplTest : UnitTest() {
 
             val response = breweryListRepository.getBreweryList()
 
-            Assert.assertEquals(response, ResultStatus.Error(exception))
+            Assert.assertEquals(response, ResultStatus.Error(exception.message))
 
             coVerify(exactly = 1) { breweryListDataSource.getBreweryList() }
+            coVerify(exactly = 1) { breweryListLocalDataSource.getBreweryList() }
         }
+
+    companion object {
+        val errorMessage = "No data available"
+    }
 }

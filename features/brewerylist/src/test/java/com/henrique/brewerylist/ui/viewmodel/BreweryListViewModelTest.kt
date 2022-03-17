@@ -20,11 +20,9 @@ class BreweryListViewModelTest : UnitTest() {
     private val breweryListRepository = mockk<BreweryListRepository>(relaxed = true)
     private val breweryListObserver = mockk<Observer<ResultStatus<List<Brewery>>>>(relaxed = true)
     private val breweryListStates = mutableListOf<ResultStatus<List<Brewery>>>()
-
-    private lateinit var breweryListViewModel : BreweryListViewModel
+    private val breweryListViewModel = BreweryListViewModel(breweryListRepository)
 
     private fun setUpViewModel() {
-        breweryListViewModel = BreweryListViewModel(breweryListRepository)
         breweryListViewModel.breweryListLiveData.observeForever(breweryListObserver)
         breweryListViewModel.getBreweryList()
     }
@@ -54,7 +52,7 @@ class BreweryListViewModelTest : UnitTest() {
             val exception = Exception()
 
             coEvery { breweryListRepository.getBreweryList() } returns
-                    ResultStatus.Error(exception)
+                    ResultStatus.Error(exception.message)
 
             setUpViewModel()
 
@@ -63,7 +61,7 @@ class BreweryListViewModelTest : UnitTest() {
 
             breweryListStates shouldBe listOf(
                 ResultStatus.Loading,
-                ResultStatus.Error(exception)
+                ResultStatus.Error(exception.message)
             )
         }
 }

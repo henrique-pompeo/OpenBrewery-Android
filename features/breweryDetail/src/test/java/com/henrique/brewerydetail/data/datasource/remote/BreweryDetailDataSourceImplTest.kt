@@ -1,9 +1,8 @@
-package com.henrique.brewerydetail.data.datasource
+package com.henrique.brewerydetail.data.datasource.remote
 
 import com.henrique.brewerydetail.data.service.BreweryDetailService
-import com.henrique.brewerydetail.BreweryDetailTest
-import com.henrique.brewerydetail.data.datasource.remote.BreweryDetailDataSource
-import com.henrique.brewerydetail.data.datasource.remote.BreweryDetailDataSourceImpl
+import com.henrique.brewerydetail.UnitTest
+import com.henrique.shared.data.extensions.model
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.confirmVerified
@@ -16,22 +15,20 @@ import org.koin.core.component.KoinApiExtension
 
 @ExperimentalCoroutinesApi
 @KoinApiExtension
-class BreweryDetailDataSourceImplTest : BreweryDetailTest() {
-
-    private lateinit var breweryDetailDataSource: BreweryDetailDataSource
+class BreweryDetailDataSourceImplTest : UnitTest() {
 
     private val breweryDetailService = mockk<BreweryDetailService>()
+    private val breweryDetailDataSource = BreweryDetailDataSourceImpl(breweryDetailService)
 
     @Test
     fun `GIVEN BreweryDetailDataSource WHEN getBreweryById() is called SHOULD return a Brewery object`() =
         runBlocking {
-            breweryDetailDataSource = BreweryDetailDataSourceImpl(breweryDetailService)
 
             coEvery { breweryDetailService.getBreweryById("id") } returns breweryResponse
 
             val response = breweryDetailDataSource.getBreweryById("id")
 
-            Assert.assertEquals(response, brewery)
+            Assert.assertEquals(response?.model(), brewery)
 
             coVerify(exactly = 1) { breweryDetailService.getBreweryById("id") }
 

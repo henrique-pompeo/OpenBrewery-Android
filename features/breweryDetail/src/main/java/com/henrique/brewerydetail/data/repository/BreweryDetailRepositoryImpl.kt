@@ -37,7 +37,7 @@ class BreweryDetailRepositoryImpl
         }
 
     private fun result (brewery: Brewery?) =
-        if (brewery != null && brewery.id.isNotEmpty())
+        if (brewery != null)
             ResultStatus.Success(brewery)
         else ResultStatus.Error("No data available")
 }

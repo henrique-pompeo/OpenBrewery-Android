@@ -1,7 +1,9 @@
 package com.henrique.brewerydetail.data.repository
 
 import com.henrique.brewerydetail.data.datasource.remote.BreweryDetailDataSource
-import com.henrique.brewerydetail.BreweryDetailTest
+import com.henrique.brewerydetail.UnitTest
+import com.henrique.brewerydetail.data.datasource.local.BreweryDetailLocalDataSource
+import com.henrique.shared.data.ResultStatus
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.confirmVerified
@@ -11,26 +13,93 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert
 import org.junit.Test
+import java.io.IOException
+import java.lang.Exception
 
 @ExperimentalCoroutinesApi
 @KoinApiExtension
-class BreweryDetailRepositoryImplTest : BreweryDetailTest() {
+class BreweryDetailRepositoryImplTest : UnitTest() {
 
     private val breweryDetailDataSource = mockk<BreweryDetailDataSource>()
+    private val breweryDetailLocalDataSource = mockk<BreweryDetailLocalDataSource>()
+    private val breweryDetailRepository = BreweryDetailRepositoryImpl(
+        breweryDetailDataSource, breweryDetailLocalDataSource
+    )
 
     @Test
-    fun `GIVEN BreweryDetailRepository WHEN getBreweryById() is called SHOULD return a Brewery object`() =
+    fun `GIVEN BreweryDetailRepository WHEN getBreweryById() is called AND get a Brewery object SHOULD return success`() =
         runBlocking {
-            breweryDetailRepository = BreweryDetailRepositoryImpl(breweryDetailDataSource)
 
-            coEvery { breweryDetailDataSource.getBreweryById("id") } returns brewery
+            coEvery { breweryDetailDataSource.getBreweryById("id") } returns breweryResponse
 
             val response = breweryDetailRepository.getBreweryById("id")
 
-            Assert.assertEquals(response, brewery)
+            Assert.assertEquals(response, ResultStatus.Success(brewery))
 
             coVerify(exactly = 1) { breweryDetailDataSource.getBreweryById("id") }
-
-            confirmVerified(breweryDetailDataSource)
         }
+
+    @Test
+    fun `GIVEN BreweryDetailRepository WHEN getBreweryById() is called AND get a null Brewery object SHOULD return error`() =
+        runBlocking {
+
+            coEvery { breweryDetailDataSource.getBreweryById("null") } returns null
+
+            val response = breweryDetailRepository.getBreweryById("null")
+
+            Assert.assertEquals(response, ResultStatus.Error(errorMessage))
+
+            coVerify(exactly = 1) { breweryDetailDataSource.getBreweryById("null") }
+        }
+
+    @Test
+    fun `GIVEN BreweryDetailRepository WHEN getBreweryById() is called AND throws exception related to services SHOULD return success getting object from local database`() =
+        runBlocking {
+
+            coEvery { breweryDetailDataSource.getBreweryById("id") } throws IOException()
+            coEvery { breweryDetailLocalDataSource.getBreweryById("id") } returns breweryEntity
+
+            val response = breweryDetailRepository.getBreweryById("id")
+
+            Assert.assertEquals(response, ResultStatus.Success(brewery))
+
+            coVerify(exactly = 1) { breweryDetailDataSource.getBreweryById("id") }
+            coVerify(exactly = 1) { breweryDetailLocalDataSource.getBreweryById("id") }
+        }
+
+    @Test
+    fun `GIVEN BreweryDetailRepository WHEN getBreweryById() is called AND throws exception not related to services SHOULD return error`() =
+        runBlocking {
+
+            val exception = Exception()
+
+            coEvery { breweryDetailDataSource.getBreweryById("id") } throws exception
+
+            val response = breweryDetailRepository.getBreweryById("id")
+
+            Assert.assertEquals(response, ResultStatus.Error(exception.message))
+
+            coVerify(exactly = 1) { breweryDetailDataSource.getBreweryById("id") }
+        }
+
+    @Test
+    fun `GIVEN BreweryDetailRepository WHEN trying to call getBreweryById() from both datasources AND they throws exception SHOULD return error`() =
+        runBlocking {
+
+            val exception = Exception()
+
+            coEvery { breweryDetailDataSource.getBreweryById("id") } throws IOException()
+            coEvery { breweryDetailLocalDataSource.getBreweryById("id") } throws exception
+
+            val response = breweryDetailRepository.getBreweryById("id")
+
+            Assert.assertEquals(response, ResultStatus.Error(exception.message))
+
+            coVerify(exactly = 1) { breweryDetailDataSource.getBreweryById("id") }
+            coVerify(exactly = 1) { breweryDetailLocalDataSource.getBreweryById("id") }
+        }
+
+    companion object {
+        const val errorMessage = "No data available"
+    }
 }
