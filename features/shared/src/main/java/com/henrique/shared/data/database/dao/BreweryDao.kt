@@ -13,7 +13,7 @@ interface BreweryDao {
     suspend fun getBreweryList() : List<BreweryEntity>
 
     @Query("SELECT * FROM breweries WHERE id = :id")
-    suspend fun getBreweryById(id: String) : BreweryEntity
+    suspend fun getBreweryById(id: String) : BreweryEntity?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertBreweryList(breweryList: List<BreweryEntity>)

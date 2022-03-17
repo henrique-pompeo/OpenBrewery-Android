@@ -10,7 +10,7 @@ import org.koin.core.component.KoinComponent
 class BreweryDetailLocalDataSourceImpl(private val breweryDao: BreweryDao) :
     KoinComponent, BreweryDetailLocalDataSource {
 
-    override suspend fun getBreweryById(id: String): BreweryEntity = coroutineScope {
+    override suspend fun getBreweryById(id: String): BreweryEntity? = coroutineScope {
         breweryDao.getBreweryById(id)
     }
 }

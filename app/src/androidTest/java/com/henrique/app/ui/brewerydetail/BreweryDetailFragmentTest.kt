@@ -3,7 +3,7 @@ package com.henrique.app.ui.brewerydetail
 import androidx.lifecycle.MutableLiveData
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.henrique.app.InstrumentedTest
-import com.henrique.brewerydetail.ui.BreweryDetailViewModel
+import com.henrique.brewerydetail.ui.viewmodel.BreweryDetailViewModel
 import com.henrique.shared.domain.model.Brewery
 import io.mockk.mockk
 import io.mockk.every

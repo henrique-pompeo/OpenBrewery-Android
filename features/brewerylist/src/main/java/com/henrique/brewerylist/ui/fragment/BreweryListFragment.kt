@@ -51,30 +51,38 @@ class BreweryListFragment : Fragment(R.layout.brewery_list_fragment) {
 
     private fun setupObservers() {
         with (viewModel) {
-            breweryListLiveData.observe(viewLifecycleOwner, { it ->
+            breweryListLiveData.observe(viewLifecycleOwner, {
                 when (it) {
                     is ResultStatus.Loading -> showLoading()
-                    is ResultStatus.Success -> {
-                        hideLoading()
-                        if (it.data.isNotEmpty()) updateAdapter(it.data)
-                        else showLayoutError("No data available")
-                    }
-                    is ResultStatus.Error -> showLayoutError(it.exception.message)
+                    is ResultStatus.Success -> showContent(it.data)
+                    is ResultStatus.Error -> showLayoutError(it.message)
                 }
             })
         }
     }
 
-    private fun showLoading() {
-        binding.apply {
-            breweryListLoadingPb.isVisible = true
-            breweryListErrorCl.isVisible = false
-            breweryListRv.isVisible = false
-        }
+    private fun getBreweryList() {
+        viewModel.getBreweryList()
     }
 
-    private fun hideLoading() {
-        binding.breweryListLoadingPb.isVisible = false
+    private fun showLoading() {
+        updateLoadingVisibility(true)
+        updateContentVisibility(false)
+        updateLayoutErrorVisibility(false)
+    }
+
+    private fun showContent(breweryList: List<Brewery>) {
+        updateAdapter(breweryList)
+        updateLoadingVisibility(false)
+        updateContentVisibility(true)
+        updateLayoutErrorVisibility(false)
+    }
+
+    private fun showLayoutError(message: String?) {
+        updateLoadingVisibility(false)
+        updateContentVisibility(false)
+        updateLayoutErrorVisibility(true)
+        binding.errorTv.text = message
     }
 
     private fun updateAdapter(breweryList : List<Brewery>) {
@@ -84,16 +92,15 @@ class BreweryListFragment : Fragment(R.layout.brewery_list_fragment) {
         }
     }
 
-    private fun getBreweryList() {
-        viewModel.getBreweryList()
+    private fun updateContentVisibility(visibility: Boolean) {
+        binding.breweryListRv.isVisible = visibility
     }
 
-    private fun showLayoutError(message: String?) {
-        binding.apply {
-            breweryListLoadingPb.isVisible = false
-            breweryListRv.isVisible = false
-            breweryListErrorCl.isVisible = true
-            errorTv.text = message
-        }
+    private fun updateLoadingVisibility(visibility: Boolean) {
+        binding.breweryListLoadingPb.isVisible = visibility
+    }
+
+    private fun updateLayoutErrorVisibility(visibility: Boolean) {
+        binding.breweryListErrorCl.isVisible = visibility
     }
 }

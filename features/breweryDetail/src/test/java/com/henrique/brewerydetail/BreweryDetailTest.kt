@@ -2,7 +2,7 @@ package com.henrique.brewerydetail
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.henrique.brewerydetail.data.repository.BreweryDetailRepository
-import com.henrique.brewerydetail.ui.BreweryDetailViewModel
+import com.henrique.brewerydetail.ui.viewmodel.BreweryDetailViewModel
 import com.henrique.shared.data.remote.response.BreweryResponse
 import com.henrique.shared.domain.model.Brewery
 import io.mockk.mockk

@@ -1,4 +1,4 @@
-package com.henrique.brewerydetail.ui
+package com.henrique.brewerydetail.ui.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import com.henrique.brewerydetail.data.repository.BreweryDetailRepository

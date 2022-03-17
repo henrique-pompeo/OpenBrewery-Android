@@ -23,18 +23,22 @@ class BreweryListRepositoryImpl(
     override suspend fun getBreweryList(): ResultStatus<List<Brewery>> =
         try {
             val breweryList = breweryListDataSource.getBreweryList()
-            insertBreweryList(breweryList = breweryList.map { it.toEntity() })
-            ResultStatus.Success(breweryList.map { it.model() })
+            if (breweryList.isNotEmpty()) {
+                insertBreweryList(breweryList = breweryList.map { it.toEntity() })
+                ResultStatus.Success(breweryList.map { it.model() })
+            } else ResultStatus.Error("No data available")
         } catch (e: Exception) {
             when (e)  {
                 is IOException, is SocketException, is HttpException ->
                     try {
                         val breweryList = breweryListLocalDataSource.getBreweryList()
-                        ResultStatus.Success(breweryList.map { it.model() })
+                        if (breweryList.isNotEmpty())
+                            ResultStatus.Success(breweryList.map { it.model() })
+                        else ResultStatus.Error("No data available")
                     } catch (localEx: Exception) {
-                        ResultStatus.Error(localEx)
+                        ResultStatus.Error(localEx.message)
                     }
-                else -> ResultStatus.Error(e)
+                else -> ResultStatus.Error(e.message)
             }
         }
 

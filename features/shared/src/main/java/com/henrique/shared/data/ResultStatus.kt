@@ -18,6 +18,6 @@ package com.henrique.shared.data
 
 sealed class ResultStatus<out R> {
     data class Success<out T>(val data: T) : ResultStatus<T>()
-    data class Error(val exception: Exception) : ResultStatus<Nothing>()
+    data class Error(val message: String?) : ResultStatus<Nothing>()
     object Loading : ResultStatus<Nothing>()
 }

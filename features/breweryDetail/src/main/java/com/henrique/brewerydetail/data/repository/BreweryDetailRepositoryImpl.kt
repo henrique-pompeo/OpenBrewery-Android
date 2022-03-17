@@ -22,17 +22,22 @@ class BreweryDetailRepositoryImpl
     override suspend fun getBreweryById(id: String): ResultStatus<Brewery> =
         try {
             val brewery = breweryDetailDataSource.getBreweryById(id)
-            ResultStatus.Success(brewery.model())
+            result(brewery  = brewery?.model())
         } catch (e: Exception) {
             when (e)  {
                 is IOException, is SocketException, is HttpException ->
                     try {
                         val brewery = breweryDetailLocalDataSource.getBreweryById(id)
-                        ResultStatus.Success(brewery.model())
+                        result(brewery  = brewery?.model())
                     } catch (localEx: Exception) {
-                        ResultStatus.Error(localEx)
+                        ResultStatus.Error(localEx.message)
                     }
-                else -> ResultStatus.Error(e)
+                else -> ResultStatus.Error(e.message)
             }
         }
+
+    private fun result (brewery: Brewery?) =
+        if (brewery != null && brewery.id.isNotEmpty())
+            ResultStatus.Success(brewery)
+        else ResultStatus.Error("No data available")
 }

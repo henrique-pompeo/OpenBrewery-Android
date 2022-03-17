@@ -20,7 +20,7 @@
 
     <fragment
         android:id="@+id/breweryDetailFragmentMain"
-        android:name="com.henrique.brewerydetail.ui.BreweryDetailFragment"
+        android:name="com.henrique.brewerydetail.ui.fragment.BreweryDetailFragment"
         android:label="Brewery Details"
         tools:layout="@layout/brewery_detail_fragment">
         <argument
