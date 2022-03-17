@@ -1,12 +1,11 @@
 package com.henrique.shared
 
 import androidx.test.core.app.ApplicationProvider
-import com.henrique.shared.data.database.entities.BreweryEntity
+import com.henrique.shared.data.database.entity.BreweryEntity
 import com.henrique.shared.data.remote.response.BreweryResponse
 import com.henrique.shared.di.DatabaseDI
 import com.henrique.shared.di.RetrofitDI
 import com.henrique.shared.domain.model.Brewery
-import org.junit.After
 import org.junit.Before
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.component.KoinApiExtension

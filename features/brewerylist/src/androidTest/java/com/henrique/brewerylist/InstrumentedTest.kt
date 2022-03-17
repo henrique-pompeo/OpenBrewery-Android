@@ -1,45 +1,21 @@
 package com.henrique.brewerylist
 
-import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import android.content.Context
+import android.view.LayoutInflater
+import androidx.navigation.NavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.test.core.app.ApplicationProvider
+import com.henrique.brewerylist.databinding.BreweryListItemBinding
+import com.henrique.brewerylist.ui.adapter.BreweryListAdapter
+import com.henrique.brewerylist.ui.viewholder.BreweryListViewHolderTest
 import com.henrique.shared.data.database.entity.BreweryEntity
 import com.henrique.shared.data.remote.response.BreweryResponse
 import com.henrique.shared.domain.model.Brewery
-import io.mockk.clearAllMocks
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.test.TestCoroutineDispatcher
-import kotlinx.coroutines.test.TestCoroutineScope
-import kotlinx.coroutines.test.resetMain
-import kotlinx.coroutines.test.setMain
-import org.junit.After
-import org.junit.Before
-import org.junit.Rule
-import org.junit.runner.RunWith
-import org.junit.runners.JUnit4
 import org.koin.core.component.KoinApiExtension
 
-@RunWith(JUnit4::class)
 @KoinApiExtension
-@ExperimentalCoroutinesApi
-abstract class UnitTest {
-
-    private val testCoroutineDispatcher = TestCoroutineDispatcher()
-    private val testCoroutineScope = TestCoroutineScope(testCoroutineDispatcher)
-
-    @Rule @JvmField
-    val instantTaskExecutorRule = InstantTaskExecutorRule()
-
-    @Before
-    fun setUp() {
-        Dispatchers.setMain(testCoroutineDispatcher)
-        clearAllMocks()
-    }
-
-    @After
-    fun tearDown() {
-        testCoroutineScope.cleanupTestCoroutines()
-        Dispatchers.resetMain()
-    }
+abstract class InstrumentedTest {
 
     companion object {
 
@@ -103,5 +79,15 @@ abstract class UnitTest {
             createdAt = "2021-10-23T02:24:55.243Z"
         )
 
+        val context: Context = ApplicationProvider.getApplicationContext()
+        val layout = RecyclerView(context).apply {
+            layoutManager = LinearLayoutManager(context)
+        }
+        val list = listOf(brewery)
+        val navController = NavController(context)
+        val adapter = BreweryListAdapter(list, navController)
+        val itemBinding = BreweryListItemBinding.inflate(
+            LayoutInflater.from(context), layout, false
+        )
     }
 }

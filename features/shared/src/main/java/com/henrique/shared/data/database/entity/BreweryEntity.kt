@@ -1,4 +1,4 @@
-package com.henrique.shared.data.database.entities
+package com.henrique.shared.data.database.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

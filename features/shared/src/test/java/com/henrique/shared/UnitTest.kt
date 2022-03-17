@@ -1,6 +1,6 @@
 package com.henrique.shared
 
-import com.henrique.shared.data.database.entities.BreweryEntity
+import com.henrique.shared.data.database.entity.BreweryEntity
 import com.henrique.shared.data.remote.response.BreweryResponse
 import com.henrique.shared.domain.model.Brewery
 

@@ -5,7 +5,7 @@ import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import com.henrique.shared.InstrumentedTest
 import com.henrique.shared.data.database.configuration.AppDatabase
-import com.henrique.shared.data.database.entities.BreweryEntity
+import com.henrique.shared.data.database.entity.BreweryEntity
 import com.henrique.shared.data.extensions.model
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals

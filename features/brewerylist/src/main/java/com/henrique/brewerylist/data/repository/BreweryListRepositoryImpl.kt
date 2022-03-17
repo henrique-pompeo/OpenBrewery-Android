@@ -3,7 +3,7 @@ package com.henrique.brewerylist.data.repository
 import com.henrique.brewerylist.data.datasource.local.BreweryListLocalDataSource
 import com.henrique.brewerylist.data.datasource.remote.BreweryListDataSource
 import com.henrique.shared.data.ResultStatus
-import com.henrique.shared.data.database.entities.BreweryEntity
+import com.henrique.shared.data.database.entity.BreweryEntity
 import com.henrique.shared.data.extensions.model
 import com.henrique.shared.data.extensions.toEntity
 import com.henrique.shared.domain.model.Brewery

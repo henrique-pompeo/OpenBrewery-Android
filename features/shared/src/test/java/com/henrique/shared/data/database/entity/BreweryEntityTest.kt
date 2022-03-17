@@ -1,4 +1,4 @@
-package com.henrique.shared.data.database.entities
+package com.henrique.shared.data.database.entity
 
 import com.henrique.shared.UnitTest
 import org.junit.Assert

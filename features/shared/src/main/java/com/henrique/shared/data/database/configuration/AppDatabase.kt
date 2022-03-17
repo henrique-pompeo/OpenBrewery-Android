@@ -3,7 +3,7 @@ package com.henrique.shared.data.database.configuration
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import com.henrique.shared.data.database.dao.BreweryDao
-import com.henrique.shared.data.database.entities.BreweryEntity
+import com.henrique.shared.data.database.entity.BreweryEntity
 
 @Database(entities = [BreweryEntity::class], version = AppDatabase.VERSION, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {

@@ -1,9 +1,8 @@
-package com.henrique.brewerylist.ui
+package com.henrique.brewerylist.ui.viewmodel
 
 import androidx.lifecycle.Observer
 import com.henrique.brewerylist.UnitTest
 import com.henrique.brewerylist.data.repository.BreweryListRepository
-import com.henrique.brewerylist.ui.viewmodel.BreweryListViewModel
 import com.henrique.shared.data.ResultStatus
 import com.henrique.shared.domain.model.Brewery
 import io.kotlintest.shouldBe
