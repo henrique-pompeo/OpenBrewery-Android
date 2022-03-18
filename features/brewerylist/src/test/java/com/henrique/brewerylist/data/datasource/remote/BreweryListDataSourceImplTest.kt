@@ -25,11 +25,8 @@ class BreweryListDataSourceImplTest : UnitTest() {
         coEvery { breweryListService.getBreweryList(any()) } returns listOf(breweryResponse)
 
         val response = runBlocking { breweryListDataSource.getBreweryList() }
-
         Assert.assertEquals(response, listOf(breweryResponse))
 
         coVerify(exactly = 1) { breweryListService.getBreweryList("") }
-
-        confirmVerified(breweryListService)
     }
 }

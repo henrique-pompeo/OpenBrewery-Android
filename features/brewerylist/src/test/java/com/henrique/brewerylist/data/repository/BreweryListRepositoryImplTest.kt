@@ -35,7 +35,6 @@ class BreweryListRepositoryImplTest : UnitTest() {
             coEvery { breweryListLocalDataSource.insertBreweryList(any()) } just Runs
 
             val response = breweryListRepository.getBreweryList()
-
             Assert.assertEquals(response, ResultStatus.Success(listOf(brewery)))
 
             coVerify(exactly = 1) { breweryListDataSource.getBreweryList() }
@@ -49,7 +48,6 @@ class BreweryListRepositoryImplTest : UnitTest() {
             coEvery { breweryListDataSource.getBreweryList() } returns listOf()
 
             val response = breweryListRepository.getBreweryList()
-
             Assert.assertEquals(response, ResultStatus.Error(errorMessage))
 
             coVerify(exactly = 1) { breweryListDataSource.getBreweryList() }
@@ -63,7 +61,6 @@ class BreweryListRepositoryImplTest : UnitTest() {
         coEvery { breweryListLocalDataSource.getBreweryList() } returns listOf(breweryEntity)
 
         val response = breweryListRepository.getBreweryList()
-
         Assert.assertEquals(response, ResultStatus.Success(listOf(brewery)))
 
         coVerify(exactly = 1) { breweryListDataSource.getBreweryList() }
@@ -79,7 +76,6 @@ class BreweryListRepositoryImplTest : UnitTest() {
             coEvery { breweryListDataSource.getBreweryList() } throws exception
 
             val response = breweryListRepository.getBreweryList()
-
             Assert.assertEquals(response, ResultStatus.Error(exception.message))
 
             coVerify(exactly = 1) { breweryListDataSource.getBreweryList() }
@@ -95,7 +91,6 @@ class BreweryListRepositoryImplTest : UnitTest() {
             coEvery { breweryListLocalDataSource.getBreweryList() } throws exception
 
             val response = breweryListRepository.getBreweryList()
-
             Assert.assertEquals(response, ResultStatus.Error(exception.message))
 
             coVerify(exactly = 1) { breweryListDataSource.getBreweryList() }

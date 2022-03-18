@@ -6,14 +6,13 @@ import com.henrique.brewerydetail.data.repository.BreweryDetailRepository
 import com.henrique.brewerydetail.ui.viewmodel.BreweryDetailViewModel
 import com.henrique.shared.data.ResultStatus
 import com.henrique.shared.domain.model.Brewery
-import io.kotlintest.shouldBe
 import io.mockk.coEvery
 import io.mockk.coVerify
-import io.mockk.confirmVerified
 import io.mockk.mockk
 import io.mockk.verify
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
+import org.junit.Assert
 import org.junit.Test
 import org.koin.core.component.KoinApiExtension
 
@@ -40,13 +39,17 @@ class BreweryDetailViewModelTest : UnitTest() {
 
             setUpViewModel()
 
-            coVerify(exactly = 1) { breweryDetailRepository.getBreweryById("id") }
             verify(exactly = 2) { breweryDetailObserver.onChanged(capture(breweryDetailStates)) }
 
-            breweryDetailStates shouldBe listOf(
-                ResultStatus.Loading,
-                ResultStatus.Success(brewery)
+            Assert.assertEquals(
+                breweryDetailStates,
+                listOf(
+                    ResultStatus.Loading,
+                    ResultStatus.Success(brewery)
+                )
             )
+
+            coVerify(exactly = 1) { breweryDetailRepository.getBreweryById("id") }
         }
 
     @Test
@@ -60,13 +63,16 @@ class BreweryDetailViewModelTest : UnitTest() {
 
             setUpViewModel()
 
-            coVerify(exactly = 1) { breweryDetailRepository.getBreweryById("id") }
             verify(exactly = 2) { breweryDetailObserver.onChanged(capture(breweryDetailStates)) }
 
-            breweryDetailStates shouldBe listOf(
-                ResultStatus.Loading,
-                ResultStatus.Error(exception.message)
+            Assert.assertEquals(
+                breweryDetailStates,
+                listOf(
+                    ResultStatus.Loading,
+                    ResultStatus.Error(exception.message)
+                )
             )
-        }
 
+            coVerify(exactly = 1) { breweryDetailRepository.getBreweryById("id") }
+        }
 }

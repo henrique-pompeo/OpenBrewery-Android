@@ -3,11 +3,14 @@ package com.henrique.brewerylist.data.datasource.local
 import com.henrique.brewerylist.UnitTest
 import com.henrique.shared.data.database.dao.BreweryDao
 import com.henrique.shared.data.extensions.model
-import io.mockk.*
+import io.mockk.Runs
+import io.mockk.coEvery
+import io.mockk.coVerify
+import io.mockk.just
+import io.mockk.mockk
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert
-import org.junit.Before
 import org.junit.Test
 import org.koin.core.component.KoinApiExtension
 
@@ -25,12 +28,9 @@ class BreweryListLocalDataSourceImplTest : UnitTest() {
             coEvery { breweryDao.getBreweryList() }  returns listOf(breweryEntity)
 
             val response = breweryListLocalDataSource.getBreweryList()
-
             Assert.assertEquals(response.map { it.model() }, listOf(breweryEntity).map { it.model() })
 
             coVerify(exactly = 1) { breweryDao.getBreweryList() }
-
-            confirmVerified(breweryDao)
     }
 
     @Test

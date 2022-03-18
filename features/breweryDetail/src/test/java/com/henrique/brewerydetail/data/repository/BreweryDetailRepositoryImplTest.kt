@@ -33,7 +33,6 @@ class BreweryDetailRepositoryImplTest : UnitTest() {
             coEvery { breweryDetailDataSource.getBreweryById("id") } returns breweryResponse
 
             val response = breweryDetailRepository.getBreweryById("id")
-
             Assert.assertEquals(response, ResultStatus.Success(brewery))
 
             coVerify(exactly = 1) { breweryDetailDataSource.getBreweryById("id") }
@@ -46,7 +45,6 @@ class BreweryDetailRepositoryImplTest : UnitTest() {
             coEvery { breweryDetailDataSource.getBreweryById("null") } returns null
 
             val response = breweryDetailRepository.getBreweryById("null")
-
             Assert.assertEquals(response, ResultStatus.Error(errorMessage))
 
             coVerify(exactly = 1) { breweryDetailDataSource.getBreweryById("null") }
@@ -60,7 +58,6 @@ class BreweryDetailRepositoryImplTest : UnitTest() {
             coEvery { breweryDetailLocalDataSource.getBreweryById("id") } returns breweryEntity
 
             val response = breweryDetailRepository.getBreweryById("id")
-
             Assert.assertEquals(response, ResultStatus.Success(brewery))
 
             coVerify(exactly = 1) { breweryDetailDataSource.getBreweryById("id") }
@@ -76,7 +73,6 @@ class BreweryDetailRepositoryImplTest : UnitTest() {
             coEvery { breweryDetailDataSource.getBreweryById("id") } throws exception
 
             val response = breweryDetailRepository.getBreweryById("id")
-
             Assert.assertEquals(response, ResultStatus.Error(exception.message))
 
             coVerify(exactly = 1) { breweryDetailDataSource.getBreweryById("id") }
@@ -92,7 +88,6 @@ class BreweryDetailRepositoryImplTest : UnitTest() {
             coEvery { breweryDetailLocalDataSource.getBreweryById("id") } throws exception
 
             val response = breweryDetailRepository.getBreweryById("id")
-
             Assert.assertEquals(response, ResultStatus.Error(exception.message))
 
             coVerify(exactly = 1) { breweryDetailDataSource.getBreweryById("id") }

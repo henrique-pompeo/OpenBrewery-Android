@@ -27,12 +27,9 @@ class BreweryDetailDataSourceImplTest : UnitTest() {
             coEvery { breweryDetailService.getBreweryById("id") } returns breweryResponse
 
             val response = breweryDetailDataSource.getBreweryById("id")
-
             Assert.assertEquals(response?.model(), brewery)
 
             coVerify(exactly = 1) { breweryDetailService.getBreweryById("id") }
-
-            confirmVerified(breweryDetailService)
         }
 
 }

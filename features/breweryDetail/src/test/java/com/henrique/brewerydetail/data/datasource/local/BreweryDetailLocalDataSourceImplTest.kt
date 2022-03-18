@@ -3,7 +3,9 @@ package com.henrique.brewerydetail.data.datasource.local
 import com.henrique.brewerydetail.UnitTest
 import com.henrique.shared.data.database.dao.BreweryDao
 import com.henrique.shared.data.extensions.model
-import io.mockk.*
+import io.mockk.coEvery
+import io.mockk.coVerify
+import io.mockk.mockk
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert
@@ -24,7 +26,6 @@ class BreweryDetailLocalDataSourceImplTest : UnitTest() {
             coEvery { breweryDao.getBreweryById("id") }  returns breweryEntity
 
             val response = breweryDetailLocalDataSource.getBreweryById("id")
-
             Assert.assertEquals(response?.model() , breweryEntity.model() )
 
             coVerify(exactly = 1) { breweryDao.getBreweryById("id") }
