@@ -82,6 +82,91 @@ Note that the brewery ID is passed at the and of the link.
 
 ### Presentation layer architecture
 
+## Package structure
+
+```bash
+Open Brewery Android
+└── app
+    ├── BreweryApplication.kt
+    └── ui
+        ├── activity
+        │   └── MainActivity.kt
+        └── fragment
+            └── MainFragment.kt
+    features
+        ├── brewerydetail
+            ├── data
+            │   ├── datasource
+            │   │   ├── local
+            │   │   │   ├── BreweryDetailLocalDataSourceImpl.kt
+            │   │   │   └── BreweryDetailLocalDataSource.kt
+            │   │   └── remote
+            │   │       ├── BreweryDetailDataSourceImpl.kt
+            │   │       └── BreweryDetailDataSource.kt
+            │   ├── repository
+            │   │   ├── BreweryDetailRepositoryImpl.kt
+            │   │   └── BreweryDetailRepository.kt
+            │   └── service
+            │       └── BreweryDetailService.kt
+            ├── di
+            │   └── BreweryDetailDI.kt
+            └── ui
+                ├── fragment
+                │   └── BreweryDetailFragment.kt
+                └── viewmodel
+                    └── BreweryDetailViewModel.kt
+        ├── brewerylist
+            ├── data
+            │   ├── datasource
+            │   │   ├── local
+            │   │   │   ├── BreweryListLocalDataSourceImpl.kt
+            │   │   │   └── BreweryListLocalDataSource.kt
+            │   │   └── remote
+            │   │       ├── BreweryListDataSourceImpl.kt
+            │   │       └── BreweryListDataSource.kt
+            │   ├── repository
+            │   │   ├── BreweryListRepositoryImpl.kt
+            │   │   └── BreweryListRepository.kt
+            │   └── service
+            │       └── BreweryListService.kt
+            ├── di
+            │   └── BreweryListDI.kt
+            └── ui
+                ├── adapter
+                │   └── BreweryListAdapter.kt
+                ├── fragment
+                │   └── BreweryListFragment.kt
+                ├── viewholder
+                │   └── BreweryListViewHolder.kt
+                └── viewmodel
+                    └── BreweryListViewModel.kt
+        ├── shared
+            ├── data
+            │   ├── database
+            │   │   ├── configuration
+            │   │   │   └── AppDatabase.kt
+            │   │   ├── dao
+            │   │   │   └── BreweryDao.kt
+            │   │   └── entity
+            │   │       └── BreweryEntity.kt
+            │   ├── extensions
+            │   │   ├── BreweryEntityExt.kt
+            │   │   └── BreweryResponseExt.kt
+            │   ├── remote
+            │   │   └── response
+            │   │       └── BreweryResponse.kt
+            │   └── ResultStatus.kt
+            ├── di
+            │   ├── DatabaseDI.kt
+            │   └── RetrofitDI.kt
+            ├── domain
+            │   └── model
+            │       └── Brewery.kt
+            └── ui
+                └── base
+                    └── BaseViewModel.kt
+```
+
 ## Navigation
 
 ## Dependencies
