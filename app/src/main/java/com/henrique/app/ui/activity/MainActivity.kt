@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
 
         navController = navHostFragment.navController
 
-        setupActionBarWithNavController(navController)
+        //setupActionBarWithNavController(navController)
     }
 
     override fun onSupportNavigateUp(): Boolean {

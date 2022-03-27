@@ -5,4 +5,6 @@
     <string name="search_brewery_name">Search brewery name</string>
     <string name="retry">Retry</string>
     <string name="error_icon">error_icon</string>
+    <string name="filter">Filter</string>
+    <string name="sort">Sort</string>
 </resources>

@@ -14,7 +14,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:background="@color/design_default_color_primary">
+        android:background="@drawable/gradient_header">
 
         <TextView
             android:id="@+id/brewery_detail_fragment_brewery_name_tv"
