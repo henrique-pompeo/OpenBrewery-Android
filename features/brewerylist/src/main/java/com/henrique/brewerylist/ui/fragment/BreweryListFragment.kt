@@ -22,7 +22,7 @@ import org.koin.core.component.KoinApiExtension
 class BreweryListFragment : Fragment(R.layout.brewery_list_fragment) {
 
     private lateinit var binding: BreweryListFragmentBinding
-    private val viewModel: BreweryListViewModel by viewModel()
+    private val viewModel by viewModel<BreweryListViewModel>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = BreweryListFragmentBinding.inflate(inflater, container, false)

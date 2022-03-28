@@ -49,7 +49,7 @@ class BreweryDaoTest : InstrumentedTest() {
             breweryDao.insertBreweryList(breweryList)
             val result = breweryDao.getBreweryById("id")
 
-            assertEquals(result.model(), breweryEntity.model())
+            assertEquals(result?.model(), breweryEntity.model())
         }
 
     override fun onTearDown() {

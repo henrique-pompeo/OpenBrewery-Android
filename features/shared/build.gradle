@@ -84,12 +84,14 @@ dependencies {
 
     // Mockk
     testImplementation 'io.mockk:mockk:1.11.0'
+    androidTestImplementation 'io.mockk:mockk-android:1.11.0'
 
     // Kotlin test
     testImplementation 'io.kotlintest:kotlintest-assertions:3.4.2'
 
     // Espresso
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    androidTestImplementation 'androidx.fragment:fragment-testing:1.2.5'
 
     // Koin
     implementation 'io.insert-koin:koin-androidx-scope:2.2.2'

@@ -6,6 +6,7 @@ import com.henrique.brewerylist.di.BreweryListDI
 import com.henrique.shared.di.DatabaseDI
 import com.henrique.shared.di.RetrofitDI
 import org.koin.android.ext.koin.androidContext
+import org.koin.android.ext.koin.androidLogger
 import org.koin.core.component.KoinApiExtension
 import org.koin.core.context.startKoin
 
