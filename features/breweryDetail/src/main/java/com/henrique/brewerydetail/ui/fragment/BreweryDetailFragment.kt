@@ -80,6 +80,7 @@ class BreweryDetailFragment : Fragment(R.layout.brewery_detail_fragment) {
         with(binding) {
             breweryDetailFragmentBreweryNameTv.text = brewery.name
             breweryDetailFragmentBreweryTypeTv.text = brewery.breweryType
+            updateBreweryTypeDescription()
             breweryDetailFragmentBreweryStreetTv.text = getString(
                 R.string.brewery_street, brewery.street
             )
@@ -111,6 +112,27 @@ class BreweryDetailFragment : Fragment(R.layout.brewery_detail_fragment) {
             breweryDetailFragmentBreweryWebsiteUrlTv.text = getString(
                 R.string.brewery_website_url, brewery.websiteUrl
             )
+        }
+    }
+
+    private fun updateBreweryTypeDescription() {
+        with(binding) {
+            breweryDetailFragmentBreweryTypeDescTv.text =
+                breweryDetailFragmentBreweryTypeTv.text.let {
+                    when (it) {
+                        "micro" -> getString(R.string.brewery_type_micro_desc)
+                        "nano" -> getString(R.string.brewery_type_nano_desc)
+                        "regional" -> getString(R.string.brewery_type_regional_desc)
+                        "brewpub" -> getString(R.string.brewery_type_brewpub_desc)
+                        "large" -> getString(R.string.brewery_type_large_desc)
+                        "planning" -> getString(R.string.brewery_type_planning_desc)
+                        "bar" -> getString(R.string.brewery_type_bar_desc)
+                        "contract" -> getString(R.string.brewery_type_contract_desc)
+                        "proprietor" -> getString(R.string.brewery_type_proprietor_desc)
+                        "closed" -> getString(R.string.brewery_type_closed_desc)
+                        else -> "No type found"
+                    }
+                }
         }
     }
 
