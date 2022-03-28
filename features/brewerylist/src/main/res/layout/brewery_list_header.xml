@@ -11,44 +11,23 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:padding="10dp"
-        android:weightSum="8"
-        android:background="@color/design_default_color_primary"
+        android:background="@drawable/gradient_header"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
         <EditText
             android:id="@+id/brewery_list_header_search_et"
-            android:inputType="text"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="6"
             android:layout_margin="10dp"
-            android:padding="5dp"
-            android:singleLine="true"
             android:background="@color/white"
             android:hint="@string/search_brewery_name"
-            android:importantForAutofill="no" />
-
-        <ImageView
-            android:id="@+id/brewery_list_header_filter_iv"
-            android:contentDescription="@string/filter_brewery_icon"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:layout_marginVertical="15dp"
-            android:layout_marginHorizontal="10dp"
-            android:background="@drawable/filter"/>
-
-        <ImageView
-            android:id="@+id/brewery_list_header_sort_iv"
-            android:contentDescription="@string/sort_brewery_icon"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:layout_marginVertical="15dp"
-            android:layout_marginHorizontal="10dp"
-            android:background="@drawable/sort"/>
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:minHeight="48dp"
+            android:padding="5dp"
+            android:singleLine="true" />
 
     </LinearLayout>
 

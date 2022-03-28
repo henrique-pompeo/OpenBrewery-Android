@@ -77,4 +77,15 @@
             />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/brewery_list_bottom_navigatin_view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/gradient_bottom"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:menu="@menu/bottom_nav" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
