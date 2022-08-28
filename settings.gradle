@@ -1,12 +1,9 @@
 include ':app'
 
-include ':brewerylist'
-project(':brewerylist').projectDir = new File(rootDir, 'features/brewerylist')
+include ':openbrewery'
+project(':openbrewery').projectDir = new File(rootDir, 'features/openbrewery')
 
-include ':breweryDetail'
-project(':breweryDetail').projectDir = new File(rootDir, 'features/breweryDetail')
-
-include ':shared'
-project(':shared').projectDir = new File(rootDir, 'features/shared')
+include ':datasource'
+project(':datasource').projectDir = new File(rootDir, 'features/datasource')
 
 rootProject.name = "Open Brewery Android"

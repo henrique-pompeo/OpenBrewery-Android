@@ -1,12 +1,11 @@
 package com.henrique.app
 
 import android.app.Application
-import com.henrique.brewerydetail.di.BreweryDetailDI
-import com.henrique.brewerylist.di.BreweryListDI
-import com.henrique.shared.di.DatabaseDI
-import com.henrique.shared.di.RetrofitDI
+import com.henrique.openbrewery.infrastructure.BreweryDetailDI
+import com.henrique.openbrewery.infrastructure.BreweryListDI
+import com.henrique.datasource.di.DatabaseDI
+import com.henrique.datasource.di.RetrofitDI
 import org.koin.android.ext.koin.androidContext
-import org.koin.android.ext.koin.androidLogger
 import org.koin.core.component.KoinApiExtension
 import org.koin.core.context.startKoin
 

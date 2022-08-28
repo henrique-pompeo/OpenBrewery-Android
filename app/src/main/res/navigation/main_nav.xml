@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.henrique.app.ui.fragment.MainFragment"
+        android:name="com.henrique.app.presentation.fragment.MainFragment"
         android:label="Open Brewery Android"
         tools:layout="@layout/main_fragment" >
         <action
@@ -20,7 +20,7 @@
 
     <fragment
         android:id="@+id/breweryDetailFragmentMain"
-        android:name="com.henrique.brewerydetail.ui.fragment.BreweryDetailFragment"
+        android:name="com.henrique.openbrewery.features.brewerydetail.presentation.fragment.BreweryDetailFragment"
         android:label="Brewery Details"
         tools:layout="@layout/brewery_detail_fragment">
         <argument
