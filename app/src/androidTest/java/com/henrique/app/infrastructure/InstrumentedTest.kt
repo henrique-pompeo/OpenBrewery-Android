@@ -1,7 +1,7 @@
 package com.henrique.app.infrastructure
 
 import com.henrique.datasource.data.remote.response.BreweryResponse
-import com.henrique.datasource.domain.model.Brewery
+import com.henrique.datasource.brewerydetail.domain.model.Brewery
 import org.junit.After
 import org.junit.Before
 import org.koin.core.component.KoinApiExtension

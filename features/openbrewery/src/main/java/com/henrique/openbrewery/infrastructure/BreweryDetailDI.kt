@@ -6,7 +6,7 @@ import com.henrique.datasource.brewerydetail.domain.interfaces.datasource.Brewer
 import com.henrique.datasource.brewerydetail.data.datasource.BreweryDetailDataSourceImpl
 import com.henrique.datasource.brewerydetail.domain.interfaces.repository.BreweryDetailRepository
 import com.henrique.datasource.brewerydetail.data.repository.BreweryDetailRepositoryImpl
-import com.henrique.datasource.brewerydetail.domain.interfaces.service.BreweryDetailService
+import com.henrique.datasource.brewerydetail.data.service.BreweryDetailService
 import com.henrique.openbrewery.features.brewerydetail.presentation.viewmodel.BreweryDetailViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.component.KoinApiExtension

@@ -2,7 +2,7 @@ package com.henrique.datasource.brewerydetail.data.repository
 
 import com.henrique.datasource.brewerydetail.domain.interfaces.datasource.BreweryDetailDataSource
 import com.henrique.datasource.brewerydetail.domain.interfaces.datasource.BreweryDetailLocalDataSource
-import com.henrique.datasource.data.ResultStatus
+import com.henrique.datasource.brewerydetail.domain.model.BreweryStatus
 import io.mockk.coEvery
 import io.mockk.coVerify
 import org.koin.core.component.KoinApiExtension
@@ -31,7 +31,7 @@ class BreweryDetailRepositoryImplTest : com.henrique.datasource.base.UnitTest() 
             coEvery { breweryDetailDataSource.getBreweryById("id") } returns breweryResponse
 
             val response = breweryDetailRepository.getBreweryById("id")
-            Assert.assertEquals(response, ResultStatus.Success(brewery))
+            Assert.assertEquals(response, BreweryStatus.Success(brewery))
 
             coVerify(exactly = 1) { breweryDetailDataSource.getBreweryById("id") }
         }
@@ -43,7 +43,7 @@ class BreweryDetailRepositoryImplTest : com.henrique.datasource.base.UnitTest() 
             coEvery { breweryDetailDataSource.getBreweryById("null") } returns null
 
             val response = breweryDetailRepository.getBreweryById("null")
-            Assert.assertEquals(response, ResultStatus.Error(errorMessage))
+            Assert.assertEquals(response, BreweryStatus.Error(errorMessage))
 
             coVerify(exactly = 1) { breweryDetailDataSource.getBreweryById("null") }
         }
@@ -56,7 +56,7 @@ class BreweryDetailRepositoryImplTest : com.henrique.datasource.base.UnitTest() 
             coEvery { breweryDetailLocalDataSource.getBreweryById("id") } returns breweryEntity
 
             val response = breweryDetailRepository.getBreweryById("id")
-            Assert.assertEquals(response, ResultStatus.Success(brewery))
+            Assert.assertEquals(response, BreweryStatus.Success(brewery))
 
             coVerify(exactly = 1) { breweryDetailDataSource.getBreweryById("id") }
             coVerify(exactly = 1) { breweryDetailLocalDataSource.getBreweryById("id") }
@@ -71,7 +71,7 @@ class BreweryDetailRepositoryImplTest : com.henrique.datasource.base.UnitTest() 
             coEvery { breweryDetailDataSource.getBreweryById("id") } throws exception
 
             val response = breweryDetailRepository.getBreweryById("id")
-            Assert.assertEquals(response, ResultStatus.Error(exception.message))
+            Assert.assertEquals(response, BreweryStatus.Error(exception.message))
 
             coVerify(exactly = 1) { breweryDetailDataSource.getBreweryById("id") }
         }
@@ -86,7 +86,7 @@ class BreweryDetailRepositoryImplTest : com.henrique.datasource.base.UnitTest() 
             coEvery { breweryDetailLocalDataSource.getBreweryById("id") } throws exception
 
             val response = breweryDetailRepository.getBreweryById("id")
-            Assert.assertEquals(response, ResultStatus.Error(exception.message))
+            Assert.assertEquals(response, BreweryStatus.Error(exception.message))
 
             coVerify(exactly = 1) { breweryDetailDataSource.getBreweryById("id") }
             coVerify(exactly = 1) { breweryDetailLocalDataSource.getBreweryById("id") }

@@ -5,7 +5,7 @@ import com.henrique.datasource.data.database.entity.BreweryEntity
 import com.henrique.datasource.data.remote.response.BreweryResponse
 import com.henrique.datasource.di.DatabaseDI
 import com.henrique.datasource.di.RetrofitDI
-import com.henrique.datasource.domain.model.Brewery
+import com.henrique.datasource.brewerydetail.domain.model.Brewery
 import org.junit.Before
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.component.KoinApiExtension

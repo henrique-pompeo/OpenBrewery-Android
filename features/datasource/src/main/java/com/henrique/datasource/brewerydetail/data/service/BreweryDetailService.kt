@@ -1,4 +1,4 @@
-package com.henrique.datasource.brewerydetail.domain.interfaces.service
+package com.henrique.datasource.brewerydetail.data.service
 
 import com.henrique.datasource.data.remote.response.BreweryResponse
 import retrofit2.http.GET

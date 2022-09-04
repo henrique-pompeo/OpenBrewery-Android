@@ -1,6 +1,6 @@
 package com.henrique.datasource.brewerylist.data.datasource
 
-import com.henrique.datasource.brewerylist.domain.interfaces.service.BreweryListService
+import com.henrique.datasource.brewerylist.data.service.BreweryListService
 import com.henrique.datasource.data.remote.response.BreweryResponse
 import com.henrique.datasource.brewerylist.domain.interfaces.datasource.BreweryListDataSource
 import kotlinx.coroutines.coroutineScope

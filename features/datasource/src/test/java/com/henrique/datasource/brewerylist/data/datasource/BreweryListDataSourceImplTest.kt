@@ -1,8 +1,7 @@
 package com.henrique.datasource.brewerylist.data.datasource
 
-import com.henrique.datasource.brewerylist.domain.interfaces.service.BreweryListService
+import com.henrique.datasource.brewerylist.data.service.BreweryListService
 import com.henrique.openbrewery.UnitTest
-import com.henrique.datasource.brewerylist.data.datasource.BreweryListDataSourceImpl
 import io.mockk.coEvery
 import io.mockk.coVerify
 import org.junit.Test

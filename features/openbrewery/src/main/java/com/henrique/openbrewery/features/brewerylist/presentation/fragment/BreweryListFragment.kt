@@ -13,8 +13,8 @@ import com.henrique.openbrewery.R
 import com.henrique.openbrewery.databinding.BreweryListFragmentBinding
 import com.henrique.openbrewery.features.brewerylist.presentation.viewmodel.BreweryListViewModel
 import com.henrique.openbrewery.features.brewerylist.presentation.adapter.BreweryListAdapter
-import com.henrique.datasource.data.ResultStatus
-import com.henrique.datasource.domain.model.Brewery
+import com.henrique.datasource.brewerydetail.domain.model.BreweryStatus
+import com.henrique.datasource.brewerydetail.domain.model.Brewery
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.component.KoinApiExtension
 
@@ -53,9 +53,9 @@ class BreweryListFragment : Fragment(R.layout.brewery_list_fragment) {
         with (viewModel) {
             breweryListLiveData.observe(viewLifecycleOwner, {
                 when (it) {
-                    is ResultStatus.Loading -> showLoading()
-                    is ResultStatus.Success -> showContent(it.data)
-                    is ResultStatus.Error -> showLayoutError(it.message)
+                    is BreweryStatus.Loading -> showLoading()
+                    is BreweryStatus.Success -> showContent(it.data)
+                    is BreweryStatus.Error -> showLayoutError(it.message)
                 }
             })
         }

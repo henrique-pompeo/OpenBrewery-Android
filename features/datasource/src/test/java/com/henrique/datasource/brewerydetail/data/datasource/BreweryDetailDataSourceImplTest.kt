@@ -1,8 +1,6 @@
 package com.henrique.datasource.brewerydetail.data.datasource
 
-import com.henrique.datasource.brewerydetail.domain.interfaces.service.BreweryDetailService
-import com.henrique.datasource.base.UnitTest
-import com.henrique.datasource.brewerydetail.data.datasource.BreweryDetailDataSourceImpl
+import com.henrique.datasource.brewerydetail.data.service.BreweryDetailService
 import com.henrique.datasource.data.extensions.model
 import io.mockk.coEvery
 import io.mockk.coVerify

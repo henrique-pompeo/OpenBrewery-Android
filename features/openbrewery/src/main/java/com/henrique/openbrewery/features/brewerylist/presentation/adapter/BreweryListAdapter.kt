@@ -6,7 +6,7 @@ import androidx.navigation.NavController
 import androidx.recyclerview.widget.RecyclerView
 import com.henrique.openbrewery.databinding.BreweryListItemBinding
 import com.henrique.openbrewery.features.brewerylist.presentation.viewholder.BreweryListViewHolder
-import com.henrique.datasource.domain.model.Brewery
+import com.henrique.datasource.brewerydetail.domain.model.Brewery
 
 class BreweryListAdapter(
     private var breweryList: List<Brewery> = listOf(),

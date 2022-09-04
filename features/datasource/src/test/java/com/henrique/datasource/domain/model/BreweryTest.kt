@@ -1,5 +1,6 @@
 package com.henrique.datasource.domain.model
 
+import com.henrique.datasource.brewerydetail.domain.model.Brewery
 import org.junit.Assert
 import org.junit.Test
 

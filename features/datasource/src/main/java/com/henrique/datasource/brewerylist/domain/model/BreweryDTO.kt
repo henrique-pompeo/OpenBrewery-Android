@@ -1,8 +1,8 @@
-package com.henrique.datasource.data.remote.response
+package com.henrique.datasource.brewerylist.domain.model
 
 import com.google.gson.annotations.SerializedName
 
-class BreweryResponse(
+class BreweryDTO(
     @SerializedName("id") val id: String,
     @SerializedName("name") val name: String?,
     @SerializedName("brewery_type") val breweryType: String?,

@@ -11,8 +11,8 @@ import com.henrique.brewerydetail.R
 import com.henrique.brewerydetail.databinding.BreweryDetailFragmentBinding
 import com.henrique.openbrewery.features.brewerydetail.presentation.viewmodel.BreweryDetailViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import com.henrique.datasource.data.ResultStatus
-import com.henrique.datasource.domain.model.Brewery
+import com.henrique.datasource.brewerydetail.domain.model.BreweryStatus
+import com.henrique.datasource.brewerydetail.domain.model.Brewery
 import org.koin.core.component.KoinApiExtension
 
 @KoinApiExtension
@@ -48,9 +48,9 @@ class BreweryDetailFragment : Fragment(R.layout.brewery_detail_fragment) {
         with (viewModel) {
             breweryDetailLiveData.observe(viewLifecycleOwner, {
                 when (it) {
-                    is ResultStatus.Loading -> showLoading()
-                    is ResultStatus.Success -> showContent(it.data)
-                    is ResultStatus.Error -> showLayoutError(it.message)
+                    is BreweryStatus.Loading -> showLoading()
+                    is BreweryStatus.Success -> showContent(it.data)
+                    is BreweryStatus.Error -> showLayoutError(it.message)
                 }
             })
         }

@@ -4,8 +4,8 @@ import androidx.lifecycle.Observer
 import com.henrique.datasource.base.UnitTest
 import com.henrique.datasource.brewerydetail.domain.interfaces.repository.BreweryDetailRepository
 import com.henrique.openbrewery.features.brewerydetail.presentation.viewmodel.BreweryDetailViewModel
-import com.henrique.datasource.data.ResultStatus
-import com.henrique.datasource.domain.model.Brewery
+import com.henrique.datasource.brewerydetail.domain.model.BreweryStatus
+import com.henrique.datasource.brewerydetail.domain.model.Brewery
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
@@ -21,8 +21,8 @@ import org.koin.core.component.KoinApiExtension
 class BreweryDetailViewModelTest : com.henrique.datasource.base.UnitTest() {
 
     private val breweryDetailRepository = mockk<BreweryDetailRepository>(relaxed = true)
-    private val breweryDetailObserver = mockk<Observer<ResultStatus<Brewery>>>(relaxed = true)
-    private val breweryDetailStates = mutableListOf<ResultStatus<Brewery>>()
+    private val breweryDetailObserver = mockk<Observer<BreweryStatus<Brewery>>>(relaxed = true)
+    private val breweryDetailStates = mutableListOf<BreweryStatus<Brewery>>()
     private val breweryDetailViewModel = BreweryDetailViewModel(breweryDetailRepository)
 
     private fun setUpViewModel() {
@@ -35,7 +35,7 @@ class BreweryDetailViewModelTest : com.henrique.datasource.base.UnitTest() {
         runBlocking {
 
             coEvery { breweryDetailRepository.getBreweryById("id") } returns
-                    ResultStatus.Success(brewery)
+                    BreweryStatus.Success(brewery)
 
             setUpViewModel()
 
@@ -44,8 +44,8 @@ class BreweryDetailViewModelTest : com.henrique.datasource.base.UnitTest() {
             Assert.assertEquals(
                 breweryDetailStates,
                 listOf(
-                    ResultStatus.Loading,
-                    ResultStatus.Success(brewery)
+                    BreweryStatus.Loading,
+                    BreweryStatus.Success(brewery)
                 )
             )
 
@@ -59,7 +59,7 @@ class BreweryDetailViewModelTest : com.henrique.datasource.base.UnitTest() {
             val exception = Exception()
 
             coEvery { breweryDetailRepository.getBreweryById("id") } returns
-                    ResultStatus.Error(exception.message)
+                    BreweryStatus.Error(exception.message)
 
             setUpViewModel()
 
@@ -68,8 +68,8 @@ class BreweryDetailViewModelTest : com.henrique.datasource.base.UnitTest() {
             Assert.assertEquals(
                 breweryDetailStates,
                 listOf(
-                    ResultStatus.Loading,
-                    ResultStatus.Error(exception.message)
+                    BreweryStatus.Loading,
+                    BreweryStatus.Error(exception.message)
                 )
             )
 

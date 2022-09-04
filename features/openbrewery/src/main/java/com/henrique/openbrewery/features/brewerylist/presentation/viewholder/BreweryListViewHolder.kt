@@ -4,7 +4,7 @@ import androidx.navigation.NavController
 import androidx.recyclerview.widget.RecyclerView
 import com.henrique.openbrewery.databinding.BreweryListItemBinding
 import com.henrique.openbrewery.ui.fragment.BreweryListFragmentDirections
-import com.henrique.datasource.domain.model.Brewery
+import com.henrique.datasource.brewerydetail.domain.model.Brewery
 
 class BreweryListViewHolder(
     private val binding: BreweryListItemBinding,

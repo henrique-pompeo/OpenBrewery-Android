@@ -1,7 +1,7 @@
 package com.henrique.datasource.data.extensions
 
 import com.henrique.datasource.data.database.entity.BreweryEntity
-import com.henrique.datasource.domain.model.Brewery
+import com.henrique.datasource.brewerydetail.domain.model.Brewery
 
 fun BreweryEntity.model() =
     Brewery(
