@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:ns1="http://schemas.android.com/tools">
+    <string name="brewery_type_bar_desc">A bar. No brewery equipment on premise.</string>
+    <string name="brewery_type_brewpub_desc">A beer-focused restaurant or restaurant/bar with a brewery on-premise.</string>
+    <string name="brewery_type_closed_desc">A location which has been closed.</string>
+    <string name="brewery_type_contract_desc">A brewery that uses another brewery\'s equipment.</string>
+    <string name="brewery_type_large_desc">A very large brewery. Likely not for visitors. Ex. Miller-Coors.</string>
+    <string name="brewery_type_micro_desc">Most craft breweries. For example, Samual Adams is still considered a micro brewery.</string>
+    <string name="brewery_type_nano_desc">An extremely small brewery which typically only distributes locally.</string>
+    <string name="brewery_type_planning_desc">A brewery in planning or not yet opened to the public.</string>
+    <string name="brewery_type_proprietor_desc">Similar to contract brewing but refers more to a brewery incubator.</string>
+    <string name="brewery_type_regional_desc">A regional location of an expanded brewery. Ex. Sierra Nevada\'s Asheville, NC location.</string>
+    <string name="error_icon">error_icon</string>
+    <string name="filter_brewery_icon">filter brewery icon</string>
+    <string name="retry">Retry</string>
+    <string name="sort_brewery_icon">sort brewery icon</string>
+    <style name="Theme.OpenBreweryAndroid" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/purple_200</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/black</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_200</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" ns1:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+    </style>
+</resources>

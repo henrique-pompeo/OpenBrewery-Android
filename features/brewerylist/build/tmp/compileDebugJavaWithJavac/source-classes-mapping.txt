@@ -1,0 +1,10 @@
+com/henrique/brewerylist/databinding/BreweryListFilterDialogBinding.java
+ com.henrique.brewerylist.databinding.BreweryListFilterDialogBinding
+com/henrique/brewerylist/databinding/BreweryListFragmentBinding.java
+ com.henrique.brewerylist.databinding.BreweryListFragmentBinding
+com/henrique/brewerylist/BuildConfig.java
+ com.henrique.brewerylist.BuildConfig
+com/henrique/brewerylist/databinding/BreweryListHeaderBinding.java
+ com.henrique.brewerylist.databinding.BreweryListHeaderBinding
+com/henrique/brewerylist/databinding/BreweryListItemBinding.java
+ com.henrique.brewerylist.databinding.BreweryListItemBinding

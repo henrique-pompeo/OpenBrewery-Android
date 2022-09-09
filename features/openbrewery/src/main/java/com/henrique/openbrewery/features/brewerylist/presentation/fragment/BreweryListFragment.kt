@@ -13,8 +13,8 @@ import com.henrique.openbrewery.R
 import com.henrique.openbrewery.databinding.BreweryListFragmentBinding
 import com.henrique.openbrewery.features.brewerylist.presentation.viewmodel.BreweryListViewModel
 import com.henrique.openbrewery.features.brewerylist.presentation.adapter.BreweryListAdapter
-import com.henrique.datasource.brewerydetail.domain.model.BreweryStatus
-import com.henrique.datasource.brewerydetail.domain.model.Brewery
+import com.henrique.datasource.datasource.brewerydetail.domain.model.BreweryDetailState
+import com.henrique.datasource.datasource.brewerydetail.domain.model.BreweryDetail
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.component.KoinApiExtension
 
@@ -53,9 +53,9 @@ class BreweryListFragment : Fragment(R.layout.brewery_list_fragment) {
         with (viewModel) {
             breweryListLiveData.observe(viewLifecycleOwner, {
                 when (it) {
-                    is BreweryStatus.Loading -> showLoading()
-                    is BreweryStatus.Success -> showContent(it.data)
-                    is BreweryStatus.Error -> showLayoutError(it.message)
+                    is BreweryDetailState.Loading -> showLoading()
+                    is BreweryDetailState.Success -> showContent(it.data)
+                    is BreweryDetailState.Error -> showLayoutError(it.message)
                 }
             })
         }
@@ -71,7 +71,7 @@ class BreweryListFragment : Fragment(R.layout.brewery_list_fragment) {
         updateLayoutErrorVisibility(false)
     }
 
-    private fun showContent(breweryList: List<Brewery>) {
+    private fun showContent(breweryList: List<BreweryDetail>) {
         updateAdapter(breweryList)
         updateLoadingVisibility(false)
         updateContentVisibility(true)
@@ -85,7 +85,7 @@ class BreweryListFragment : Fragment(R.layout.brewery_list_fragment) {
         binding.errorTv.text = message
     }
 
-    private fun updateAdapter(breweryList : List<Brewery>) {
+    private fun updateAdapter(breweryList : List<BreweryDetail>) {
         binding.breweryListRv.apply {
             isVisible = true
             adapter = BreweryListAdapter(breweryList, findNavController())

@@ -1,6 +1,6 @@
 package com.henrique.datasource.domain.model
 
-import com.henrique.datasource.brewerydetail.domain.model.Brewery
+import com.henrique.datasource.datasource.brewerydetail.domain.model.BreweryDetail
 import org.junit.Assert
 import org.junit.Test
 
@@ -8,7 +8,7 @@ class BreweryTest {
 
     @Test
     fun `should initialize Brewery`() {
-        val brewery = Brewery(
+        val brewery = BreweryDetail(
             id = "id",
             name = "name",
             breweryType = "breweryType",

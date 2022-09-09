@@ -1,7 +1,7 @@
 package com.henrique.app.infrastructure
 
 import com.henrique.datasource.data.remote.response.BreweryResponse
-import com.henrique.datasource.brewerydetail.domain.model.Brewery
+import com.henrique.datasource.datasource.brewerydetail.domain.model.BreweryDetail
 import org.junit.After
 import org.junit.Before
 import org.koin.core.component.KoinApiExtension
@@ -41,7 +41,7 @@ abstract class InstrumentedTest {
             createdAt = "2021-10-23T02:24:55.243Z"
         )
 
-        val brewery = Brewery(
+        val brewery = BreweryDetail(
             id = "id",
             name = "name",
             breweryType = "breweryType",

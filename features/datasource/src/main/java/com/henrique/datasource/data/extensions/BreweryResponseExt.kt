@@ -1,8 +1,7 @@
 package com.henrique.datasource.data.extensions
 
-import com.henrique.datasource.data.database.entity.BreweryEntity
+import com.henrique.datasource.dataprovider.providers.database.openbrewery.entity.BreweryEntity
 import com.henrique.datasource.data.remote.response.BreweryResponse
-import com.henrique.datasource.brewerydetail.domain.model.Brewery
 
 fun BreweryResponse.toEntity() =
     BreweryEntity(

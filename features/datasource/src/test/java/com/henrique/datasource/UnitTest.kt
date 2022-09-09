@@ -1,8 +1,8 @@
 package com.henrique.datasource
 
-import com.henrique.datasource.data.database.entity.BreweryEntity
+import com.henrique.datasource.dataprovider.providers.database.openbrewery.entity.BreweryEntity
 import com.henrique.datasource.data.remote.response.BreweryResponse
-import com.henrique.datasource.brewerydetail.domain.model.Brewery
+import com.henrique.datasource.datasource.brewerydetail.domain.model.BreweryDetail
 
 abstract class UnitTest {
 
@@ -48,7 +48,7 @@ abstract class UnitTest {
             createdAt = "2021-10-23T02:24:55.243Z"
         )
 
-        val brewery = Brewery(
+        val brewery = BreweryDetail(
             id = "id",
             name = "name",
             breweryType = "breweryType",

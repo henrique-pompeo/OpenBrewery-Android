@@ -10,8 +10,8 @@ import com.henrique.openbrewery.R
 import com.henrique.openbrewery.ui.extension.checkIsGone
 import com.henrique.openbrewery.ui.extension.checkIsVisible
 import com.henrique.openbrewery.features.brewerylist.presentation.viewmodel.BreweryListViewModel
-import com.henrique.datasource.brewerydetail.domain.model.BreweryStatus
-import com.henrique.datasource.brewerydetail.domain.model.Brewery
+import com.henrique.datasource.datasource.brewerydetail.domain.model.BreweryDetailState
+import com.henrique.datasource.datasource.brewerydetail.domain.model.BreweryDetail
 import io.mockk.mockk
 import kotlinx.coroutines.runBlocking
 import org.junit.After
@@ -29,7 +29,7 @@ import org.koin.dsl.module
 class BreweryListFragmentTest : InstrumentedTest() {
 
     private val breweryListViewModel = mockk<BreweryListViewModel>()
-    private val breweryListLiveData = MutableLiveData<BreweryStatus<List<Brewery>>>()
+    private val breweryListLiveData = MutableLiveData<BreweryDetailState<List<BreweryDetail>>>()
 
     @Before
     fun setup() {
@@ -48,7 +48,7 @@ class BreweryListFragmentTest : InstrumentedTest() {
     @Test
     fun shouldShowLoadingHideContentAndLayoutErrorWhenResultStatusIsLoading() = runBlocking {
         launchFragmentInContainer<BreweryListFragment>()
-        breweryListLiveData.postValue(BreweryStatus.Loading)
+        breweryListLiveData.postValue(BreweryDetailState.Loading)
         onView(withId(R.id.brewery_list_loading_pb)).checkIsVisible()
         onView(withId(R.id.brewery_list_rv)).checkIsGone()
         onView(withId(R.id.brewery_list_error_cl)).checkIsGone()

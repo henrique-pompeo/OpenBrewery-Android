@@ -11,8 +11,8 @@ import com.henrique.brewerydetail.R
 import com.henrique.brewerydetail.databinding.BreweryDetailFragmentBinding
 import com.henrique.openbrewery.features.brewerydetail.presentation.viewmodel.BreweryDetailViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import com.henrique.datasource.brewerydetail.domain.model.BreweryStatus
-import com.henrique.datasource.brewerydetail.domain.model.Brewery
+import com.henrique.datasource.datasource.brewerydetail.domain.model.BreweryDetailState
+import com.henrique.datasource.datasource.brewerydetail.domain.model.BreweryDetail
 import org.koin.core.component.KoinApiExtension
 
 @KoinApiExtension
@@ -48,9 +48,9 @@ class BreweryDetailFragment : Fragment(R.layout.brewery_detail_fragment) {
         with (viewModel) {
             breweryDetailLiveData.observe(viewLifecycleOwner, {
                 when (it) {
-                    is BreweryStatus.Loading -> showLoading()
-                    is BreweryStatus.Success -> showContent(it.data)
-                    is BreweryStatus.Error -> showLayoutError(it.message)
+                    is BreweryDetailState.Loading -> showLoading()
+                    is BreweryDetailState.Success -> showContent(it.data)
+                    is BreweryDetailState.Error -> showLayoutError(it.message)
                 }
             })
         }
@@ -62,7 +62,7 @@ class BreweryDetailFragment : Fragment(R.layout.brewery_detail_fragment) {
         updateLayoutErrorVisibility(false)
     }
 
-    private fun showContent(brewery: Brewery) {
+    private fun showContent(brewery: BreweryDetail) {
         updateFields(brewery)
         updateLoadingVisibility(false)
         updateContentVisibility(true)
@@ -76,7 +76,7 @@ class BreweryDetailFragment : Fragment(R.layout.brewery_detail_fragment) {
         binding.errorTv.text = message
     }
 
-    private fun updateFields(brewery: Brewery) {
+    private fun updateFields(brewery: BreweryDetail) {
         with(binding) {
             breweryDetailFragmentBreweryNameTv.text = brewery.name
             breweryDetailFragmentBreweryTypeTv.text = brewery.breweryType

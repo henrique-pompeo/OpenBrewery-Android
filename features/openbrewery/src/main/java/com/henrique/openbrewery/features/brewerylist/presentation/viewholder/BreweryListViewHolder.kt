@@ -4,14 +4,14 @@ import androidx.navigation.NavController
 import androidx.recyclerview.widget.RecyclerView
 import com.henrique.openbrewery.databinding.BreweryListItemBinding
 import com.henrique.openbrewery.ui.fragment.BreweryListFragmentDirections
-import com.henrique.datasource.brewerydetail.domain.model.Brewery
+import com.henrique.datasource.datasource.brewerydetail.domain.model.BreweryDetail
 
 class BreweryListViewHolder(
     private val binding: BreweryListItemBinding,
     private val navController: NavController
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(brewery: Brewery) {
+    fun bind(brewery: BreweryDetail) {
         binding.apply {
             breweryListItemTitle.text = brewery.name
             breweryListItemAddress.text = brewery.country

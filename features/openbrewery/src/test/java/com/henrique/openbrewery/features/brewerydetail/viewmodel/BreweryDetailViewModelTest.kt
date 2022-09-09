@@ -2,10 +2,10 @@ package com.henrique.openbrewery.features.brewerydetail.viewmodel
 
 import androidx.lifecycle.Observer
 import com.henrique.datasource.base.UnitTest
-import com.henrique.datasource.brewerydetail.domain.interfaces.repository.BreweryDetailRepository
+import com.henrique.datasource.datasource.brewerydetail.domain.interfaces.repository.BreweryDetailRepository
 import com.henrique.openbrewery.features.brewerydetail.presentation.viewmodel.BreweryDetailViewModel
-import com.henrique.datasource.brewerydetail.domain.model.BreweryStatus
-import com.henrique.datasource.brewerydetail.domain.model.Brewery
+import com.henrique.datasource.datasource.brewerydetail.domain.model.BreweryDetailState
+import com.henrique.datasource.datasource.brewerydetail.domain.model.BreweryDetail
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
@@ -21,8 +21,8 @@ import org.koin.core.component.KoinApiExtension
 class BreweryDetailViewModelTest : com.henrique.datasource.base.UnitTest() {
 
     private val breweryDetailRepository = mockk<BreweryDetailRepository>(relaxed = true)
-    private val breweryDetailObserver = mockk<Observer<BreweryStatus<Brewery>>>(relaxed = true)
-    private val breweryDetailStates = mutableListOf<BreweryStatus<Brewery>>()
+    private val breweryDetailObserver = mockk<Observer<BreweryDetailState<BreweryDetail>>>(relaxed = true)
+    private val breweryDetailStates = mutableListOf<BreweryDetailState<BreweryDetail>>()
     private val breweryDetailViewModel = BreweryDetailViewModel(breweryDetailRepository)
 
     private fun setUpViewModel() {
@@ -34,8 +34,8 @@ class BreweryDetailViewModelTest : com.henrique.datasource.base.UnitTest() {
     fun `SHOULD call getBreweryDetail() and THEN post success WHEN the call succeeds`() =
         runBlocking {
 
-            coEvery { breweryDetailRepository.getBreweryById("id") } returns
-                    BreweryStatus.Success(brewery)
+            coEvery { breweryDetailRepository.getBreweryDetails("id") } returns
+                    BreweryDetailState.Success(brewery)
 
             setUpViewModel()
 
@@ -44,12 +44,12 @@ class BreweryDetailViewModelTest : com.henrique.datasource.base.UnitTest() {
             Assert.assertEquals(
                 breweryDetailStates,
                 listOf(
-                    BreweryStatus.Loading,
-                    BreweryStatus.Success(brewery)
+                    BreweryDetailState.Loading,
+                    BreweryDetailState.Success(brewery)
                 )
             )
 
-            coVerify(exactly = 1) { breweryDetailRepository.getBreweryById("id") }
+            coVerify(exactly = 1) { breweryDetailRepository.getBreweryDetails("id") }
         }
 
     @Test
@@ -58,8 +58,8 @@ class BreweryDetailViewModelTest : com.henrique.datasource.base.UnitTest() {
 
             val exception = Exception()
 
-            coEvery { breweryDetailRepository.getBreweryById("id") } returns
-                    BreweryStatus.Error(exception.message)
+            coEvery { breweryDetailRepository.getBreweryDetails("id") } returns
+                    BreweryDetailState.Error(exception.message)
 
             setUpViewModel()
 
@@ -68,11 +68,11 @@ class BreweryDetailViewModelTest : com.henrique.datasource.base.UnitTest() {
             Assert.assertEquals(
                 breweryDetailStates,
                 listOf(
-                    BreweryStatus.Loading,
-                    BreweryStatus.Error(exception.message)
+                    BreweryDetailState.Loading,
+                    BreweryDetailState.Error(exception.message)
                 )
             )
 
-            coVerify(exactly = 1) { breweryDetailRepository.getBreweryById("id") }
+            coVerify(exactly = 1) { breweryDetailRepository.getBreweryDetails("id") }
         }
 }

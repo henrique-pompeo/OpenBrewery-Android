@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/light_gray">
+
+    <LinearLayout
+        android:id="@+id/brewery_detail_fragment_header_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/gradient_header"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/brewery_detail_fragment_brewery_name_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center_horizontal"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            tools:text="Brewery name" />
+
+        <ImageView
+            android:id="@+id/brewery_detail_fragment_brewery_photo_iv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="20dp"
+            android:background="@drawable/brewery_photo"
+            android:contentDescription="@string/brewery_photo"
+            android:scaleX="0.15" />
+
+        <TextView
+            android:id="@+id/brewery_detail_fragment_brewery_type_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:gravity="center_horizontal"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            tools:text="Brewery type" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/brewery_detail_fragment_brewery_type_desc_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_margin="10dp"
+        android:paddingBottom="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/brewery_detail_fragment_header_ll"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="Brewery type description" />
+
+    <LinearLayout
+        android:id="@+id/brewery_detail_fragment_address_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="10dp"
+        android:paddingBottom="10dp"
+        app:layout_constraintTop_toBottomOf="@id/brewery_detail_fragment_brewery_type_desc_tv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/brewery_detail_fragment_brewery_address_title_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:textSize="18sp"
+            android:text="@string/address_title" />
+
+        <TextView
+            android:id="@+id/brewery_detail_fragment_brewery_street_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:textSize="@dimen/brewery_detail_text"
+            android:textStyle="bold"
+            android:text="@string/brewery_street"
+            tools:text="Street: 3301 Madison Rd" />
+
+        <TextView
+            android:id="@+id/brewery_detail_fragment_brewery_address_2_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:textSize="@dimen/brewery_detail_text"
+            android:textStyle="bold"
+            android:text="@string/brewery_address2"
+            tools:text="Address 2: null" />
+
+        <TextView
+            android:id="@+id/brewery_detail_fragment_brewery_address_3_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:textSize="@dimen/brewery_detail_text"
+            android:textStyle="bold"
+            android:text="@string/brewery_address3"
+            tools:text="Address 3: null" />
+
+        <TextView
+            android:id="@+id/brewery_detail_fragment_brewery_city_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:textSize="@dimen/brewery_detail_text"
+            android:textStyle="bold"
+            android:text="@string/brewery_city"
+            tools:text="City: Cincinnati" />
+
+        <TextView
+            android:id="@+id/brewery_detail_fragment_brewery_state_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:textSize="@dimen/brewery_detail_text"
+            android:textStyle="bold"
+            android:text="@string/brewery_state"
+            tools:text="State: Ohio" />
+
+        <TextView
+            android:id="@+id/brewery_detail_fragment_brewery_county_province_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:textSize="@dimen/brewery_detail_text"
+            android:textStyle="bold"
+            android:text="@string/brewery_county_province"
+            tools:text="County province: null" />
+
+        <TextView
+            android:id="@+id/brewery_detail_fragment_brewery_postal_code_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:textSize="@dimen/brewery_detail_text"
+            android:textStyle="bold"
+            android:text="@string/brewery_postal_code"
+            tools:text="Postal code: 45209-1132" />
+
+        <TextView
+            android:id="@+id/brewery_detail_fragment_brewery_country_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:textSize="@dimen/brewery_detail_text"
+            android:textStyle="bold"
+            android:text="@string/brewery_country"
+            tools:text="Country: United States" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/brewery_detail_fragment_contact_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="10dp"
+        android:paddingBottom="10dp"
+        app:layout_constraintTop_toBottomOf="@id/brewery_detail_fragment_address_ll"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/brewery_detail_fragment_brewery_contact_title_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:textSize="18sp"
+            android:text="@string/contact_title"/>
+
+        <TextView
+            android:id="@+id/brewery_detail_fragment_brewery_phone_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:textSize="@dimen/brewery_detail_text"
+            android:textStyle="bold"
+            android:text="@string/brewery_phone"
+            tools:text="Phone: 5138368733" />
+
+        <TextView
+            android:id="@+id/brewery_detail_fragment_brewery_website_url_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:textSize="@dimen/brewery_detail_text"
+            android:textStyle="bold"
+            android:text="@string/brewery_website_url"
+            tools:text="Website url: http://www.madtreebrewing.com" />
+
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/brewery_detail_loading_pb"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="gone" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/brewery_detail_error_cl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:visibility="gone"
+        >
+
+        <ImageView
+            android:id="@+id/error_iv"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:layout_marginTop="240dp"
+            android:src="@drawable/error"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/error_icon" />
+
+        <TextView
+            android:id="@+id/error_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/error_iv"
+            tools:text="Some error happens"
+            />
+
+        <Button
+            android:id="@+id/retry_bt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/retry"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/error_tv"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
