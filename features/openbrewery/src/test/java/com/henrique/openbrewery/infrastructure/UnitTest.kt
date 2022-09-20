@@ -16,10 +16,8 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import org.koin.core.component.KoinApiExtension
 
 @RunWith(JUnit4::class)
-@KoinApiExtension
 @ExperimentalCoroutinesApi
 abstract class UnitTest {
 

@@ -7,10 +7,8 @@ import androidx.navigation.testing.TestNavHostController
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.internal.runner.junit4.statement.UiThreadStatement
 import com.henrique.openbrewery.R
-import com.henrique.openbrewery.features.brewerylist.presentation.fragment.BreweryListFragment
-import org.koin.core.component.KoinApiExtension
+import com.henrique.openbrewery.presentation.brewerylist.fragment.BreweryListFragment
 
-@KoinApiExtension
 abstract class InstrumentedTest {
 
     fun launchBreweryListFragment() {

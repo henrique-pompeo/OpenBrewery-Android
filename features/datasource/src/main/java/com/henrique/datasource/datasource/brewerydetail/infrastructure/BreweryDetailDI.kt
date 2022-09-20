@@ -15,7 +15,6 @@ import retrofit2.Retrofit
 
 @KoinApiExtension
 object BreweryDetailDI {
-
     private val services: Module = module {
         factory<BreweryDetailService> {
             get<Retrofit>().create(BreweryDetailService::class.java)

@@ -5,9 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.henrique.app.R
-import org.koin.core.component.KoinApiExtension
 
-@KoinApiExtension
 class MainActivity : AppCompatActivity() {
 
     private lateinit var navController: NavController

@@ -50,20 +50,6 @@
             app:layout_constraintTop_toTopOf="parent"
             android:contentDescription="@string/error_icon" />
 
-        <TextView
-            android:id="@+id/error_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/error_iv"
-            tools:text="Some error happens"
-            />
-
         <Button
             android:id="@+id/retry_bt"
             android:layout_width="wrap_content"
@@ -73,7 +59,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/error_tv"
+            app:layout_constraintTop_toBottomOf="@+id/error_iv"
             />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
