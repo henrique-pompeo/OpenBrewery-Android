@@ -14,9 +14,7 @@ import com.henrique.app.presentation.extension.checkIsEnabled
 import com.henrique.app.presentation.extension.checkIsVisible
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.koin.core.component.KoinApiExtension
 
-@KoinApiExtension
 @RunWith(AndroidJUnit4::class)
 class MainFragmentTest : InstrumentedTest() {
 

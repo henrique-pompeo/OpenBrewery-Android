@@ -10,9 +10,7 @@ import com.henrique.datasource.data.extensions.model
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Test
-import org.koin.core.component.KoinApiExtension
 
-@KoinApiExtension
 class BreweryDaoTest : InstrumentedTest() {
 
     private lateinit var db: AppDatabase

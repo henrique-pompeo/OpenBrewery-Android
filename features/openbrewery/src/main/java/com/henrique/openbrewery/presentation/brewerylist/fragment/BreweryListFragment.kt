@@ -14,8 +14,11 @@ import com.henrique.openbrewery.domain.brewerylist.model.BreweryListState
 import com.henrique.openbrewery.domain.navigation.BreweryNavigation
 import com.henrique.openbrewery.presentation.brewerylist.viewmodel.BreweryListViewModel
 import org.koin.android.ext.android.inject
+import org.koin.androidx.navigation.koinNavGraphViewModel
 
 class BreweryListFragment : Fragment() {
+
+    //TODO FAZER O CLEAN E REBUILD PARA CONTINUAR A REFATORAÇÃO E SEGUIR O MESMO PROCESSO NO DETAIL
 
     private lateinit var binding: BreweryListFragmentBinding
     private val viewModel: BreweryListViewModel by koinNavGraphViewModel(R.id.brewerylist_nav)

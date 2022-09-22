@@ -4,9 +4,7 @@ import com.henrique.datasource.data.remote.response.BreweryResponse
 import com.henrique.datasource.datasource.brewerydetail.domain.model.BreweryDetail
 import org.junit.After
 import org.junit.Before
-import org.koin.core.component.KoinApiExtension
 
-@KoinApiExtension
 abstract class InstrumentedTest {
 
     @Before
