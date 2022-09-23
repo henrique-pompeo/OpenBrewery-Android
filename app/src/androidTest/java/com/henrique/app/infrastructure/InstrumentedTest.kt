@@ -1,7 +1,7 @@
 package com.henrique.app.infrastructure
 
 import com.henrique.datasource.data.remote.response.BreweryResponse
-import com.henrique.datasource.datasource.brewerydetail.domain.model.BreweryDetail
+import com.henrique.openbrewery.domain.brewerydetail.model.BreweryDetail
 import org.junit.After
 import org.junit.Before
 

@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import com.henrique.openbrewery.R
 import com.henrique.openbrewery.databinding.BreweryListFragmentBinding
+import com.henrique.openbrewery.domain.brewery.model.Brewery
+import com.henrique.openbrewery.domain.brewerylist.mappers.BreweryListItemMapper
 import com.henrique.openbrewery.presentation.brewerylist.adapter.BreweryListAdapter
 import com.henrique.openbrewery.domain.brewerylist.model.BreweryListItem
 import com.henrique.openbrewery.domain.brewerylist.model.BreweryListState
@@ -18,11 +20,10 @@ import org.koin.androidx.navigation.koinNavGraphViewModel
 
 class BreweryListFragment : Fragment() {
 
-    //TODO FAZER O CLEAN E REBUILD PARA CONTINUAR A REFATORAÇÃO E SEGUIR O MESMO PROCESSO NO DETAIL
-
     private lateinit var binding: BreweryListFragmentBinding
     private val viewModel: BreweryListViewModel by koinNavGraphViewModel(R.id.brewerylist_nav)
     private val breweryNavigation: BreweryNavigation by inject()
+    private val breweryListItemMapper: BreweryListItemMapper by inject()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = BreweryListFragmentBinding.inflate(inflater, container, false)
@@ -45,10 +46,28 @@ class BreweryListFragment : Fragment() {
         with (viewModel) {
             breweryListState.observe(viewLifecycleOwner) {
                 when (it) {
-                    is BreweryListState.Loading -> updateScreen(showLoading = true, content = null, showError = false)
-                    is BreweryListState.Success -> updateScreen(showLoading = false, content = it.breweryListItem, showError = false)
-                    is BreweryListState.Error -> updateScreen(showLoading = false, content = null, showError = true)
+                    is BreweryListState.Loading ->
+                        updateScreen(
+                            showLoading = true,
+                            breweryList = null,
+                            showError = false
+                        )
+                    is BreweryListState.Success ->
+                        updateScreen(
+                            showLoading = false,
+                            breweryList = breweryListItemMapper.toList(it.breweryList),
+                            showError = false
+                        )
+                    is BreweryListState.Error ->
+                        updateScreen(
+                            showLoading = false,
+                            breweryList = null,
+                            showError = true
+                        )
                 }
+            }
+            clickedBrewery.observe(viewLifecycleOwner) {
+                breweryNavigation.goToBreweryDetails()
             }
         }
     }
@@ -66,8 +85,8 @@ class BreweryListFragment : Fragment() {
         }
     }
 
-    private fun onItemClicked(breweryListItem: BreweryListItem) {
-        viewModel.itemClicked(breweryListItem)
+    private fun onItemClicked(id: String) {
+        viewModel.itemClicked(id)
     }
 
     private fun reloadBreweryList() {
@@ -76,11 +95,11 @@ class BreweryListFragment : Fragment() {
 
     private fun updateScreen(
         showLoading: Boolean,
-        content: List<BreweryListItem>?,
+        breweryList: List<BreweryListItem>?,
         showError: Boolean
     ) {
         showLoading(showLoading)
-        setupAdapter(content)
+        setupAdapter(breweryList)
         showError(showError)
     }
 

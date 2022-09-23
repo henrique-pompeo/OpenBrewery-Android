@@ -8,12 +8,10 @@ import com.henrique.datasource.datasource.brewerydetail.data.mappers.BreweryDeta
 import com.henrique.datasource.datasource.brewerydetail.domain.interfaces.repository.BreweryDetailRepository
 import com.henrique.datasource.datasource.brewerydetail.data.repository.BreweryDetailRepositoryImpl
 import com.henrique.datasource.datasource.brewerydetail.data.service.BreweryDetailService
-import org.koin.core.component.KoinApiExtension
 import org.koin.core.module.Module
 import org.koin.dsl.module
 import retrofit2.Retrofit
 
-@KoinApiExtension
 object BreweryDetailDI {
     private val services: Module = module {
         factory<BreweryDetailService> {

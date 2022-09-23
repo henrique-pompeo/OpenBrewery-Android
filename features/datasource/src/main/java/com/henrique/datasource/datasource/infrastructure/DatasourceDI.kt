@@ -6,12 +6,10 @@ import com.henrique.datasource.datasource.brewerylist.infrastructure.BreweryList
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
-import org.koin.core.component.KoinApiExtension
 import org.koin.core.module.Module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-@KoinApiExtension
 object DatasourceDI {
 
     private val retrofit: Module = module {

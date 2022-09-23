@@ -3,7 +3,7 @@ package com.henrique.openbrewery.infrastructure
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.henrique.datasource.dataprovider.providers.database.openbrewery.entity.BreweryEntity
 import com.henrique.datasource.data.remote.response.BreweryResponse
-import com.henrique.datasource.datasource.brewerydetail.domain.model.BreweryDetail
+import com.henrique.openbrewery.domain.brewerydetail.model.BreweryDetail
 import io.mockk.clearAllMocks
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi

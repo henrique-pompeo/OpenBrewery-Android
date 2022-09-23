@@ -2,11 +2,11 @@ package com.henrique.openbrewery.domain.brewerylist.usecase
 
 import com.henrique.datasource.datasource.brewerylist.domain.interfaces.repository.BreweryListRepository
 import com.henrique.datasource.datasource.brewerylist.domain.model.Brewery
-import com.henrique.openbrewery.domain.brewerylist.mappers.BreweryListItemMapper
+import com.henrique.openbrewery.domain.brewery.mappers.BreweryMapper
 import com.henrique.openbrewery.domain.brewerylist.model.BreweryListState
 
 class BreweryListUseCaseImpl(
-    private val breweryListItemMapper: BreweryListItemMapper,
+    private val breweryMapper: BreweryMapper,
     private val breweryListRepository: BreweryListRepository
 ) : BreweryListUseCase {
     override suspend fun getBreweryList(): BreweryListState {
@@ -14,7 +14,7 @@ class BreweryListUseCaseImpl(
         runCatching {
             val breweryList = breweryListRepository.getBreweryList()
             breweryListState = BreweryListState.Success(
-                breweryListItemMapper.toList(breweryList)
+                breweryMapper.toList(breweryList)
             )
             insertBreweryList(breweryList)
         }
@@ -32,7 +32,7 @@ class BreweryListUseCaseImpl(
         runCatching {
             val breweryList = breweryListRepository.getDatabaseBreweryList()
             breweryListState = BreweryListState.Success(
-                breweryListItemMapper.toList(breweryList)
+                breweryMapper.toList(breweryList)
             )
         }
         return breweryListState

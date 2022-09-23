@@ -72,20 +72,14 @@ class BreweryMapper {
     }
 
     fun toList(breweryListDTO: List<BreweryDTO>) : List<Brewery> {
-        return breweryListDTO.map {
-            toDomain(it)
-        }
+        return breweryListDTO.map(::toDomain)
     }
 
     fun toListEntity(breweryListEntity: List<BreweryEntity>) : List<Brewery> {
-        return breweryListEntity.map {
-            toDomainEntity(it)
-        }
+        return breweryListEntity.map(::toDomainEntity)
     }
 
     fun toListDatabase(breweryList: List<Brewery>) : List<BreweryEntity> {
-        return breweryList.map {
-            toDatabase(it)
-        }
+        return breweryList.map(::toDatabase)
     }
 }

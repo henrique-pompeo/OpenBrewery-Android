@@ -1,28 +1,19 @@
 package com.henrique.openbrewery.domain.brewerylist.mappers
 
-import com.henrique.datasource.datasource.brewerylist.domain.model.Brewery as BreweryDatasource
+import com.henrique.openbrewery.domain.brewery.model.Brewery
 import com.henrique.openbrewery.domain.brewerylist.model.BreweryListItem
 
 class BreweryListItemMapper {
-    fun toItem(
-        name: String,
-        address: String,
-        phone: String
-    ) : BreweryListItem {
+    private fun toItem(brewery: Brewery) : BreweryListItem {
         return BreweryListItem(
-            name = name,
-            address = address,
-            phone = phone
+            id = brewery.id,
+            name = brewery.name,
+            address = brewery.country,
+            phone = brewery.phone
         )
     }
 
-    fun toList(breweryListDatasource: List<BreweryDatasource>) : List<BreweryListItem> {
-        return breweryListDatasource.map {
-            toItem(
-                name = it.name.orEmpty(),
-                address = it.country.orEmpty(),
-                phone = it.phone.orEmpty()
-            )
-        }
+    fun toList(breweryList: List<Brewery>) : List<BreweryListItem> {
+        return breweryList.map(::toItem)
     }
 }

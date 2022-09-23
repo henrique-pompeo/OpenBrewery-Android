@@ -1,28 +1,26 @@
 package com.henrique.openbrewery.presentation.brewerydetail.viewmodel
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.henrique.datasource.datasource.brewerydetail.domain.interfaces.repository.BreweryDetailRepository
-import com.henrique.datasource.datasource.brewerydetail.domain.model.BreweryDetailState
-import com.henrique.datasource.datasource.brewerydetail.domain.model.BreweryDetail
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.SupervisorJob
+import androidx.lifecycle.viewModelScope
+import com.henrique.openbrewery.domain.brewerydetail.model.BreweryDetailState
+import com.henrique.openbrewery.domain.brewerydetail.usecase.BreweryDetailUseCase
 import kotlinx.coroutines.launch
 
 class BreweryDetailViewModel(
-    private val breweryDetailRepository: BreweryDetailRepository
+    private val breweryDetailUseCase: BreweryDetailUseCase,
 ) : ViewModel() {
+    private val _breweryDetailState = MutableLiveData<BreweryDetailState>()
+    val breweryDetailState: LiveData<BreweryDetailState> get() = _breweryDetailState
 
-    val breweryDetailLiveData = MutableLiveData<BreweryDetailState<BreweryDetail>>()
+    init {
+        _breweryDetailState.postValue(BreweryDetailState.Loading)
+    }
 
-    private val viewModelJob = SupervisorJob()
-    private val viewModelScope = CoroutineScope(Dispatchers.Main + viewModelJob)
-
-    fun getBreweryById(id: String) {
-        breweryDetailLiveData.postValue(BreweryDetailState.Loading)
+    fun getBreweryDetails(id: String) {
         viewModelScope.launch {
-            breweryDetailLiveData.postValue(breweryDetailRepository.getBreweryDetails(id))
+            _breweryDetailState.postValue(breweryDetailUseCase.getBreweryDetails(id = id))
         }
     }
 }

@@ -10,8 +10,8 @@ import com.henrique.openbrewery.R
 import com.henrique.openbrewery.ui.extension.checkIsGone
 import com.henrique.openbrewery.ui.extension.checkIsVisible
 import com.henrique.openbrewery.presentation.brewerylist.viewmodel.BreweryListViewModel
-import com.henrique.datasource.datasource.brewerydetail.domain.model.BreweryDetailState
-import com.henrique.datasource.datasource.brewerydetail.domain.model.BreweryDetail
+import com.henrique.openbrewery.domain.brewerydetail.model.BreweryDetailState
+import com.henrique.openbrewery.domain.brewerydetail.model.BreweryDetail
 import io.mockk.mockk
 import kotlinx.coroutines.runBlocking
 import org.junit.After

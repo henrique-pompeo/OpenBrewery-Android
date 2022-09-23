@@ -10,14 +10,14 @@ class BreweryListViewHolder(
 
     fun bind(
         breweryListItem: BreweryListItem,
-        onItemClicked: (BreweryListItem) -> Unit
+        onItemClicked: (String) -> Unit
     ) {
         binding.apply {
             breweryListItemTitle.text = breweryListItem.name
             breweryListItemAddress.text = breweryListItem.address
             breweryListItemPhone.text = breweryListItem.phone
             root.setOnClickListener {
-                onItemClicked(breweryListItem)
+                onItemClicked(breweryListItem.id)
             }
         }
     }

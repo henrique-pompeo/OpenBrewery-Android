@@ -1,4 +1,4 @@
-package com.henrique.datasource.datasource.brewerydetail.domain.model
+package com.henrique.openbrewery.domain.brewerydetail.model
 
 data class BreweryDetail(
     val id: String,

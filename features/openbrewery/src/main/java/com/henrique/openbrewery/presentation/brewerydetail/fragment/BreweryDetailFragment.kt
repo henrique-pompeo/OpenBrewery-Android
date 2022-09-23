@@ -6,21 +6,22 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.navArgs
-import com.henrique.brewerydetail.R
-import com.henrique.brewerydetail.databinding.BreweryDetailFragmentBinding
+import com.henrique.openbrewery.R
+import com.henrique.openbrewery.databinding.BreweryDetailFragmentBinding
+import com.henrique.openbrewery.domain.brewerydetail.mappers.BreweryDetailItemMapper
+import com.henrique.openbrewery.domain.brewerydetail.model.BreweryDetailItem
+import com.henrique.openbrewery.domain.brewerydetail.model.BreweryDetailState
 import com.henrique.openbrewery.presentation.brewerydetail.viewmodel.BreweryDetailViewModel
-import org.koin.androidx.viewmodel.ext.android.viewModel
-import com.henrique.datasource.datasource.brewerydetail.domain.model.BreweryDetailState
-import com.henrique.datasource.datasource.brewerydetail.domain.model.BreweryDetail
+import com.henrique.openbrewery.presentation.brewerylist.viewmodel.BreweryListViewModel
+import org.koin.android.ext.android.inject
+import org.koin.androidx.navigation.koinNavGraphViewModel
 
 class BreweryDetailFragment : Fragment() {
 
     private lateinit var binding: BreweryDetailFragmentBinding
-
-    private val viewModel: BreweryDetailViewModel by viewModel()
-
-    private val args: BreweryDetailFragmentArgs by navArgs()
+    private val breweryListViewModel: BreweryListViewModel by koinNavGraphViewModel(R.id.brewerylist_nav)
+    private val viewModel: BreweryDetailViewModel by inject()
+    private val breweryDetailItemMapper: BreweryDetailItemMapper by inject()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = BreweryDetailFragmentBinding.inflate(inflater, container, false)
@@ -29,86 +30,83 @@ class BreweryDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupListeners()
         setupObservers()
-        getBreweryById(args.id)
-        binding.retryBt.setOnClickListener {
-            getBreweryById(args.id)
-        }
     }
 
-    private fun getBreweryById(id: String) {
-        with (viewModel) {
-            getBreweryById(id)
+    private fun setupListeners() {
+        binding.retryBt.setOnClickListener {
+            reloadBreweryDetails()
         }
     }
 
     private fun setupObservers() {
+        with (breweryListViewModel) {
+            clickedBrewery.observe(viewLifecycleOwner) {
+                getBreweryDetails(it)
+            }
+        }
         with (viewModel) {
-            breweryDetailLiveData.observe(viewLifecycleOwner, {
+            breweryDetailState.observe(viewLifecycleOwner) {
                 when (it) {
-                    is BreweryDetailState.Loading -> showLoading()
-                    is BreweryDetailState.Success -> showContent(it.data)
-                    is BreweryDetailState.Error -> showLayoutError(it.message)
+                    is BreweryDetailState.Loading ->
+                        updateScreen(
+                            showLoading = true,
+                            breweryDetailItem = null,
+                            showError = false
+                        )
+                    is BreweryDetailState.Success ->
+                        updateScreen(
+                            showLoading = false,
+                            breweryDetailItem = breweryDetailItemMapper.toItem(it.breweryDetail),
+                            showError = false
+                        )
+                    is BreweryDetailState.Error ->
+                        updateScreen(
+                            showLoading = false,
+                            breweryDetailItem = null,
+                            showError = true
+                        )
                 }
-            })
+            }
         }
     }
 
-    private fun showLoading() {
-        updateLoadingVisibility(true)
-        updateContentVisibility(false)
-        updateLayoutErrorVisibility(false)
-    }
-
-    private fun showContent(brewery: BreweryDetail) {
-        updateFields(brewery)
-        updateLoadingVisibility(false)
-        updateContentVisibility(true)
-        updateLayoutErrorVisibility(false)
-    }
-
-    private fun showLayoutError(message: String?) {
-        updateLoadingVisibility(false)
-        updateContentVisibility(false)
-        updateLayoutErrorVisibility(true)
-        binding.errorTv.text = message
-    }
-
-    private fun updateFields(brewery: BreweryDetail) {
+    private fun updateFields(breweryDetailItem: BreweryDetailItem) {
         with(binding) {
-            breweryDetailFragmentBreweryNameTv.text = brewery.name
-            breweryDetailFragmentBreweryTypeTv.text = brewery.breweryType
+            breweryDetailFragmentBreweryNameTv.text = breweryDetailItem.name
+            breweryDetailFragmentBreweryTypeTv.text = breweryDetailItem.breweryType
             updateBreweryTypeDescription()
             breweryDetailFragmentBreweryStreetTv.text = getString(
-                R.string.brewery_street, brewery.street
+                R.string.brewery_street, breweryDetailItem.street
             )
             breweryDetailFragmentBreweryAddress2Tv.text = getString(
-                R.string.brewery_address2, brewery.address2
+                R.string.brewery_address2, breweryDetailItem.address2
             )
             breweryDetailFragmentBreweryAddress3Tv.text = getString(
-                R.string.brewery_address3, brewery.address3
+                R.string.brewery_address3, breweryDetailItem.address3
             )
             breweryDetailFragmentBreweryCityTv.text = getString(
-                R.string.brewery_city, brewery.city
+                R.string.brewery_city, breweryDetailItem.city
             )
             breweryDetailFragmentBreweryStateTv.text = getString(
-                R.string.brewery_state, brewery.state
+                R.string.brewery_state, breweryDetailItem.state
             )
             breweryDetailFragmentBreweryCountyProvinceTv.text = getString(
-                R.string.brewery_county_province, brewery.countyProvince
+                R.string.brewery_county_province, breweryDetailItem.countyProvince
             )
             breweryDetailFragmentBreweryPostalCodeTv.text = getString(
-                R.string.brewery_postal_code, brewery.postalCode
+                R.string.brewery_postal_code, breweryDetailItem.postalCode
             )
             breweryDetailFragmentBreweryCountryTv.text = getString(
-                R.string.brewery_country, brewery.country
+                R.string.brewery_country, breweryDetailItem.country
             )
 
             breweryDetailFragmentBreweryPhoneTv.text = getString(
-                R.string.brewery_phone, brewery.phone
+                R.string.brewery_phone, breweryDetailItem.phone
             )
             breweryDetailFragmentBreweryWebsiteUrlTv.text = getString(
-                R.string.brewery_website_url, brewery.websiteUrl
+                R.string.brewery_website_url, breweryDetailItem.websiteUrl
             )
         }
     }
@@ -134,7 +132,28 @@ class BreweryDetailFragment : Fragment() {
         }
     }
 
-    private fun updateContentVisibility(visibility: Boolean) {
+    private fun reloadBreweryDetails() {
+        breweryListViewModel.clickedBrewery.value?.let {
+            getBreweryDetails(it)
+        }
+    }
+
+    private fun getBreweryDetails(id: String) {
+        viewModel.getBreweryDetails(id = id)
+    }
+
+    private fun updateScreen(
+        showLoading: Boolean,
+        breweryDetailItem: BreweryDetailItem?,
+        showError: Boolean
+    ) {
+        showLoading(showLoading)
+        breweryDetailItem?.let { updateFields(it) }
+        showContent(breweryDetailItem != null)
+        showError(showError)
+    }
+
+    private fun showContent(visibility: Boolean) {
         with(binding) {
             breweryDetailFragmentHeaderLl.isVisible = visibility
             breweryDetailFragmentAddressLl.isVisible = visibility
@@ -142,11 +161,11 @@ class BreweryDetailFragment : Fragment() {
         }
     }
 
-    private fun updateLoadingVisibility(visibility: Boolean) {
+    private fun showLoading(visibility: Boolean) {
         binding.breweryDetailLoadingPb.isVisible = visibility
     }
 
-    private fun updateLayoutErrorVisibility(visibility: Boolean) {
+    private fun showError(visibility: Boolean) {
         binding.breweryDetailErrorCl.isVisible = visibility
     }
 }

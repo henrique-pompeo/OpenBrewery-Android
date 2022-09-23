@@ -70,6 +70,8 @@ dependencies {
     androidTestImplementation "androidx.fragment:fragment-testing:1.5.2"
 
     // Koin
+    implementation "io.insert-koin:koin-android:$koinVersion"
+    implementation "io.insert-koin:koin-core-jvm:$koinVersion"
     testImplementation "io.insert-koin:koin-test:$koinVersion"
 
     // Okhttp

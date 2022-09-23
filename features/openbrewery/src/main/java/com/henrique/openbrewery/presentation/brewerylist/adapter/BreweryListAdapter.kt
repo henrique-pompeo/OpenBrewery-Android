@@ -9,7 +9,7 @@ import com.henrique.openbrewery.domain.brewerylist.model.BreweryListItem
 
 class BreweryListAdapter(
     private val breweryList: List<BreweryListItem>,
-    private val onItemClicked: (BreweryListItem) -> Unit
+    private val onItemClicked: (String) -> Unit
 ) : RecyclerView.Adapter<BreweryListViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BreweryListViewHolder {

@@ -3,8 +3,8 @@ package com.henrique.openbrewery.presentation.brewerydetail.viewmodel
 import androidx.lifecycle.Observer
 import com.henrique.datasource.base.UnitTest
 import com.henrique.datasource.datasource.brewerydetail.domain.interfaces.repository.BreweryDetailRepository
-import com.henrique.datasource.datasource.brewerydetail.domain.model.BreweryDetailState
-import com.henrique.datasource.datasource.brewerydetail.domain.model.BreweryDetail
+import com.henrique.openbrewery.domain.brewerydetail.model.BreweryDetailState
+import com.henrique.openbrewery.domain.brewerydetail.model.BreweryDetail
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk

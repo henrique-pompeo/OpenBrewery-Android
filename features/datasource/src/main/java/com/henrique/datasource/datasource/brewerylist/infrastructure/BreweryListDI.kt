@@ -9,11 +9,9 @@ import com.henrique.datasource.datasource.brewerylist.domain.interfaces.datasour
 import com.henrique.datasource.datasource.brewerylist.domain.interfaces.datasource.BreweryListDatabaseProvider
 import com.henrique.datasource.datasource.brewerylist.domain.interfaces.repository.BreweryListRepository
 import org.koin.dsl.module
-import org.koin.core.component.KoinApiExtension
 import org.koin.core.module.Module
 import retrofit2.Retrofit
 
-@KoinApiExtension
 object BreweryListDI {
     private val services: Module = module {
         factory<BreweryListService> {

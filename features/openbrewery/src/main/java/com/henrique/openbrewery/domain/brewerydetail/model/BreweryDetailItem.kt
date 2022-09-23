@@ -1,4 +1,4 @@
-package com.henrique.datasource.datasource.brewerydetail.domain.model
+package com.henrique.openbrewery.domain.brewerydetail.model
 
 data class BreweryDetailItem(
     //TODO -- FIELDS SHOULD BE MAPPED TO UNDERSTAND EACH OF THEM WILL BE DISPLAYED
