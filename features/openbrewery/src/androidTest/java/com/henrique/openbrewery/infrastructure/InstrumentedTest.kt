@@ -16,7 +16,7 @@ abstract class InstrumentedTest {
 
         UiThreadStatement.runOnUiThread {
             navController.setViewModelStore(ViewModelStore())
-            navController.setGraph(R.navigation.brewerylist_nav)
+            navController.setGraph(R.navigation.openbrewery_navigation)
         }
 
         launchFragmentInContainer {

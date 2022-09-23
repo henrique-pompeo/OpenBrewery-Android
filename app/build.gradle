@@ -51,6 +51,7 @@ android {
 
 dependencies {
     def mockkVersion = "1.12.3"
+    def koinVersion = "3.2.1"
     def coroutinesVersion = "1.6.3"
     def navigationVersion = "2.5.2"
 
@@ -77,6 +78,10 @@ dependencies {
     
     // Espresso
     androidTestImplementation "androidx.test.espresso:espresso-core:3.4.0"
+
+    // Koin
+    implementation "io.insert-koin:koin-android:$koinVersion"
+    implementation "io.insert-koin:koin-core:$koinVersion"
 
     // Kotlin coroutines
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion"

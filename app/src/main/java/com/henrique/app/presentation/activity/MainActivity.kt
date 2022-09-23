@@ -7,6 +7,8 @@ import androidx.navigation.fragment.NavHostFragment
 import com.henrique.app.R
 
 class MainActivity : AppCompatActivity() {
+    //TODO REFACTOR APP MODULE
+    // BREWERYAPPLICATION AND NAVIGATION COMPONENTS ALREADY REFACTORED
 
     private lateinit var navController: NavController
 
@@ -18,8 +20,6 @@ class MainActivity : AppCompatActivity() {
             .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
 
         navController = navHostFragment.navController
-
-        //setupActionBarWithNavController(navController)
     }
 
     override fun onSupportNavigateUp(): Boolean {
