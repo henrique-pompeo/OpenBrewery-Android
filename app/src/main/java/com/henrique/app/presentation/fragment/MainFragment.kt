@@ -11,7 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.henrique.app.R
 import com.henrique.app.databinding.MainFragmentBinding
 
-class MainFragment : Fragment(R.layout.main_fragment) {
+class MainFragment : Fragment() {
 
     private lateinit var binding: MainFragmentBinding
 

@@ -1,4 +1,0 @@
-com/henrique/brewerydetail/databinding/BreweryDetailFragmentBinding.java
- com.henrique.brewerydetail.databinding.BreweryDetailFragmentBinding
-com/henrique/brewerydetail/BuildConfig.java
- com.henrique.brewerydetail.BuildConfig

@@ -1,9 +1,5 @@
 include ':app'
-
 include ':openbrewery'
-project(':openbrewery').projectDir = new File(rootDir, 'features/openbrewery')
-
 include ':datasource'
-project(':datasource').projectDir = new File(rootDir, 'features/datasource')
 
 rootProject.name = "Open Brewery Android"

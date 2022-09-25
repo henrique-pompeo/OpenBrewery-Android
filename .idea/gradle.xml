@@ -12,8 +12,8 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/features/datasource" />
-            <option value="$PROJECT_DIR$/features/openbrewery" />
+            <option value="$PROJECT_DIR$/datasource" />
+            <option value="$PROJECT_DIR$/openbrewery" />
           </set>
         </option>
       </GradleProjectSettings>
