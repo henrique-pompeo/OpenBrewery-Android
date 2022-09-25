@@ -1,5 +1,6 @@
-package com.henrique.datasource.datasource.infrastructure
+package com.henrique.datasource.infrastructure
 
+import com.henrique.datasource.dataprovider.providers.infrastructure.DataProvidersDI
 import com.henrique.datasource.datasource.brewerydetail.infrastructure.BreweryDetailDI
 import com.henrique.datasource.datasource.brewerylist.infrastructure.BreweryListDI
 import okhttp3.OkHttpClient
@@ -31,6 +32,7 @@ object DatasourceDI {
     }
 
     val module = retrofit +
+            DataProvidersDI.module +
             BreweryListDI.module +
             BreweryDetailDI.module
 }

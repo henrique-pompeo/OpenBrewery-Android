@@ -1,7 +1,7 @@
 package com.henrique.app
 
 import android.app.Application
-import com.henrique.datasource.datasource.infrastructure.DatasourceDI
+import com.henrique.datasource.infrastructure.DatasourceDI
 import com.henrique.openbrewery.infrastructure.OpenBreweryDI
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.java.KoinAndroidApplication

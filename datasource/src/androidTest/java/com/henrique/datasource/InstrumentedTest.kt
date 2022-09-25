@@ -3,8 +3,8 @@ package com.henrique.datasource
 import androidx.test.core.app.ApplicationProvider
 import com.henrique.datasource.dataprovider.providers.database.openbrewery.entity.BreweryEntity
 import com.henrique.datasource.data.remote.response.BreweryResponse
-import com.henrique.datasource.dataprovider.providers.database.infrastructure.DatabaseDI
-import com.henrique.datasource.datasource.infrastructure.DatasourceDI
+import com.henrique.datasource.dataprovider.providers.infrastructure.DataProvidersDI
+import com.henrique.datasource.infrastructure.DatasourceDI
 import com.henrique.datasource.datasource.brewerydetail.domain.model.BreweryDetail
 import org.junit.Before
 import org.koin.android.ext.koin.androidContext
@@ -28,7 +28,7 @@ abstract class InstrumentedTest {
             modules(
                 module {
                     DatasourceDI.module +
-                            DatabaseDI.module
+                            DataProvidersDI.module
                 }
             )
         }
