@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/brewerylist_nav"
+    android:id="@+id/openbrewery_navigation"
     app:startDestination="@id/breweryListFragment">
 
     <fragment
@@ -12,11 +12,11 @@
         tools:layout="@layout/brewery_list_fragment">
         <action
             android:id="@+id/action_breweryListFragment_to_breweryDetailFragment"
-            app:destination="@id/breweryDetailFragmentMain" />
+            app:destination="@id/breweryDetailFragment" />
     </fragment>
 
     <fragment
-        android:id="@+id/breweryDetailFragmentMain"
+        android:id="@+id/breweryDetailFragment"
         android:name="com.henrique.openbrewery.presentation.brewerydetail.fragment.BreweryDetailFragment"
         android:label="Brewery Details"
         tools:layout="@layout/brewery_detail_fragment">

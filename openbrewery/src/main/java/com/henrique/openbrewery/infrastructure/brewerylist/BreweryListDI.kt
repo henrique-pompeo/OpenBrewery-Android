@@ -28,9 +28,5 @@ object BreweryListDI {
         factory { BreweryListAdapter(get(), get()) }
     }
 
-    private val navigations: Module = module {
-        factory<BreweryNavigation> { BreweryNavigationImpl(get()) }
-    }
-
-    val module = mappers + useCases + viewModels + adapters + navigations
+    val module = mappers + useCases + viewModels + adapters
 }

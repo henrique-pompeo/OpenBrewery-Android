@@ -19,7 +19,7 @@ import org.koin.androidx.navigation.koinNavGraphViewModel
 class BreweryDetailFragment : Fragment() {
 
     private lateinit var binding: BreweryDetailFragmentBinding
-    private val breweryListViewModel: BreweryListViewModel by koinNavGraphViewModel(R.id.brewerylist_nav)
+    private val breweryListViewModel: BreweryListViewModel by koinNavGraphViewModel(R.id.openbrewery_navigation)
     private val viewModel: BreweryDetailViewModel by inject()
     private val breweryDetailItemMapper: BreweryDetailItemMapper by inject()
 

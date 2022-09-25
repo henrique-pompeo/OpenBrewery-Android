@@ -29,14 +29,12 @@ class MainFragment : Fragment() {
         with(binding) {
             activityMainBreweryListBt.setOnClickListener {
                 findNavController().navigate(
-                    MainFragmentDirections.actionMainFragmentToBrewerylistNav()
+                    MainFragmentDirections.actionMainFragmentToOpenbreweryNavigation()
                 )
             }
             activityMainBreweryDetailBt.setOnClickListener {
                 findNavController().navigate(
-                    MainFragmentDirections.actionMainFragmentToBreweryDetailFragmentMain(
-                        binding.activityMainBreweryIdEt.text.toString()
-                    )
+                    MainFragmentDirections.actionMainFragmentToBreweryDetailFragment()
                 )
             }
             activityMainBreweryIdEt.addTextChangedListener(object : TextWatcher {
