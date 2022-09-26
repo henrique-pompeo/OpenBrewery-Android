@@ -71,16 +71,9 @@ class BreweryListFragment : Fragment() {
         }
     }
 
-    private fun setupAdapter(breweryListItem: List<BreweryListItem>?) {
-        with (binding) {
-            breweryListItem?.let {
-                breweryListRv.apply {
-                    adapter = BreweryListAdapter(breweryListItem, ::onItemClicked)
-                    visibility = View.VISIBLE
-                }
-            } ?: breweryListRv.apply {
-                visibility = View.GONE
-            }
+    private fun setupAdapter(breweryListItem: List<BreweryListItem>) {
+        binding.breweryListRv.apply {
+            adapter = BreweryListAdapter(breweryListItem, ::onItemClicked)
         }
     }
 
@@ -98,7 +91,7 @@ class BreweryListFragment : Fragment() {
         showError: Boolean
     ) {
         showLoading(showLoading)
-        setupAdapter(breweryList)
+        breweryList?.let { setupAdapter(it) }
         showError(showError)
     }
 
