@@ -1,7 +1,7 @@
 package com.henrique.openbrewery.domain.brewerylist.usecase
 
 import com.henrique.datasource.datasource.brewerylist.domain.interfaces.repository.BreweryListRepository
-import com.henrique.datasource.datasource.brewerylist.domain.model.Brewery
+import com.henrique.datasource.datasource.brewery.domain.model.Brewery
 import com.henrique.openbrewery.domain.brewery.mappers.BreweryMapper
 import com.henrique.openbrewery.domain.brewerylist.model.BreweryListState
 

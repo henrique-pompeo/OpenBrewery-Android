@@ -6,7 +6,7 @@ import com.henrique.openbrewery.domain.brewery.model.Brewery
 import com.henrique.openbrewery.domain.brewerydetail.model.BreweryDetail
 import com.henrique.openbrewery.domain.brewerydetail.model.BreweryDetailItem
 import com.henrique.openbrewery.domain.brewerylist.model.BreweryListItem
-import com.henrique.datasource.datasource.brewerylist.domain.model.Brewery as DatasourceBrewery
+import com.henrique.datasource.datasource.brewery.domain.model.Brewery as DatasourceBrewery
 
 class StubFactory {
 

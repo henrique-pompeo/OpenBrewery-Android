@@ -1,4 +1,4 @@
-package com.henrique.datasource.datasource.brewerylist.data.dto
+package com.henrique.datasource.datasource.brewery.data.dto
 
 import com.google.gson.annotations.SerializedName
 

@@ -1,7 +1,7 @@
 package com.henrique.openbrewery.domain.brewery.mappers
 
 import com.henrique.openbrewery.domain.brewery.model.Brewery
-import com.henrique.datasource.datasource.brewerylist.domain.model.Brewery as DatasourceBrewery
+import com.henrique.datasource.datasource.brewery.domain.model.Brewery as DatasourceBrewery
 
 class BreweryMapper {
     private fun toDomain(datasourceBrewery: DatasourceBrewery) : Brewery {

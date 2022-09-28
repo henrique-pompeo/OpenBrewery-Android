@@ -1,4 +1,4 @@
-package com.henrique.datasource.datasource.brewerylist.domain.model
+package com.henrique.datasource.datasource.brewery.domain.model
 
 enum class BreweryFilter {
     by_city,

@@ -3,7 +3,7 @@ package com.henrique.datasource.datasource.brewerylist.data.repository
 import com.henrique.datasource.datasource.brewerylist.domain.interfaces.datasource.BreweryListDatabaseProvider
 import com.henrique.datasource.datasource.brewerylist.domain.interfaces.datasource.BreweryListDataSource
 import com.henrique.datasource.datasource.brewerylist.domain.interfaces.repository.BreweryListRepository
-import com.henrique.datasource.datasource.brewerylist.domain.model.Brewery
+import com.henrique.datasource.datasource.brewery.domain.model.Brewery
 
 class BreweryListRepositoryImpl(
     private val breweryListDataSource: BreweryListDataSource,

@@ -1,6 +1,6 @@
 package com.henrique.datasource.datasource.brewerylist.domain.interfaces.repository
 
-import com.henrique.datasource.datasource.brewerylist.domain.model.Brewery
+import com.henrique.datasource.datasource.brewery.domain.model.Brewery
 
 interface BreweryListRepository {
     suspend fun getBreweryList() : List<Brewery>

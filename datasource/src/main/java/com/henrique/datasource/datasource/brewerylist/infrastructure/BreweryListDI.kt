@@ -2,7 +2,7 @@ package com.henrique.datasource.datasource.brewerylist.infrastructure
 
 import com.henrique.datasource.datasource.brewerylist.data.datasource.BreweryListDataSourceImpl
 import com.henrique.datasource.datasource.brewerylist.data.datasource.BreweryListDatabaseProviderImpl
-import com.henrique.datasource.datasource.brewerylist.data.mappers.BreweryMapper
+import com.henrique.datasource.datasource.brewery.data.mappers.BreweryMapper
 import com.henrique.datasource.datasource.brewerylist.data.repository.BreweryListRepositoryImpl
 import com.henrique.datasource.datasource.brewerylist.data.service.BreweryListService
 import com.henrique.datasource.datasource.brewerylist.domain.interfaces.datasource.BreweryListDataSource

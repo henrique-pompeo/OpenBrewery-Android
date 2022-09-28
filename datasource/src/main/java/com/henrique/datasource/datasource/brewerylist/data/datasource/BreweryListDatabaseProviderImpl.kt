@@ -2,8 +2,8 @@ package com.henrique.datasource.datasource.brewerylist.data.datasource
 
 import com.henrique.datasource.dataprovider.providers.database.openbrewery.dao.BreweryDao
 import com.henrique.datasource.datasource.brewerylist.domain.interfaces.datasource.BreweryListDatabaseProvider
-import com.henrique.datasource.datasource.brewerylist.data.mappers.BreweryMapper
-import com.henrique.datasource.datasource.brewerylist.domain.model.Brewery
+import com.henrique.datasource.datasource.brewery.data.mappers.BreweryMapper
+import com.henrique.datasource.datasource.brewery.domain.model.Brewery
 
 class BreweryListDatabaseProviderImpl(
     private val breweryDao: BreweryDao,

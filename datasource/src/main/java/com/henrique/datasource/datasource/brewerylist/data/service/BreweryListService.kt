@@ -1,6 +1,6 @@
 package com.henrique.datasource.datasource.brewerylist.data.service
 
-import com.henrique.datasource.datasource.brewerylist.domain.model.BreweryDTO
+import com.henrique.datasource.datasource.brewery.data.dto.BreweryDTO
 import retrofit2.http.GET
 import retrofit2.http.Url
 

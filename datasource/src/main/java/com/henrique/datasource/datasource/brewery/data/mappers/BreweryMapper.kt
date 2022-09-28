@@ -1,8 +1,8 @@
-package com.henrique.datasource.datasource.brewerylist.data.mappers
+package com.henrique.datasource.datasource.brewery.data.mappers
 
 import com.henrique.datasource.dataprovider.providers.database.openbrewery.entity.BreweryEntity
-import com.henrique.datasource.datasource.brewerylist.domain.model.Brewery
-import com.henrique.datasource.datasource.brewerylist.domain.model.BreweryDTO
+import com.henrique.datasource.datasource.brewery.data.dto.BreweryDTO
+import com.henrique.datasource.datasource.brewery.domain.model.Brewery
 
 class BreweryMapper {
     fun toDomain(breweryDTO: BreweryDTO) : Brewery {
