@@ -5,7 +5,7 @@ import com.henrique.datasource.datasource.brewery.data.dto.BreweryDTO
 import com.henrique.datasource.datasource.brewery.domain.model.Brewery
 
 class BreweryMapper {
-    fun toDomain(breweryDTO: BreweryDTO) : Brewery {
+    private fun toDomain(breweryDTO: BreweryDTO) : Brewery {
         return Brewery(
             id = breweryDTO.id,
             name = breweryDTO.name,
@@ -27,7 +27,7 @@ class BreweryMapper {
         )
     }
 
-    fun toDomainEntity(breweryEntity: BreweryEntity) : Brewery {
+    private fun toDomainEntity(breweryEntity: BreweryEntity) : Brewery {
         return Brewery(
             id = breweryEntity.id,
             name = breweryEntity.name,
@@ -49,7 +49,7 @@ class BreweryMapper {
         )
     }
 
-    fun toDatabase(brewery: Brewery) : BreweryEntity {
+    private fun toDatabase(brewery: Brewery) : BreweryEntity {
         return BreweryEntity(
             id = brewery.id,
             name = brewery.name,

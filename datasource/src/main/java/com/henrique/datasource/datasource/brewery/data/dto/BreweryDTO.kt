@@ -2,7 +2,7 @@ package com.henrique.datasource.datasource.brewery.data.dto
 
 import com.google.gson.annotations.SerializedName
 
-class BreweryDTO(
+data class BreweryDTO(
     @SerializedName("id") val id: String,
     @SerializedName("name") val name: String?,
     @SerializedName("brewery_type") val breweryType: String?,
