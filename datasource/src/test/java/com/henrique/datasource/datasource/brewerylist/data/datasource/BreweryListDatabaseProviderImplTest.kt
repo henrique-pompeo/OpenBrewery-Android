@@ -4,7 +4,11 @@ import com.henrique.datasource.dataprovider.providers.database.openbrewery.dao.B
 import com.henrique.datasource.datasource.brewery.data.mappers.BreweryMapper
 import com.henrique.datasource.datasource.brewerylist.domain.interfaces.datasource.BreweryListDatabaseProvider
 import com.henrique.datasource.util.StubFactory
-import io.mockk.*
+import io.mockk.coEvery
+import io.mockk.coVerify
+import io.mockk.every
+import io.mockk.mockk
+import io.mockk.verify
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test

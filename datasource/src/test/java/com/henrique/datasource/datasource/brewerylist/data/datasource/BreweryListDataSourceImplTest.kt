@@ -4,11 +4,14 @@ import com.henrique.datasource.datasource.brewery.data.mappers.BreweryMapper
 import com.henrique.datasource.datasource.brewerylist.data.service.BreweryListService
 import com.henrique.datasource.datasource.brewerylist.domain.interfaces.datasource.BreweryListDataSource
 import com.henrique.datasource.util.StubFactory
-import io.mockk.*
+import io.mockk.coEvery
+import io.mockk.coVerify
+import io.mockk.every
+import io.mockk.mockk
+import io.mockk.verify
 import org.junit.Test
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
-import org.junit.Assert
 import org.junit.Before
 
 @ExperimentalCoroutinesApi
