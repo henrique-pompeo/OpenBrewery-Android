@@ -2,95 +2,58 @@ package com.henrique.datasource.datasource.brewerylist.data.repository
 
 import com.henrique.datasource.datasource.brewerylist.domain.interfaces.datasource.BreweryListDataSource
 import com.henrique.datasource.datasource.brewerylist.domain.interfaces.datasource.BreweryListDatabaseProvider
-import io.mockk.Runs
+import com.henrique.datasource.datasource.brewerylist.domain.interfaces.repository.BreweryListRepository
+import com.henrique.datasource.util.StubFactory
 import io.mockk.coEvery
 import io.mockk.coVerify
-import io.mockk.just
 import io.mockk.mockk
 import kotlinx.coroutines.runBlocking
-import org.junit.Assert
+import org.junit.Before
 import org.junit.Test
-import java.io.IOException
 
 class BreweryListRepositoryImplTest {
+    private lateinit var breweryListRepository: BreweryListRepository
+    private val breweryListDataSource: BreweryListDataSource = mockk(relaxed = true)
+    private val breweryListDatabaseProvider: BreweryListDatabaseProvider = mockk(relaxed = true)
 
-    private val breweryListDataSource = mockk<BreweryListDataSource>(relaxed = true)
-    private val breweryListLocalDataSource = mockk<BreweryListDatabaseProvider>(relaxed = true)
-    private val breweryListRepository = BreweryListRepositoryImpl(
-        breweryListDataSource, breweryListLocalDataSource
+    @Before
+    fun setup() {
+        breweryListRepository = getBreweryListRepository()
+    }
+
+    @Test
+    fun `GIVEN BreweryListRepository WHEN getBreweryList() is called SHOULD return a list of Brewery`() {
+        runBlocking {
+            coEvery { breweryListDataSource.getBreweryList() } answers { StubFactory().breweryList() }
+
+            val breweryList = breweryListRepository.getBreweryList()
+            assert(breweryList == StubFactory().breweryList())
+
+            coVerify(exactly = 1) { breweryListDataSource.getBreweryList() }
+        }
+    }
+
+    @Test
+    fun `GIVEN BreweryListRepository WHEN getDatabaseBreweryList() is called SHOULD return a list of Brewery`() {
+        runBlocking {
+            coEvery { breweryListDatabaseProvider.getBreweryList() } answers { StubFactory().breweryList() }
+
+            val breweryList = breweryListRepository.getDatabaseBreweryList()
+            assert(breweryList == StubFactory().breweryList())
+
+            coVerify(exactly = 1) { breweryListDatabaseProvider.getBreweryList() }
+        }
+    }
+
+    @Test
+    fun `GIVEN BreweryListRepository WHEN insertBreweryList() is called SHOULD insert a list of Brewery`() {
+        runBlocking {
+            breweryListRepository.insertBreweryList(StubFactory().breweryList())
+            coVerify(exactly = 1) { breweryListDatabaseProvider.insertBreweryList(StubFactory().breweryList()) }
+        }
+    }
+
+    private fun getBreweryListRepository() = BreweryListRepositoryImpl(
+        breweryListDataSource, breweryListDatabaseProvider
     )
-
-    @Test
-    fun `GIVEN BreweryListRepository WHEN getBreweryList() is called AND it returns a list SHOULD insert this list into database AND return success`() =
-        runBlocking {
-
-//            coEvery { breweryListDataSource.getBreweryList() } returns listOf(breweryResponse)
-//            coEvery { breweryListLocalDataSource.insertBreweryList(any()) } just Runs
-//
-//            val response = breweryListRepository.getBreweryList()
-//            Assert.assertEquals(response, BreweryDetailStatus.Success(listOf(brewery)))
-
-            coVerify(exactly = 1) { breweryListDataSource.getBreweryList() }
-            coVerify(exactly = 1) { breweryListLocalDataSource.insertBreweryList(any()) }
-    }
-
-    @Test
-    fun `GIVEN BreweryListRepository WHEN getBreweryList() is called AND it returns an empty list SHOULD return error`() =
-        runBlocking {
-
-            coEvery { breweryListDataSource.getBreweryList() } returns listOf()
-
-            val response = breweryListRepository.getBreweryList()
-//            Assert.assertEquals(response, BreweryDetailStatus.Error(errorMessage))
-
-            coVerify(exactly = 1) { breweryListDataSource.getBreweryList() }
-        }
-
-    @Test
-    fun `GIVEN BreweryListRepository WHEN getBreweryList() is called AND throws exception related to services SHOULD return success getting the list from local database`() =
-        runBlocking {
-
-        coEvery { breweryListDataSource.getBreweryList() } throws IOException()
-//        coEvery { breweryListLocalDataSource.getBreweryList() } returns listOf(breweryEntity)
-//
-//        val response = breweryListRepository.getBreweryList()
-//        Assert.assertEquals(response, BreweryDetailStatus.Success(listOf(brewery)))
-
-        coVerify(exactly = 1) { breweryListDataSource.getBreweryList() }
-        coVerify(exactly = 1) { breweryListLocalDataSource.getBreweryList() }
-    }
-
-    @Test
-    fun `GIVEN BreweryListRepository WHEN getBreweryList() is called AND throws exception not related to services SHOULD return error`() =
-        runBlocking {
-
-            val exception = Exception()
-
-            coEvery { breweryListDataSource.getBreweryList() } throws exception
-
-            val response = breweryListRepository.getBreweryList()
-//            Assert.assertEquals(response, BreweryDetailStatus.Error(exception.message))
-
-            coVerify(exactly = 1) { breweryListDataSource.getBreweryList() }
-        }
-
-    @Test
-    fun `GIVEN BreweryListRepository WHEN trying to call getBreweryList() from both datasources AND they throws exception SHOULD return error`() =
-        runBlocking {
-
-            val exception = Exception()
-
-            coEvery { breweryListDataSource.getBreweryList() } throws IOException()
-            coEvery { breweryListLocalDataSource.getBreweryList() } throws exception
-
-            val response = breweryListRepository.getBreweryList()
-//            Assert.assertEquals(response, BreweryDetailStatus.Error(exception.message))
-
-            coVerify(exactly = 1) { breweryListDataSource.getBreweryList() }
-            coVerify(exactly = 1) { breweryListLocalDataSource.getBreweryList() }
-        }
-
-    companion object {
-        val errorMessage = "No data available"
-    }
 }
