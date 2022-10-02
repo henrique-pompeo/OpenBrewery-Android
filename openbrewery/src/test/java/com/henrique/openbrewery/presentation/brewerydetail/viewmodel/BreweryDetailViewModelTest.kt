@@ -1,73 +1,75 @@
 package com.henrique.openbrewery.presentation.brewerydetail.viewmodel
 
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import com.henrique.openbrewery.domain.brewerydetail.model.BreweryDetailState
 import com.henrique.openbrewery.domain.brewerydetail.usecase.BreweryDetailUseCase
+import com.henrique.openbrewery.util.StubFactory
+import com.henrique.openbrewery.util.TestConstants
+import io.mockk.CapturingSlot
+import io.mockk.Runs
+import io.mockk.clearAllMocks
 import io.mockk.coEvery
-import io.mockk.coVerify
+import io.mockk.every
+import io.mockk.just
 import io.mockk.mockk
-import io.mockk.verify
+import io.mockk.slot
+import io.mockk.verifySequence
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
-import org.junit.Assert
+import kotlinx.coroutines.test.StandardTestDispatcher
+import kotlinx.coroutines.test.setMain
+import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 
 @ExperimentalCoroutinesApi
 class BreweryDetailViewModelTest {
+    private lateinit var breweryDetailViewModel: BreweryDetailViewModel
+    private val breweryDetailUseCase: BreweryDetailUseCase = mockk(relaxed = true)
 
-    private val breweryDetailUseCase = mockk<BreweryDetailUseCase>(relaxed = true)
-    private val breweryDetailObserver = mockk<Observer<BreweryDetailState>>(relaxed = true)
-    private val breweryDetailStates = mutableListOf<BreweryDetailState>()
-    private val breweryDetailViewModel = BreweryDetailViewModel(breweryDetailUseCase)
+    @get:Rule
+    var instantExecutorRule = InstantTaskExecutorRule()
 
-//    private fun setUpViewModel() {
-//        breweryDetailViewModel.breweryDetailLiveData.observeForever(breweryDetailObserver)
-//        breweryDetailViewModel.getBreweryById("id")
-//    }
-//
-//    @Test
-//    fun `SHOULD call getBreweryDetail() and THEN post success WHEN the call succeeds`() =
-//        runBlocking {
-//
-//            coEvery { breweryDetailRepository.getBreweryDetails("id") } returns
-//                    BreweryDetailState.Success(brewery)
-//
-//            setUpViewModel()
-//
-//            verify(exactly = 2) { breweryDetailObserver.onChanged(capture(breweryDetailStates)) }
-//
-//            Assert.assertEquals(
-//                breweryDetailStates,
-//                listOf(
-//                    BreweryDetailState.Loading,
-//                    BreweryDetailState.Success(brewery)
-//                )
-//            )
-//
-//            coVerify(exactly = 1) { breweryDetailRepository.getBreweryDetails("id") }
-//        }
-//
-//    @Test
-//    fun `SHOULD Call getBreweryDetail() and THEN post error WHEN the call fails`() =
-//        runBlocking {
-//
-//            val exception = Exception()
-//
-//            coEvery { breweryDetailRepository.getBreweryDetails("id") } returns
-//                    BreweryDetailState.Error(exception.message)
-//
-//            setUpViewModel()
-//
-//            verify(exactly = 2) { breweryDetailObserver.onChanged(capture(breweryDetailStates)) }
-//
-//            Assert.assertEquals(
-//                breweryDetailStates,
-//                listOf(
-//                    BreweryDetailState.Loading,
-//                    BreweryDetailState.Error(exception.message)
-//                )
-//            )
-//
-//            coVerify(exactly = 1) { breweryDetailRepository.getBreweryDetails("id") }
-//        }
+    @Before
+    fun setup() {
+        clearAllMocks()
+        Dispatchers.setMain(StandardTestDispatcher())
+        breweryDetailViewModel = getBreweryDetailViewModel()
+    }
+
+    @Test
+    fun `Ensure breweryDetailState is Success WHEN getBreweryDetails is called`() {
+        runBlocking {
+            coEvery { breweryDetailUseCase.getBreweryDetails(TestConstants.id) } answers {
+                BreweryDetailState.Success(StubFactory().breweryDetail())
+            }
+
+            breweryDetailViewModel.getBreweryDetails(TestConstants.id)
+
+            assert(breweryDetailViewModel.breweryDetailState.value is BreweryDetailState.Success)
+
+            //TODO -- CAPTURE STATE CHANGE FROM LOADING TO SUCCESS IN FUTURE
+        }
+    }
+
+    @Test
+    fun `Ensure breweryDetailState is Error WHEN getBreweryDetails is called`() {
+        runBlocking {
+            coEvery { breweryDetailUseCase.getBreweryDetails(TestConstants.id) } answers {
+                BreweryDetailState.Error
+            }
+
+            breweryDetailViewModel.getBreweryDetails(TestConstants.id)
+
+            assert(breweryDetailViewModel.breweryDetailState.value is BreweryDetailState.Error)
+
+            //TODO -- CAPTURE STATE CHANGE FROM LOADING TO ERROR IN FUTURE
+        }
+    }
+
+    private fun getBreweryDetailViewModel() = BreweryDetailViewModel(
+        breweryDetailUseCase
+    )
 }
