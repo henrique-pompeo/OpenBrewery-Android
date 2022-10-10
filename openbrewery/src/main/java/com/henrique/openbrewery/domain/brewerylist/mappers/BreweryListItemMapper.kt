@@ -9,7 +9,8 @@ class BreweryListItemMapper {
             id = brewery.id,
             name = brewery.name,
             address = brewery.country,
-            phone = brewery.phone
+            phone = brewery.phone,
+            type = brewery.breweryType
         )
     }
 

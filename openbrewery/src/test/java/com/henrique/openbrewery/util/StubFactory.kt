@@ -126,7 +126,8 @@ class StubFactory {
         id = TestConstants.id,
         name = TestConstants.name,
         address = TestConstants.country,
-        phone = TestConstants.phone
+        phone = TestConstants.phone,
+        type = TestConstants.breweryType
     )
 
     fun breweryListItemList() = listOf(
