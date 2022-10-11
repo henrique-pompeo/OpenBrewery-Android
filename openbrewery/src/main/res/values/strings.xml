@@ -32,4 +32,6 @@
     <string name="brewery_type_contract_desc">A brewery that uses another brewery\'s equipment.</string>
     <string name="brewery_type_proprietor_desc">Similar to contract brewing but refers more to a brewery incubator.</string>
     <string name="brewery_type_closed_desc">A location which has been closed.</string>
+    <string name="address_label">Address:</string>
+    <string name="phone_label">Phone:</string>
 </resources>

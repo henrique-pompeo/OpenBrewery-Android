@@ -7,6 +7,7 @@ import com.henrique.openbrewery.domain.brewerydetail.model.BreweryDetail
 import com.henrique.openbrewery.domain.brewerydetail.model.BreweryDetailItem
 import com.henrique.openbrewery.domain.brewerylist.model.BreweryListItem
 import com.henrique.datasource.datasource.brewery.domain.model.Brewery as DatasourceBrewery
+import com.henrique.openbrewery.domain.brewerylist.model.BreweryAddress
 
 class StubFactory {
 
@@ -122,10 +123,21 @@ class StubFactory {
         createdAt = TestConstants.createdAt
     )
 
+    private fun breweryAddress() = BreweryAddress(
+        street = TestConstants.street,
+        address2 = TestConstants.address2,
+        address3 = TestConstants.address3,
+        city = TestConstants.city,
+        state = TestConstants.state,
+        countyProvince = TestConstants.countyProvince,
+        postalCode = TestConstants.postalCode,
+        country = TestConstants.country
+    )
+
     private fun breweryListItem() = BreweryListItem(
         id = TestConstants.id,
         name = TestConstants.name,
-        address = TestConstants.country,
+        address = breweryAddress(),
         phone = TestConstants.phone,
         type = TestConstants.breweryType
     )
