@@ -1,6 +1,8 @@
 package com.henrique.openbrewery.presentation.brewerylist.viewholder
 
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
+import com.henrique.openbrewery.R
 import com.henrique.openbrewery.databinding.BreweryListItemBinding
 import com.henrique.openbrewery.domain.brewerylist.model.BreweryAddress
 import com.henrique.openbrewery.domain.brewerylist.model.BreweryListItem
@@ -17,8 +19,17 @@ class BreweryListViewHolder(
             breweryListItemTitle.text = breweryListItem.name
             breweryListItemAddress.text = getAddress(breweryListItem.address)
             breweryListItemPhone.text = breweryListItem.phone
+
             breweryListItemType.text = breweryListItem.type
             breweryListItemType.tooltipText = breweryListItem.type?.let { getTypeTooltipText(it) }
+
+            breweryListItemDistance.isVisible = !breweryListItem.distance.equals("0.00")
+            breweryListItemDistanceIcon.isVisible = !breweryListItem.distance.equals("0.00")
+            if (!breweryListItem.distance.equals("0.00")) {
+                breweryListItemDistance.text =
+                    this.root.context.getString(R.string.distance_km, breweryListItem.distance)
+            }
+
             root.setOnClickListener {
                 onItemClicked(breweryListItem.id)
             }

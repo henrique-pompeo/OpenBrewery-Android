@@ -28,52 +28,10 @@
             tools:text="Brewery Name" />
 
         <TextView
-            android:id="@+id/breweryListItemType"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="12sp"
-            android:layout_marginTop="4dp"
-            android:layout_marginStart="4dp"
-            android:textColor="@color/primary_blue"
-            app:layout_constraintStart_toEndOf="@id/breweryListItemTitle"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Brewery Name" />
-
-        <TextView
-            android:id="@+id/breweryListItemAddressLabel"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintWidth_percent=".5"
-            android:text="@string/address_label"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/breweryListItemTitle"
-            tools:text="Address:"/>
-
-        <TextView
-            android:id="@+id/breweryListItemPhoneLabel"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintWidth_percent=".5"
-            android:text="@string/phone_label"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/breweryListItemAddress"
-            tools:text="Phone:"/>
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/breweryListItemGuideline"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent=".5" />
-
-        <TextView
             android:id="@+id/breweryListItemAddress"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintWidth_percent=".5"
-            app:layout_constraintStart_toEndOf="@id/breweryListItemGuideline"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/breweryListItemTitle"
             tools:text="3301 Madison Rd, address_2, address_3, null, Cincinnati, Ohio, null, 45209-1132, United States"/>
 
@@ -81,10 +39,41 @@
             android:id="@+id/breweryListItemPhone"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintWidth_percent=".5"
-            app:layout_constraintStart_toEndOf="@id/breweryListItemGuideline"
+            android:layout_marginTop="5dp"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/breweryListItemAddress"
             tools:text="+1 999 9999999"/>
+
+        <TextView
+            android:id="@+id/breweryListItemType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:layout_marginTop="15dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/breweryListItemPhone"
+            tools:text="Brewery Type" />
+
+        <ImageView
+            android:id="@+id/breweryListItemDistanceIcon"
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:layout_marginEnd="5dp"
+            android:src="@drawable/location_dot_solid"
+            android:importantForAccessibility="no"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/breweryListItemDistance"
+            app:layout_constraintTop_toTopOf="@id/breweryListItemDistance" />
+
+        <TextView
+            android:id="@+id/breweryListItemDistance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:layout_marginTop="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/breweryListItemPhone"
+            tools:text="Distance" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

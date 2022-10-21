@@ -15,4 +15,5 @@
     <string name="brewery_type_proprietor_desc">Similar to contract brewing but refers more to a brewery incubator.</string>
     <string name="brewery_type_closed_desc">A location which has been closed.</string>
     <string name="phone_label">Phone:</string>
+    <string name="distance_km">%s km</string>
 </resources>

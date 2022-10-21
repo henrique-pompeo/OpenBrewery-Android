@@ -5,5 +5,6 @@ data class BreweryListItem(
     val name: String?,
     val address: BreweryAddress?,
     val phone: String?,
-    val type: String?
+    val type: String?,
+    val distance: String?
 )
