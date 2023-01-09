@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="brewery_list">Brewery list</string>
-    <string name="brewery_detail">Brewery detail</string>
-    <string name="enter_brewery_id_hint">Enter brewery ID</string>
-</resources>

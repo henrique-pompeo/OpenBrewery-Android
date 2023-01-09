@@ -4,14 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="10dp"
-    android:layout_marginVertical="5dp"
-    app:cardCornerRadius="16dp">
+    android:layout_marginHorizontal="@dimen/dimen_10dp"
+    android:layout_marginVertical="@dimen/dimen_10dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginVertical="10dp"
+        android:layout_marginVertical="@dimen/dimen_10dp"
         android:layout_marginHorizontal="15dp"
         android:paddingBottom="5dp">
 
@@ -21,7 +20,7 @@
             android:layout_height="wrap_content"
             android:textStyle="bold"
             android:textSize="16sp"
-            android:paddingBottom="10dp"
+            android:paddingBottom="@dimen/dimen_10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -29,20 +28,11 @@
 
         <TextView
             android:id="@+id/breweryListItemAddress"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/dimen_0dp"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/breweryListItemTitle"
             tools:text="3301 Madison Rd, address_2, address_3, null, Cincinnati, Ohio, null, 45209-1132, United States"/>
-
-        <TextView
-            android:id="@+id/breweryListItemPhone"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/breweryListItemAddress"
-            tools:text="+1 999 9999999"/>
 
         <TextView
             android:id="@+id/breweryListItemType"
@@ -51,7 +41,7 @@
             android:textSize="12sp"
             android:layout_marginTop="15dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/breweryListItemPhone"
+            app:layout_constraintTop_toBottomOf="@id/breweryListItemAddress"
             tools:text="Brewery Type" />
 
         <ImageView
@@ -72,9 +62,14 @@
             android:textSize="12sp"
             android:layout_marginTop="15dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/breweryListItemPhone"
+            app:layout_constraintTop_toBottomOf="@id/breweryListItemAddress"
             tools:text="Distance" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        android:background="@color/opb2" />
 
 </androidx.cardview.widget.CardView>

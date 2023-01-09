@@ -18,7 +18,6 @@ class BreweryListViewHolder(
         binding.apply {
             breweryListItemTitle.text = breweryListItem.name
             breweryListItemAddress.text = getAddress(breweryListItem.address)
-            breweryListItemPhone.text = breweryListItem.phone
 
             breweryListItemType.text = breweryListItem.type
             breweryListItemType.tooltipText = breweryListItem.type?.let { getTypeTooltipText(it) }
