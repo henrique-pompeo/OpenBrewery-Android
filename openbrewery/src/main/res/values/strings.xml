@@ -8,6 +8,10 @@
     <string name="filter">Filter</string>
     <string name="sort">Sort</string>
 
+    <!-- BREWERY LIST    -->
+    <string name="brewery_list_title">Brewery List</string>
+    <string name="brewery_list_search_hint">Find your fav brewery</string>
+
     <!--    BREWERY DETAIL    -->
     <string name="brewery_photo">Brewery photo</string>
     <string name="address_title">Address</string>
