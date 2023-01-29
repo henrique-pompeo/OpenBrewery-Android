@@ -19,11 +19,7 @@ class BreweryListViewHolder(
             breweryListItemTitle.text = breweryListItem.name
             breweryListItemAddress.text = getAddress(breweryListItem.address)
 
-            breweryListItemType.text = breweryListItem.type
-            breweryListItemType.tooltipText = breweryListItem.type?.let { getTypeTooltipText(it) }
-
             breweryListItemDistance.isVisible = !breweryListItem.distance.equals("0.00")
-            breweryListItemDistanceIcon.isVisible = !breweryListItem.distance.equals("0.00")
             if (!breweryListItem.distance.equals("0.00")) {
                 breweryListItemDistance.text =
                     this.root.context.getString(R.string.distance_km, breweryListItem.distance)
