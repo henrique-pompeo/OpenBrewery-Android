@@ -16,11 +16,8 @@
     <string name="brewery_photo">Brewery photo</string>
     <string name="address_title">Address</string>
     <string name="brewery_street">Street: %s</string>
-    <string name="brewery_address2">Address 2: %s</string>
-    <string name="brewery_address3">Address 3: %s</string>
-    <string name="brewery_city">City: %s</string>
-    <string name="brewery_state">State: %s</string>
-    <string name="brewery_county_province">County province: %s</string>
+    <string name="brewery_address">Address: %s</string>
+    <string name="brewery_city">City: %s / %s</string>
     <string name="brewery_postal_code">Postal code: %s</string>
     <string name="brewery_country">Country: %s</string>
     <string name="contact_title">Contact</string>
@@ -36,6 +33,7 @@
     <string name="brewery_type_contract_desc">A brewery that uses another brewery\'s equipment.</string>
     <string name="brewery_type_proprietor_desc">Similar to contract brewing but refers more to a brewery incubator.</string>
     <string name="brewery_type_closed_desc">A location which has been closed.</string>
+    <string name="brewery_type_not_found">Brewery type could not be found</string>
     <string name="address_label">Address:</string>
     <string name="phone_label">Phone:</string>
     <string name="distance_km">%s km</string>

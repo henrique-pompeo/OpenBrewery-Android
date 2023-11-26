@@ -45,24 +45,11 @@ class BreweryListFragment : Fragment() {
         with (viewModel) {
             breweryListState.observe(viewLifecycleOwner) {
                 when (it) {
-                    is BreweryListState.Loading ->
-                        updateScreen(
-                            showLoading = true,
-                            breweryList = null,
-                            showError = false
-                        )
-                    is BreweryListState.Success ->
-                        updateScreen(
-                            showLoading = false,
-                            breweryList = breweryListItemMapper.toList(it.breweryList),
-                            showError = false
-                        )
-                    is BreweryListState.Error ->
-                        updateScreen(
-                            showLoading = false,
-                            breweryList = null,
-                            showError = true
-                        )
+                    is BreweryListState.Loading -> updateScreen(showLoading = true)
+                    is BreweryListState.Success -> updateScreen(
+                        breweryList = breweryListItemMapper.toList(it.breweryList)
+                    )
+                    is BreweryListState.Error -> updateScreen(showError = true)
                 }
             }
             clickedBrewery.observe(viewLifecycleOwner) {
@@ -86,9 +73,9 @@ class BreweryListFragment : Fragment() {
     }
 
     private fun updateScreen(
-        showLoading: Boolean,
-        breweryList: List<BreweryListItem>?,
-        showError: Boolean
+        showLoading: Boolean = false,
+        breweryList: List<BreweryListItem>? = null,
+        showError: Boolean = false
     ) {
         showLoading(showLoading)
         breweryList?.let { setupAdapter(it) }
