@@ -4,8 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.henrique.openbrewery.R
 import com.henrique.openbrewery.databinding.BreweryDetailFragmentBinding
 import com.henrique.openbrewery.domain.brewery.model.BreweryType
@@ -15,13 +17,14 @@ import com.henrique.openbrewery.domain.brewerydetail.model.BreweryDetailState
 import com.henrique.openbrewery.presentation.brewerydetail.viewmodel.BreweryDetailViewModel
 import com.henrique.openbrewery.presentation.brewerylist.viewmodel.BreweryListViewModel
 import org.koin.android.ext.android.inject
-import org.koin.androidx.navigation.koinNavGraphViewModel
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class BreweryDetailFragment : Fragment() {
 
     private lateinit var binding: BreweryDetailFragmentBinding
-    private val breweryListViewModel: BreweryListViewModel by koinNavGraphViewModel(R.id.openbrewery_navigation)
-    private val viewModel: BreweryDetailViewModel by inject()
+    private val breweryListViewModel: BreweryListViewModel by sharedViewModel()
+    private val viewModel: BreweryDetailViewModel by viewModel()
     private val breweryDetailItemMapper: BreweryDetailItemMapper by inject()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -39,12 +42,22 @@ class BreweryDetailFragment : Fragment() {
         binding.retryBt.setOnClickListener {
             reloadBreweryDetails()
         }
+        activity?.onBackPressedDispatcher?.addCallback(
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    findNavController().popBackStack(R.id.breweryDetailFragment, true)
+                }
+            }
+        )
     }
 
     private fun setupObservers() {
         with (breweryListViewModel) {
             clickedBrewery.observe(viewLifecycleOwner) {
-                getBreweryDetails(it)
+                it?.let {
+                    getBreweryDetails(it)
+                    breweryListViewModel.clearStates()
+                }
             }
         }
         with (viewModel) {

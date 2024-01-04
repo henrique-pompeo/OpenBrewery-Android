@@ -2,24 +2,22 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/openbrewery_navigation"
+    android:id="@+id/brewerylist_navigation"
     app:startDestination="@id/breweryListFragment">
 
     <fragment
         android:id="@+id/breweryListFragment"
         android:name="com.henrique.openbrewery.presentation.brewerylist.fragment.BreweryListFragment"
-        android:label="Brewery List"
-        tools:layout="@layout/brewery_list_fragment">
+        android:label="BreweryListFragment"
+        tools:layout="@layout/brewery_list_fragment" >
         <action
             android:id="@+id/action_breweryListFragment_to_breweryDetailFragment"
             app:destination="@id/breweryDetailFragment" />
     </fragment>
-
     <fragment
         android:id="@+id/breweryDetailFragment"
         android:name="com.henrique.openbrewery.presentation.brewerydetail.fragment.BreweryDetailFragment"
-        android:label="Brewery Details"
-        tools:layout="@layout/brewery_detail_fragment">
-    </fragment>
+        android:label="BreweryDetailFragment"
+        tools:layout="@layout/brewery_detail_fragment" />
 
 </navigation>

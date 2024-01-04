@@ -11,24 +11,29 @@ import kotlinx.coroutines.launch
 class BreweryListViewModel(
     private val breweryListUseCase: BreweryListUseCase,
 ) : ViewModel() {
-    private val _breweryListState = MutableLiveData<BreweryListState>()
-    val breweryListState: LiveData<BreweryListState> get() = _breweryListState
+    private val _breweryListState = MutableLiveData<BreweryListState?>()
+    val breweryListState: LiveData<BreweryListState?> get() = _breweryListState
 
-    private val _clickedBrewery = MutableLiveData<String>()
-    val clickedBrewery: LiveData<String> get() = _clickedBrewery
-
-    init {
-        _breweryListState.postValue(BreweryListState.Loading)
-        getBreweryList()
-    }    
+    private val _clickedBrewery = MutableLiveData<String?>()
+    val clickedBrewery: LiveData<String?> get() = _clickedBrewery
 
     fun getBreweryList() {
         viewModelScope.launch {
+            startLoading()
             _breweryListState.postValue(breweryListUseCase.getBreweryList())
         }
     }
-    
+
     fun itemClicked(id: String) {
         _clickedBrewery.postValue(id)
+    }
+
+    fun clearStates() {
+        _clickedBrewery.postValue(null)
+        _breweryListState.postValue(null)
+    }
+
+    private fun startLoading() {
+        _breweryListState.postValue(BreweryListState.Loading)
     }
 }

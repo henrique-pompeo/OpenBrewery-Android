@@ -6,19 +6,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.henrique.app.presentation.activity.MainActivity">
 
-<!--    TODO PUT A LAYOUT THAT SHOULD WORK FOR WHOLE APPLICATION BASED ON EXAMPLE BELOW-->
-<!--    <com.google.android.material.appbar.AppBarLayout-->
-<!--        android:id="@+id/appBarLayout"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        app:elevation="@dimen/dimen_0dp"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:liftOnScroll="true">-->
-<!--        <include layout="@layout/brewery_list_header" />-->
-<!--    </com.google.android.material.appbar.AppBarLayout>-->
-
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/nav_host_fragment"
         android:name="androidx.navigation.fragment.NavHostFragment"

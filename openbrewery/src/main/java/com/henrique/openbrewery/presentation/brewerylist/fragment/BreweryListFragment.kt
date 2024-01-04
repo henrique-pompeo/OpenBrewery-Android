@@ -6,22 +6,20 @@ import androidx.fragment.app.Fragment
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
-import com.henrique.openbrewery.R
+import androidx.navigation.fragment.findNavController
 import com.henrique.openbrewery.databinding.BreweryListFragmentBinding
 import com.henrique.openbrewery.domain.brewerylist.mappers.BreweryListItemMapper
 import com.henrique.openbrewery.presentation.brewerylist.adapter.BreweryListAdapter
 import com.henrique.openbrewery.domain.brewerylist.model.BreweryListItem
 import com.henrique.openbrewery.domain.brewerylist.model.BreweryListState
-import com.henrique.openbrewery.domain.navigation.BreweryNavigation
 import com.henrique.openbrewery.presentation.brewerylist.viewmodel.BreweryListViewModel
 import org.koin.android.ext.android.inject
-import org.koin.androidx.navigation.koinNavGraphViewModel
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class BreweryListFragment : Fragment() {
 
     private lateinit var binding: BreweryListFragmentBinding
-    private val viewModel: BreweryListViewModel by koinNavGraphViewModel(R.id.openbrewery_navigation)
-    private val breweryNavigation: BreweryNavigation by inject()
+    private val viewModel: BreweryListViewModel by sharedViewModel()
     private val breweryListItemMapper: BreweryListItemMapper by inject()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -33,27 +31,33 @@ class BreweryListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupListeners()
         setupObservers()
+        loadBreweryList()
     }
 
     private fun setupListeners() {
         binding.retryBt.setOnClickListener {
-            reloadBreweryList()
+            loadBreweryList()
         }
     }
 
     private fun setupObservers() {
         with (viewModel) {
             breweryListState.observe(viewLifecycleOwner) {
-                when (it) {
-                    is BreweryListState.Loading -> updateScreen(showLoading = true)
-                    is BreweryListState.Success -> updateScreen(
-                        breweryList = breweryListItemMapper.toList(it.breweryList)
-                    )
-                    is BreweryListState.Error -> updateScreen(showError = true)
+                it?.let {
+                    when (it) {
+                        is BreweryListState.Loading -> updateScreen(showLoading = true)
+                        is BreweryListState.Success -> updateScreen(breweryList =
+                        breweryListItemMapper.toList(it.breweryList))
+                        is BreweryListState.Error -> updateScreen(showError = true)
+                    }
                 }
             }
             clickedBrewery.observe(viewLifecycleOwner) {
-                breweryNavigation.goToBreweryDetails()
+                it?.let {
+                    findNavController().navigate(
+                        BreweryListFragmentDirections.actionBreweryListFragmentToBreweryDetailFragment()
+                    )
+                }
             }
         }
     }
@@ -68,7 +72,7 @@ class BreweryListFragment : Fragment() {
         viewModel.itemClicked(id)
     }
 
-    private fun reloadBreweryList() {
+    private fun loadBreweryList() {
         viewModel.getBreweryList()
     }
 
@@ -78,7 +82,10 @@ class BreweryListFragment : Fragment() {
         showError: Boolean = false
     ) {
         showLoading(showLoading)
-        breweryList?.let { setupAdapter(it) }
+        breweryList?.let {
+            setupAdapter(it)
+            viewModel.clearStates()
+        }
         showError(showError)
     }
 

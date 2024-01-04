@@ -15,7 +15,7 @@
             app:destination="@id/breweryDetailFragment" />
         <action
             android:id="@+id/action_mainFragment_to_openbrewery_navigation"
-            app:destination="@id/openbrewery_navigation" />
+            app:destination="@id/brewerylist_navigation" />
     </fragment>
 
     <fragment
