@@ -75,32 +75,58 @@ class BreweryDetailFragment : Fragment() {
 
     private fun updateFields(breweryDetailItem: BreweryDetailItem) {
         with(binding) {
-            breweryDetailBreweryNameText.text = breweryDetailItem.name
-            breweryDetailBreweryTypeText.text = breweryDetailItem.breweryType
+            breweryDetailItem.name?.let {
+                breweryDetailBreweryNameText.text = it
+                breweryDetailBreweryNameText.isVisible = true
+            }
+            breweryDetailItem.breweryType?.let {
+                breweryDetailBreweryTypeText.text = it
+                breweryDetailBreweryTypeText.isVisible = true
+            }
             updateBreweryTypeDescription()
-            breweryDetailAddressText.text = getString(
-                R.string.brewery_address,
+            val address = getAddressText(
                 breweryDetailItem.address2 + breweryDetailItem.address3
             )
-            breweryDetailStreetText.text = getString(
-                R.string.brewery_street, breweryDetailItem.street
-            )
-            breweryDetailPostalCodeText.text = getString(
-                R.string.brewery_postal_code, breweryDetailItem.postalCode
-            )
-            breweryDetailCityText.text = getString(
-                R.string.brewery_city, breweryDetailItem.city, breweryDetailItem.state
-            )
-            breweryDetailCountryText.text = getString(
-                R.string.brewery_country, breweryDetailItem.country
-            )
-            breweryDetailPhoneText.text = getString(
-                R.string.brewery_phone, breweryDetailItem.phone
-            )
-            breweryDetailWebsiteText.text = getString(
-                R.string.brewery_website_url, breweryDetailItem.websiteUrl
-            )
+            address.takeUnless { address.isNullOrEmpty() }?.let {
+                breweryDetailAddressText.text = getString(R.string.brewery_address, it)
+                breweryDetailAddressText.isVisible = true
+            }
+            breweryDetailItem.street?.let {
+                breweryDetailStreetText.text = getString(R.string.brewery_street, it)
+                breweryDetailStreetText.isVisible = true
+            }
+            breweryDetailItem.postalCode?.let {
+                breweryDetailPostalCodeText.text = getString(R.string.brewery_postal_code, it)
+                breweryDetailPostalCodeText.isVisible = true
+            }
+            val city = getCityText(breweryDetailItem.city + breweryDetailItem.state)
+            city.takeUnless { city.isNullOrEmpty() }?.let {
+                breweryDetailCityText.text = getString(
+                    R.string.brewery_city, breweryDetailItem.city, breweryDetailItem.state
+                )
+                breweryDetailCityText.isVisible = true
+            }
+            breweryDetailItem.country?.let {
+                breweryDetailCountryText.text = getString(R.string.brewery_country, it)
+                breweryDetailCountryText.isVisible = true
+            }
+            breweryDetailItem.phone?.let {
+                breweryDetailPhoneText.text = getString(R.string.brewery_phone, it)
+                breweryDetailPhoneText.isVisible = true
+            }
+            breweryDetailItem.websiteUrl?.let {
+                breweryDetailWebsiteText.text = getString(R.string.brewery_website_url, it)
+                breweryDetailWebsiteText.isVisible = true
+            }
         }
+    }
+
+    private fun getAddressText(address: String?) : String? {
+        return address?.replace("null", "")?.trim()
+    }
+
+    private fun getCityText(city: String?) : String? {
+        return city?.replace("null", "")?.trim()
     }
 
     private fun updateBreweryTypeDescription() {
