@@ -42,8 +42,6 @@ class BreweryListViewModelTest {
             breweryListViewModel.getBreweryList()
 
             assert(breweryListViewModel.breweryListState.value is BreweryListState.Success)
-
-            //TODO -- CAPTURE STATE CHANGE FROM LOADING TO SUCCESS IN FUTURE
         }
     }
 
@@ -57,8 +55,6 @@ class BreweryListViewModelTest {
             breweryListViewModel.getBreweryList()
 
             assert(breweryListViewModel.breweryListState.value is BreweryListState.Error)
-
-            //TODO -- CAPTURE STATE CHANGE FROM LOADING TO ERROR IN FUTURE
         }
     }
 

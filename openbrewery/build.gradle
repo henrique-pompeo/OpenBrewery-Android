@@ -48,7 +48,6 @@ dependencies {
     def retrofitVersion = "2.9.0"
     def roomVersion = "2.4.3"
     def junitVersion = "1.1.5"
-    def espressoVersion = "3.5.1"
 
     //Modules
     implementation project(path: ":datasource")
@@ -72,17 +71,6 @@ dependencies {
 
     // Kotlin test
     testImplementation "io.kotlintest:kotlintest-assertions:3.4.2"
-
-    // Espresso
-    androidTestImplementation "androidx.test.ext:junit:$junitVersion"
-    androidTestImplementation "androidx.test.ext:junit-ktx:$junitVersion"
-    androidTestImplementation "io.mockk:mockk-android:$mockkVersion"
-    androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
-    androidTestImplementation "androidx.test.espresso:espresso-contrib:$espressoVersion"
-    androidTestImplementation "androidx.test.espresso:espresso-intents:$espressoVersion"
-    androidTestImplementation "androidx.fragment:fragment-testing:1.6.2"
-    androidTestImplementation("androidx.navigation:navigation-testing:$navigationVersion")
-
 
     // Koin
     implementation "io.insert-koin:koin-core:$koinVersion"

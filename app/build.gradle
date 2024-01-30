@@ -70,15 +70,10 @@ dependencies {
 
     //Junit
     testImplementation "junit:junit:4.13.2"
-    androidTestImplementation 'androidx.test.ext:junit:1.2.0-alpha02'
 
     //Mockk
     testImplementation "io.mockk:mockk:$mockkVersion"
     testImplementation "io.mockk:mockk-android:$mockkVersion"
-    androidTestImplementation "io.mockk:mockk-android:$mockkVersion"
-    
-    // Espresso
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.0-alpha02'
 
     // Koin
     implementation "io.insert-koin:koin-android:$koinVersion"
@@ -91,9 +86,7 @@ dependencies {
     implementation("androidx.navigation:navigation-fragment-ktx:$navigationVersion")
     implementation("androidx.navigation:navigation-ui-ktx:$navigationVersion")
     implementation("androidx.navigation:navigation-dynamic-features-fragment:$navigationVersion")
-    androidTestImplementation("androidx.navigation:navigation-testing:$navigationVersion")
     
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation "androidx.legacy:legacy-support-v4:1.0.0"        
-    androidTestImplementation "androidx.fragment:fragment-testing:1.5.2"
+    implementation "androidx.legacy:legacy-support-v4:1.0.0"
 }

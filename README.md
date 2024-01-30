@@ -189,7 +189,6 @@ You can check below the complete list of Gradle dependencies separated by their 
 - JUnit: Unit tests
 - Mockk: Mocking library for Kotlin
 - Kotlintest Assertions: Assertions
-- Espresso: Integrated tests
 
 #### Dependency Injection (Koin)
 Kotlin injection library

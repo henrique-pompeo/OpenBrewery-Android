@@ -49,8 +49,6 @@ class BreweryDetailViewModelTest {
             breweryDetailViewModel.getBreweryDetails(TestConstants.id)
 
             assert(breweryDetailViewModel.breweryDetailState.value is BreweryDetailState.Success)
-
-            //TODO -- CAPTURE STATE CHANGE FROM LOADING TO SUCCESS IN FUTURE
         }
     }
 
@@ -64,8 +62,6 @@ class BreweryDetailViewModelTest {
             breweryDetailViewModel.getBreweryDetails(TestConstants.id)
 
             assert(breweryDetailViewModel.breweryDetailState.value is BreweryDetailState.Error)
-
-            //TODO -- CAPTURE STATE CHANGE FROM LOADING TO ERROR IN FUTURE
         }
     }
 
