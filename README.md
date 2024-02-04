@@ -3,15 +3,21 @@ Repository created to develop an Android app that shows Open Brewery API content
 
 ## Features
 
-[![Open Brewery Video](./docs/videos/Screen_recording_20240204_152929.webm)](./docs/videos/Screen_recording_20240204_152929.webm))
+<p align="center" width="100%">
+    <img width="33%" src="./docs/videos/Screen_recording_20240204_152929.gif" alt="Open Brewery Video">
+</p>
 
 ### Brewery Home
 
-![Open Brewery Home Image](./docs/images/open-brewery-home.png)
+<p align="center" width="100%">
+    <img width="33%" src="./docs/images/open-brewery-home.png" alt="Open Brewery Hone">
+</p>
 
 ### Brewery List
 
-![Open Brewery List Image](./docs/images/open-brewery-list.png)
+<p align="center" width="100%">
+    <img width="33%" src="./docs/images/open-brewery-list.png" alt="Open Brewery List">
+</p>
 
 The results shown at brewery list is gotten from https://api.openbrewerydb.org/breweries 
 through GET HTTP request. This API returns a brewery list in a JSON array and the application is 
@@ -78,7 +84,9 @@ responsible for converting the data into a readable one. Example:
 
 ### Brewery Details
 
-![Open Brewery Details Image](./docs/images/open-brewery-details.png)
+<p align="center" width="100%">
+    <img width="33%" src="./docs/images/open-brewery-details.png" alt="Open Brewery Details">
+</p>
 
 When the user clicks on some brewery in the list, it's redirected to the details page where is 
 shown all the info about the chosen brewery. Example:
