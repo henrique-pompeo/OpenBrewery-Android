@@ -3,76 +3,106 @@ Repository created to develop an Android app that shows Open Brewery API content
 
 ## Features
 
-### Brewery Listing
+[![Open Brewery Video](./docs/videos/Screen_recording_20240204_152929.webm)](./docs/videos/Screen_recording_20240204_152929.webm))
 
-![Brewery Listing Image](TO BE POSTED)
+### Brewery Home
 
-The results shown at brewery listing is gotten from https://api.openbrewerydb.org/breweries 
-through HTTP request. This API returns a brewery objects JSON array and the application is 
-responsible for converting the data into a readable one.
-Example:
-```yaml
+![Open Brewery Home Image](./docs/images/open-brewery-home.png)
+
+### Brewery List
+
+![Open Brewery List Image](./docs/images/open-brewery-list.png)
+
+The results shown at brewery list is gotten from https://api.openbrewerydb.org/breweries 
+through GET HTTP request. This API returns a brewery list in a JSON array and the application is 
+responsible for converting the data into a readable one. Example:
+
+```json
 [
-  ...
   {
-    id: 299,
-    name: "Almanac Beer Company",
-    brewery_type: "micro",
-    street: "651B W Tower Ave",
-    address_2: null,
-    address_3: null,
-    city: "Alameda",
-    state: "California",
-    county_province: null,
-    postal_code: "94501-5047",
-    country: "United States",
-    longitude: "-122.306283180899",
-    latitude: "37.7834497667258",
-    phone: "4159326531",
-    website_url: "http://almanacbeer.com",
-    updated_at: "2018-08-23T23:24:11.758Z",
-    created_at: "2018-08-23T23:24:11.758Z"
+    "id": "5128df48-79fc-4f0f-8b52-d06be54d0cec",
+    "name": "(405) Brewing Co",
+    "brewery_type": "micro",
+    "address_1": "1716 Topeka St",
+    "address_2": null,
+    "address_3": null,
+    "city": "Norman",
+    "state_province": "Oklahoma",
+    "postal_code": "73069-8224",
+    "country": "United States",
+    "longitude": "-97.46818222",
+    "latitude": "35.25738891",
+    "phone": "4058160490",
+    "website_url": "http://www.405brewing.com",
+    "state": "Oklahoma",
+    "street": "1716 Topeka St"
   },
-  ...
+  {
+    "id": "9c5a66c8-cc13-416f-a5d9-0a769c87d318",
+    "name": "(512) Brewing Co",
+    "brewery_type": "micro",
+    "address_1": "407 Radam Ln Ste F200",
+    "address_2": null,
+    "address_3": null,
+    "city": "Austin",
+    "state_province": "Texas",
+    "postal_code": "78745-1197",
+    "country": "United States",
+    "longitude": null,
+    "latitude": null,
+    "phone": "5129211545",
+    "website_url": "http://www.512brewing.com",
+    "state": "Texas",
+    "street": "407 Radam Ln Ste F200"
+  },
+  {
+    "id": "34e8c68b-6146-453f-a4b9-1f6cd99a5ada",
+    "name": "1 of Us Brewing Company",
+    "brewery_type": "micro",
+    "address_1": "8100 Washington Ave",
+    "address_2": null,
+    "address_3": null,
+    "city": "Mount Pleasant",
+    "state_province": "Wisconsin",
+    "postal_code": "53406-3920",
+    "country": "United States",
+    "longitude": "-87.88336350209435",
+    "latitude": "42.72010826899558",
+    "phone": "2624847553",
+    "website_url": "https://www.1ofusbrewing.com",
+    "state": "Wisconsin",
+    "street": "8100 Washington Ave"
+  }
 ]
 ```
 
----
-**NOTE**
-
-The filter and ordering is gonna be developed in the next release.
-
----
-
 ### Brewery Details
 
-![Brewery Details Image](TO BE POSTED)
+![Open Brewery Details Image](./docs/images/open-brewery-details.png)
 
-When the user clicks on some brewery in the list, it's redirected
-to the details page where is shown all the info about the chosen
-brewery. The same approach is used to get the brewery details but
-the request is made, for example
-https://api.openbrewerydb.org/breweries/madtree-brewing-cincinnati
-and the result obtained is:
-```yaml
+When the user clicks on some brewery in the list, it's redirected to the details page where is 
+shown all the info about the chosen brewery. Example:
+GET https://api.openbrewerydb.org/v1/breweries/b54b16e1-ac3b-4bff-a11f-f7ae9ddc27e0
+The result obtained is:
+
+```json
 {
-  id: "madtree-brewing-cincinnati",
-  name: "MadTree Brewing",
-  brewery_type: "regional",
-  street: "3301 Madison Rd",
-  address_2: null,
-  address_3: null,
-  city: "Cincinnati",
-  state: "Ohio",
-  county_province: null,
-  postal_code: "45209-1132",
-  country: "United States",
-  longitude: "-84.4239715",
-  latitude: "39.1563725",
-  phone: "5138368733",
-  website_url: "http://www.madtreebrewing.com",
-  updated_at: "2021-10-23T02:24:55.243Z",
-  created_at: "2021-10-23T02:24:55.243Z"
+  "id": "b54b16e1-ac3b-4bff-a11f-f7ae9ddc27e0",
+  "name": "MadTree Brewing 2.0",
+  "brewery_type": "regional",
+  "address_1": "5164 Kennedy Ave",
+  "address_2": null,
+  "address_3": null,
+  "city": "Cincinnati",
+  "state_province": "Ohio",
+  "postal_code": "45213",
+  "country": "United States",
+  "longitude": "-84.4137736",
+  "latitude": "39.1885752",
+  "phone": "5138368733",
+  "website_url": "http://www.madtreebrewing.com",
+  "state": "Ohio",
+  "street": "5164 Kennedy Ave"
 }
 ```
 
@@ -80,136 +110,154 @@ Note that the brewery ID is passed at the and of the link.
 
 ## Architecture
 
-### Presentation layer architecture
+The architecture used in this project is MVVM (Model-View-ViewModel) with Clean Architecture 
+principles.
 
-## Package structure
+### Presentation layer
 
-```bash
-Open Brewery Android
-└── app
-    ├── BreweryApplication.kt
-    └── ui
-        ├── activity
-        │   └── MainActivity.kt
-        └── fragment
-            └── MainFragment.kt
-    features
-        ├── brewerydetail
-            ├── data
-            │   ├── datasource
-            │   │   ├── local
-            │   │   │   ├── BreweryDetailLocalDataSourceImpl.kt
-            │   │   │   └── BreweryDetailLocalDataSource.kt
-            │   │   └── remote
-            │   │       ├── BreweryDetailDataSourceImpl.kt
-            │   │       └── BreweryDetailDataSource.kt
-            │   ├── repository
-            │   │   ├── BreweryDetailRepositoryImpl.kt
-            │   │   └── BreweryDetailRepository.kt
-            │   └── service
-            │       └── BreweryDetailService.kt
-            ├── di
-            │   └── BreweryDetailDI.kt
-            └── ui
-                ├── fragment
-                │   └── BreweryDetailFragment.kt
-                └── viewmodel
-                    └── BreweryDetailViewModel.kt
-        ├── brewerylist
-            ├── data
-            │   ├── datasource
-            │   │   ├── local
-            │   │   │   ├── BreweryListLocalDataSourceImpl.kt
-            │   │   │   └── BreweryListLocalDataSource.kt
-            │   │   └── remote
-            │   │       ├── BreweryListDataSourceImpl.kt
-            │   │       └── BreweryListDataSource.kt
-            │   ├── repository
-            │   │   ├── BreweryListRepositoryImpl.kt
-            │   │   └── BreweryListRepository.kt
-            │   └── service
-            │       └── BreweryListService.kt
-            ├── di
-            │   └── BreweryListDI.kt
-            └── ui
-                ├── adapter
-                │   └── BreweryListAdapter.kt
-                ├── fragment
-                │   └── BreweryListFragment.kt
-                ├── viewholder
-                │   └── BreweryListViewHolder.kt
-                └── viewmodel
-                    └── BreweryListViewModel.kt
-        ├── shared
-            ├── data
-            │   ├── database
-            │   │   ├── configuration
-            │   │   │   └── AppDatabase.kt
-            │   │   ├── dao
-            │   │   │   └── BreweryDao.kt
-            │   │   └── entity
-            │   │       └── BreweryEntity.kt
-            │   ├── extensions
-            │   │   ├── BreweryEntityExt.kt
-            │   │   └── BreweryResponseExt.kt
-            │   ├── remote
-            │   │   └── response
-            │   │       └── BreweryResponse.kt
-            │   └── ResultStatus.kt
-            ├── di
-            │   ├── DatabaseDI.kt
-            │   └── RetrofitDI.kt
-            ├── domain
-            │   └── model
-            │       └── Brewery.kt
-            └── ui
-                └── base
-                    └── BaseViewModel.kt
-```
+The presentation layer is responsible for displaying the data to the user and handling user 
+interactions.
+
+#### Activity and Fragment
+
+The Activity and Fragments are responsible for handling the UI and user interactions.
+
+#### Adapter and ViewHolder
+
+The Adapter and ViewHolder are responsible for handling with the RecyclerView and its items.
+
+#### ViewModel
+
+The ViewModel is responsible for handling the UI-related data. It provides data to the UI and acts 
+as a communication center between the Repository and the UI. The ViewModel is part of the lifecycle 
+library and it is lifecycle-aware, meaning it can be notified of lifecycle changes.
+
+### Domain layer
+
+The domain layer is responsible for handling the business logic of the application.
+
+#### Model
+
+The Model is responsible for handling the data.
+
+#### Mappers
+
+The Mappers are responsible for handling the data conversion.
+
+#### UseCase
+
+The UseCase is responsible for executing any use case in the application. It is the bridge between 
+the presentation layer and the data layer.
+
+#### Interfaces
+
+The Interfaces are responsible for handling the communication between the domain layer and the data
+
+### Data layer (Datasource)
+
+The data layer is responsible for handling the data operations of the application.
+
+#### DataProvider
+
+The DataProvider is responsible for handling the data operations. In this project, it handles with 
+local data using Room library.
+
+##### Configuration
+
+The configuration is responsible for handling the database configuration.
+
+##### DAO
+
+The DAO is responsible for handling the database operations.
+
+##### Entity
+
+The Entity is responsible for handling the database entities.
+
+#### DataSource
+
+The DataSource is responsible for handling the data operations. In this project, it handles with 
+remote data using Retrofit library.
+
+##### Repository
+
+The Repository is responsible for handling the data operations. It is the bridge between the domain 
+and data layers.
+
+## Dependency Injection
+
+The dependency injection is done using Koin, a lightweight dependency injection framework for Kotlin
+
+### Infrastructure
+
+The infrastructure layer is responsible for handling the dependency injection of the application.
+You can see infrastructure layers in whole project.
 
 ## Navigation
 
+The navigation is done using the Jetpack Navigation library.
+
+Home -> Brewery List -> Brewery Details
+
+## Tests
+
+In this project with implemented Unit Test. The tests are done using JUnit, Mockk, Kotlintest 
+Assertions, and Coroutines Test.
+
 ## Dependencies
 
-For this app we are using Gradle as the build system.
+For this app we are using Gradle as the build system. You can check below the complete list of 
+Gradle dependencies.
 
-You can check below the complete list of Gradle dependencies separated by their functionalities
+### Core
+- androidx.core:core-ktx
+- androidx.test:core
+- core-testing
 
-#### Core
-- Core KTX: Common libraries that are part of the Android framework
-- Core Testing: Android Core-Testing
+### Layout
+- androidx.appcompat:appcompat
+- com.google.android.material:material
+- androidx.constraintlayout:constraintlayout
 
-#### Layout
-- Appcompat: Allows access to new APIs on older API versions
-- Material: Material components
-- ConstraintLayout: Allows create large and complex layouts with a flat view hierarchy
-- Jetpack RecyclerView: Creates dynamic lists
+### JUnit
+- junit:junit
 
-#### Tests
-- JUnit: Unit tests
-- Mockk: Mocking library for Kotlin
-- Kotlintest Assertions: Assertions
+### Mockk
+- io.mockk:mockk:$mockkVersion
+- io.mockk:mockk-android
 
-#### Dependency Injection (Koin)
-Kotlin injection library
-- Koin Scope: Manages Android Scopes
-- Koin Test: Injecting in Tests
+### Kotlin test
+- io.kotlintest:kotlintest-assertions
 
-#### Kotlin coroutines
-- Coroutines core: Commons coroutines across all platforms
-- Coroutines Android: Coroutines dispatchers and logging unhandled exceptions
-- Coroutines Test: Utilities for testing coroutines
+### Koin
+- io.insert-koin:koin-core
+- io.insert-koin:koin-android
+- io.insert-koin:koin-test
+- io.insert-koin:koin-android-compat
+- io.insert-koin:koin-androidx-navigation
 
-#### Jetpack Navigation
-- Navigation Dynamic Features Fragment: Feature module Support
-- Navigation Testing: Testing Navigation
+### Kotlin coroutines
+- org.jetbrains.kotlinx:kotlinx-coroutines-core
+- org.jetbrains.kotlinx:kotlinx-coroutines-android
+- org.jetbrains.kotlinx:kotlinx-coroutines-test
 
-#### HTTP API
-- Retrofit: A type-safe HTTP client
-- Gson: Convert a JSON string to an equivalent Kotlin object
-- Logging interceptor: OkHttp interceptor which logs request and response information
+### Recyclerview
+- androidx.recyclerview:recyclerview
 
-#### Local database (Room)
-The Room persistence library provides an abstraction layer over SQLite
-- Room KTX: Kotlin Extensions and Coroutines support
-- Room Testing: Room Test helpers
+### Navigation
+- androidx.navigation:navigation-fragment-ktx
+- androidx.navigation:navigation-ui-ktx
+- androidx.navigation:navigation-dynamic-features-fragment
+
+### Okhttp
+- com.squareup.okhttp3:logging-interceptor
+
+### Retrofit
+- com.squareup.retrofit2:retrofit
+- com.squareup.retrofit2:converter-gson
+
+### Room
+- androidx.room:room-runtime
+- androidx.room:room-ktx
+- androidx.room:room-compiler
+- androidx.room:room-compiler
