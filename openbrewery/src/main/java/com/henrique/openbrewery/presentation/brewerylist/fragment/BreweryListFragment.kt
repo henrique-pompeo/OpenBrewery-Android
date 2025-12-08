@@ -14,12 +14,12 @@ import com.henrique.openbrewery.domain.brewerylist.model.BreweryListItem
 import com.henrique.openbrewery.domain.brewerylist.model.BreweryListState
 import com.henrique.openbrewery.presentation.brewerylist.viewmodel.BreweryListViewModel
 import org.koin.android.ext.android.inject
-import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import org.koin.androidx.viewmodel.ext.android.activityViewModel
 
 class BreweryListFragment : Fragment() {
 
     private lateinit var binding: BreweryListFragmentBinding
-    private val viewModel: BreweryListViewModel by sharedViewModel()
+    private val viewModel: BreweryListViewModel by activityViewModel()
     private val breweryListItemMapper: BreweryListItemMapper by inject()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {

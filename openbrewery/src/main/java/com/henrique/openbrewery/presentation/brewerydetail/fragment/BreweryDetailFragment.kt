@@ -17,13 +17,13 @@ import com.henrique.openbrewery.domain.brewerydetail.model.BreweryDetailState
 import com.henrique.openbrewery.presentation.brewerydetail.viewmodel.BreweryDetailViewModel
 import com.henrique.openbrewery.presentation.brewerylist.viewmodel.BreweryListViewModel
 import org.koin.android.ext.android.inject
-import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import org.koin.androidx.viewmodel.ext.android.activityViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class BreweryDetailFragment : Fragment() {
 
     private lateinit var binding: BreweryDetailFragmentBinding
-    private val breweryListViewModel: BreweryListViewModel by sharedViewModel()
+    private val breweryListViewModel: BreweryListViewModel by activityViewModel()
     private val viewModel: BreweryDetailViewModel by viewModel()
     private val breweryDetailItemMapper: BreweryDetailItemMapper by inject()
 

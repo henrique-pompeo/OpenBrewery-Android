@@ -1,5 +1,0 @@
-include ':app'
-include ':openbrewery'
-include ':datasource'
-
-rootProject.name = "Open Brewery Android"
