@@ -2,11 +2,10 @@ package com.henrique.datasource.infrastructure
 
 import com.henrique.datasource.dataprovider.providers.infrastructure.DataProvidersDI
 import com.henrique.datasource.datasource.brewerydetail.infrastructure.BreweryDetailDI
-import com.henrique.datasource.datasource.brewerylist.infrastructure.BreweryListDI
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import org.koin.dsl.module
 import org.koin.core.module.Module
+import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -31,8 +30,5 @@ object DatasourceDI {
         }
     }
 
-    val module = retrofit +
-            DataProvidersDI.module +
-            BreweryListDI.module +
-            BreweryDetailDI.module
+    val module = retrofit + DataProvidersDI.module + BreweryDetailDI.module
 }

@@ -1,8 +1,9 @@
 package com.henrique.openbrewery.presentation.brewerylist.viewmodel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.henrique.openbrewery.domain.brewerylist.model.BreweryListState
-import com.henrique.openbrewery.domain.brewerylist.usecase.BreweryListUseCase
+import com.henrique.openbrewery.brewerylist.presentation.viewmodel.BreweryListViewModel
+import com.henrique.openbrewery.brewerylist.domain.model.BreweryListState
+import com.henrique.openbrewery.brewerylist.domain.usecase.BreweryListUseCase
 import com.henrique.openbrewery.util.StubFactory
 import com.henrique.openbrewery.util.TestConstants
 import io.mockk.clearAllMocks

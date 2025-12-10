@@ -1,5 +1,6 @@
 package com.henrique.openbrewery.domain.brewerylist.mappers
 
+import com.henrique.openbrewery.brewerylist.domain.mappers.BreweryListItemMapper
 import com.henrique.openbrewery.util.StubFactory
 import org.junit.Test
 
