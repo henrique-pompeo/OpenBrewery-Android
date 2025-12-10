@@ -19,7 +19,7 @@ Repository created to develop an Android app that shows Open Brewery API content
     <img width="33%" src="./docs/images/open-brewery-list.png" alt="Open Brewery List">
 </p>
 
-The results shown at brewery list is gotten from https://api.openbrewerydb.org/breweries 
+The results shown at brewery list is gotten from https://api.openbrewerydb.org/v1/breweries/ 
 through GET HTTP request. This API returns a brewery list in a JSON array and the application is 
 responsible for converting the data into a readable one. Example:
 

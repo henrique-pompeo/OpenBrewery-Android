@@ -20,6 +20,7 @@ kotlinTest = "3.4.2"
 recyclerview = "1.4.0"
 okhttp = "5.3.2"
 legacySupportV4 = "1.0.0"
+ksp = "2.3.3"
 
 [libraries]
 # Core
@@ -92,3 +93,4 @@ android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 android-library = { id = "com.android.library", version.ref = "agp" }
 navigation-safe-args-gradle-plugin = { id = "androidx.navigation.safeargs.kotlin", version.ref = "navigation" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }

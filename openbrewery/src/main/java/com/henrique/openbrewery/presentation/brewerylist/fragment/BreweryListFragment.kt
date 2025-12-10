@@ -2,24 +2,24 @@ package com.henrique.openbrewery.presentation.brewerylist.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import androidx.fragment.app.Fragment
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.henrique.openbrewery.databinding.BreweryListFragmentBinding
 import com.henrique.openbrewery.domain.brewerylist.mappers.BreweryListItemMapper
-import com.henrique.openbrewery.presentation.brewerylist.adapter.BreweryListAdapter
 import com.henrique.openbrewery.domain.brewerylist.model.BreweryListItem
 import com.henrique.openbrewery.domain.brewerylist.model.BreweryListState
+import com.henrique.openbrewery.presentation.brewerylist.adapter.BreweryListAdapter
 import com.henrique.openbrewery.presentation.brewerylist.viewmodel.BreweryListViewModel
 import org.koin.android.ext.android.inject
-import org.koin.androidx.viewmodel.ext.android.activityViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class BreweryListFragment : Fragment() {
 
     private lateinit var binding: BreweryListFragmentBinding
-    private val viewModel: BreweryListViewModel by activityViewModel()
+    private val viewModel: BreweryListViewModel by viewModel()
     private val breweryListItemMapper: BreweryListItemMapper by inject()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -55,7 +55,8 @@ class BreweryListFragment : Fragment() {
             clickedBrewery.observe(viewLifecycleOwner) {
                 it?.let {
                     findNavController().navigate(
-                        BreweryListFragmentDirections.actionBreweryListFragmentToBreweryDetailFragment()
+                        BreweryListFragmentDirections
+                            .actionBreweryListFragmentToBreweryDetailFragment(id = it)
                     )
                 }
             }

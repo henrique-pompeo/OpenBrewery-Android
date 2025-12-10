@@ -5,8 +5,8 @@ import com.henrique.openbrewery.domain.brewerydetail.mappers.BreweryDetailMapper
 import com.henrique.openbrewery.domain.brewerydetail.usecase.BreweryDetailUseCase
 import com.henrique.openbrewery.domain.brewerydetail.usecase.BreweryDetailUseCaseImpl
 import com.henrique.openbrewery.presentation.brewerydetail.viewmodel.BreweryDetailViewModel
-import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.module.Module
+import org.koin.core.module.dsl.viewModelOf
 import org.koin.dsl.module
 
 object BreweryDetailDI {
@@ -20,7 +20,7 @@ object BreweryDetailDI {
     }
 
     private val viewModels: Module = module {
-        viewModel { BreweryDetailViewModel(get()) }
+        viewModelOf(::BreweryDetailViewModel)
     }
 
     val module = mappers + useCases + viewModels

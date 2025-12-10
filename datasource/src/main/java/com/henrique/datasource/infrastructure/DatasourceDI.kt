@@ -12,7 +12,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object DatasourceDI {
 
-    private const val BASE_URL = "https://api.openbrewerydb.org/breweries/"
+    private const val BASE_URL = "https://api.openbrewerydb.org/v1/breweries/"
 
     private val retrofit: Module = module {
         single<Retrofit> {
