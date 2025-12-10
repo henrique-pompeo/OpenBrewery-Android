@@ -9,21 +9,15 @@ import io.mockk.coVerify
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
-import org.junit.Test
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
-import org.junit.Before
+import org.junit.Test
 
 @ExperimentalCoroutinesApi
 class BreweryListDataSourceImplTest {
-    private lateinit var breweryListDataSource: BreweryListDataSource
+    private val breweryListDataSource: BreweryListDataSource = getBreweryListDataSource()
     private val breweryListService: BreweryListService = mockk(relaxed = true)
     private val breweryMapper: BreweryMapper = mockk(relaxed = true)
-
-    @Before
-    fun setup() {
-        breweryListDataSource = getBreweryListDataSource()
-    }
 
     @Test
     fun `GIVEN BreweryListDataSource WHEN getBreweryList() is called SHOULD return a list of Brewery`() {

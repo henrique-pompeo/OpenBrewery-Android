@@ -10,18 +10,12 @@ import io.mockk.coVerify
 import io.mockk.every
 import io.mockk.mockk
 import kotlinx.coroutines.runBlocking
-import org.junit.Before
 import org.junit.Test
 
 class BreweryDetailDataSourceImplTest {
-    private lateinit var breweryDetailDataSource: BreweryDetailDataSource
+    private val breweryDetailDataSource: BreweryDetailDataSource = getBreweryDetailLocalDataSource()
     private val breweryDetailService: BreweryDetailService = mockk(relaxed = true)
     private val breweryDetailMapper: BreweryDetailMapper = mockk(relaxed = true)
-
-    @Before
-    fun setup() {
-        breweryDetailDataSource = getBreweryDetailLocalDataSource()
-    }
 
     @Test
     fun `GIVEN BreweryDetailDataSource WHEN getBreweryDetails() is called SHOULD return a BreweryDTO`() {

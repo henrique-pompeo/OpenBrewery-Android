@@ -35,7 +35,10 @@ android {
     }
 
     testOptions {
-        unitTests.isReturnDefaultValues = true
+        unitTests {
+            isReturnDefaultValues = true
+            isIncludeAndroidResources = true
+        }
     }
 }
 
@@ -68,4 +71,5 @@ dependencies {
     testImplementation(libs.mockk.android)
     testImplementation(libs.kotlintest.assertions)
     testImplementation(libs.koin.test)
+    testImplementation(libs.robolectric)
 }

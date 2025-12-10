@@ -12,11 +12,13 @@ import com.henrique.app.databinding.MainFragmentBinding
 
 class MainFragment : Fragment() {
 
-    private lateinit var binding: MainFragmentBinding
+    private var binding: MainFragmentBinding? = null
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    ): View? {
         binding = MainFragmentBinding.inflate(inflater, container, false)
-        return binding.root
+        return binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -25,7 +27,7 @@ class MainFragment : Fragment() {
     }
 
     private fun setupComponent() {
-        with(binding) {
+        binding?.run {
             activityMainBreweryListBt.setOnClickListener {
                 findNavController().navigate(
                     MainFragmentDirections.actionMainFragmentToOpenbreweryNavigation()
@@ -40,7 +42,7 @@ class MainFragment : Fragment() {
                 override fun afterTextChanged(s: Editable) {}
                 override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
                 override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                    binding.activityMainBreweryDetailBt.isEnabled = s.isNotEmpty()
+                    activityMainBreweryDetailBt.isEnabled = s.isNotEmpty()
                 }
             })
         }

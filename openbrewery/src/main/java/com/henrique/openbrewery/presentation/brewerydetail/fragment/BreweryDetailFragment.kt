@@ -21,14 +21,16 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class BreweryDetailFragment : Fragment() {
 
-    private lateinit var binding: BreweryDetailFragmentBinding
+    private var binding: BreweryDetailFragmentBinding? = null
     private val viewModel: BreweryDetailViewModel by viewModel()
     private val breweryDetailItemMapper: BreweryDetailItemMapper by inject()
     private val navArgs: BreweryDetailFragmentArgs by navArgs()
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    ): View? {
         binding = BreweryDetailFragmentBinding.inflate(inflater, container, false)
-        return binding.root
+        return binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -39,7 +41,7 @@ class BreweryDetailFragment : Fragment() {
     }
 
     private fun setupListeners() {
-        binding.retryBt.setOnClickListener {
+        binding?.retryBt?.setOnClickListener {
             reloadBreweryDetails()
         }
         activity?.onBackPressedDispatcher?.addCallback(
@@ -66,7 +68,7 @@ class BreweryDetailFragment : Fragment() {
     }
 
     private fun updateFields(breweryDetailItem: BreweryDetailItem) {
-        with(binding) {
+        binding?.run {
             breweryDetailItem.name?.let {
                 breweryDetailBreweryNameText.text = it
                 breweryDetailBreweryNameText.isVisible = true
@@ -113,16 +115,14 @@ class BreweryDetailFragment : Fragment() {
         }
     }
 
-    private fun getAddressText(address: String?) : String? {
-        return address?.replace("null", "")?.trim()
-    }
+    private fun getAddressText(address: String?) : String? =
+        address?.replace("null", "")?.trim()
 
-    private fun getCityText(city: String?) : String? {
-        return city?.replace("null", "")?.trim()
-    }
+    private fun getCityText(city: String?) : String? =
+        city?.replace("null", "")?.trim()
 
     private fun updateBreweryTypeDescription() {
-        with(binding) {
+        binding?.run {
             breweryDetailFragmentBreweryTypeDescTv.text =
                 breweryDetailBreweryTypeText.text.let {
                     when (it) {
@@ -142,13 +142,9 @@ class BreweryDetailFragment : Fragment() {
         }
     }
 
-    private fun reloadBreweryDetails() {
-        getBreweryDetails(navArgs.id)
-    }
+    private fun reloadBreweryDetails() = getBreweryDetails(navArgs.id)
 
-    private fun getBreweryDetails(id: String) {
-        viewModel.getBreweryDetails(id = id)
-    }
+    private fun getBreweryDetails(id: String) = viewModel.getBreweryDetails(id = id)
 
     private fun updateScreen(
         showLoading: Boolean = false,
@@ -161,10 +157,10 @@ class BreweryDetailFragment : Fragment() {
     }
 
     private fun showLoading(visibility: Boolean) {
-        binding.breweryDetailLoadingPb.isVisible = visibility
+        binding?.breweryDetailLoadingPb?.isVisible = visibility
     }
 
     private fun showError(visibility: Boolean) {
-        binding.breweryDetailErrorCl.isVisible = visibility
+        binding?.breweryDetailErrorCl?.isVisible = visibility
     }
 }

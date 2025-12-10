@@ -10,18 +10,17 @@ import io.mockk.coVerify
 import io.mockk.every
 import io.mockk.mockk
 import kotlinx.coroutines.runBlocking
-import org.junit.Before
+import org.junit.After
 import org.junit.Test
 
 class BreweryListUseCaseImplTest {
-    private lateinit var breweryListUseCase: BreweryListUseCase
+    private val breweryListUseCase: BreweryListUseCase = getBreweryListUseCase()
     private val breweryMapper: BreweryMapper = mockk(relaxed = true)
     private val breweryListRepository: BreweryListRepository = mockk(relaxed = true)
 
-    @Before
-    fun setup() {
+    @After
+    fun tearDown() {
         clearAllMocks()
-        breweryListUseCase = getBreweryListUseCase()
     }
 
     @Test

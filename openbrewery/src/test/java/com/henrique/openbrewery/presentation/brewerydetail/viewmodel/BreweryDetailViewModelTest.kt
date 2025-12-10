@@ -20,13 +20,14 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.setMain
+import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 
 @ExperimentalCoroutinesApi
 class BreweryDetailViewModelTest {
-    private lateinit var breweryDetailViewModel: BreweryDetailViewModel
+    private val breweryDetailViewModel: BreweryDetailViewModel = getBreweryDetailViewModel()
     private val breweryDetailUseCase: BreweryDetailUseCase = mockk(relaxed = true)
 
     @get:Rule
@@ -34,9 +35,12 @@ class BreweryDetailViewModelTest {
 
     @Before
     fun setup() {
-        clearAllMocks()
         Dispatchers.setMain(StandardTestDispatcher())
-        breweryDetailViewModel = getBreweryDetailViewModel()
+    }
+
+    @After
+    fun tearDown() {
+        clearAllMocks()
     }
 
     @Test

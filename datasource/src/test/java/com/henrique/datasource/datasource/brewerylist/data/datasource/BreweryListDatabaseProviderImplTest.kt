@@ -10,18 +10,12 @@ import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
 import kotlinx.coroutines.runBlocking
-import org.junit.Before
 import org.junit.Test
 
 class BreweryListDatabaseProviderImplTest {
-    private lateinit var breweryListDatabaseProvider: BreweryListDatabaseProvider
+    private val breweryListDatabaseProvider: BreweryListDatabaseProvider = getBreweryListDatabaseProvider()
     private val breweryDao: BreweryDao = mockk(relaxed = true)
     private val breweryMapper: BreweryMapper = mockk(relaxed = true)
-
-    @Before
-    fun setup() {
-        breweryListDatabaseProvider = getBreweryListDatabaseProvider()
-    }
 
     @Test
     fun `GIVEN BreweryListDatabaseProvider WHEN getBreweryList() is called SHOULD return a list of Brewery`() {

@@ -18,13 +18,15 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class BreweryListFragment : Fragment() {
 
-    private lateinit var binding: BreweryListFragmentBinding
+    private var binding: BreweryListFragmentBinding? = null
     private val viewModel: BreweryListViewModel by viewModel()
     private val breweryListItemMapper: BreweryListItemMapper by inject()
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    ): View? {
         binding = BreweryListFragmentBinding.inflate(inflater, container, false)
-        return binding.root
+        return binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -35,7 +37,7 @@ class BreweryListFragment : Fragment() {
     }
 
     private fun setupListeners() {
-        binding.retryBt.setOnClickListener {
+        binding?.retryBt?.setOnClickListener {
             loadBreweryList()
         }
     }
@@ -64,9 +66,7 @@ class BreweryListFragment : Fragment() {
     }
 
     private fun setupAdapter(breweryListItem: List<BreweryListItem>) {
-        binding.breweryListRv.apply {
-            adapter = BreweryListAdapter(breweryListItem, ::onItemClicked)
-        }
+        binding?.breweryListRv?.adapter = BreweryListAdapter(breweryListItem, ::onItemClicked)
     }
 
     private fun onItemClicked(id: String) {
@@ -91,10 +91,10 @@ class BreweryListFragment : Fragment() {
     }
 
     private fun showLoading(visibility: Boolean) {
-        binding.breweryListLoadingPb.isVisible = visibility
+        binding?.breweryListLoadingPb?.isVisible = visibility
     }
 
     private fun showError(visibility: Boolean) {
-        binding.breweryListErrorCl.isVisible = visibility
+        binding?.breweryListErrorCl?.isVisible = visibility
     }
 }

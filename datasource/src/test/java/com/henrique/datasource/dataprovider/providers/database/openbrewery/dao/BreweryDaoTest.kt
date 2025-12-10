@@ -8,7 +8,6 @@ import com.henrique.datasource.dataprovider.providers.database.openbrewery.confi
 import com.henrique.datasource.util.StubFactory
 import com.henrique.datasource.util.TestConstants
 import kotlinx.coroutines.runBlocking
-import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
@@ -17,19 +16,12 @@ import org.robolectric.annotation.Config
 @RunWith(RobolectricTestRunner::class)
 @Config(sdk = [Build.VERSION_CODES.O_MR1])
 class BreweryDaoTest {
-    private lateinit var database: AppDatabase
-    private lateinit var breweryDao: BreweryDao
-
-    @Before
-    fun setup() {
-        val context = ApplicationProvider.getApplicationContext<Context>()
-        database = Room.inMemoryDatabaseBuilder(
-            context,
-            AppDatabase::class.java
-        ).build()
-
-        breweryDao = database.breweryDao()
-    }
+    private val context = ApplicationProvider.getApplicationContext<Context>()
+    private val database: AppDatabase = Room.inMemoryDatabaseBuilder(
+        context,
+        AppDatabase::class.java
+    ).build()
+    private val breweryDao: BreweryDao = database.breweryDao()
 
     @Test
     fun `GIVEN BreweryDao WHEN getBreweryList() is called SHOULD return a list of BreweryEntity`() {
