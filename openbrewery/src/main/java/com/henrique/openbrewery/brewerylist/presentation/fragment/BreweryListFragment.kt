@@ -56,7 +56,7 @@ class BreweryListFragment : Fragment() {
                 it?.let {
                     findNavController().navigate(
                         BreweryListFragmentDirections
-                            .actionBreweryListFragmentToBreweryDetailFragment(id = it)
+                            .actionBreweryListFragmentToBreweryDetailFragment(obdbId = it)
                     )
                 }
             }

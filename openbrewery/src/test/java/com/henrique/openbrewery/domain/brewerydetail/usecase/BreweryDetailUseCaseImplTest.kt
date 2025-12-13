@@ -1,8 +1,10 @@
 package com.henrique.openbrewery.domain.brewerydetail.usecase
 
-import com.henrique.datasource.datasource.brewerydetail.domain.interfaces.repository.BreweryDetailRepository
-import com.henrique.openbrewery.domain.brewerydetail.mappers.BreweryDetailMapper
-import com.henrique.openbrewery.domain.brewerydetail.model.BreweryDetailState
+import com.henrique.openbrewery.brewerydetail.domain.interfaces.BreweryDetailRepository
+import com.henrique.openbrewery.brewerydetail.domain.mappers.BreweryDetailMapper
+import com.henrique.openbrewery.brewerydetail.domain.model.BreweryDetailState
+import com.henrique.openbrewery.brewerydetail.domain.usecase.BreweryDetailUseCase
+import com.henrique.openbrewery.brewerydetail.domain.usecase.BreweryDetailUseCaseImpl
 import com.henrique.openbrewery.util.StubFactory
 import com.henrique.openbrewery.util.TestConstants
 import io.mockk.clearAllMocks

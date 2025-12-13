@@ -1,7 +1,6 @@
 package com.henrique.datasource.infrastructure
 
 import com.henrique.datasource.dataprovider.providers.infrastructure.DataProvidersDI
-import com.henrique.datasource.datasource.brewerydetail.infrastructure.BreweryDetailDI
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.core.module.Module
@@ -30,5 +29,5 @@ object DatasourceDI {
         }
     }
 
-    val module = retrofit + DataProvidersDI.module + BreweryDetailDI.module
+    val module = retrofit + DataProvidersDI.module
 }

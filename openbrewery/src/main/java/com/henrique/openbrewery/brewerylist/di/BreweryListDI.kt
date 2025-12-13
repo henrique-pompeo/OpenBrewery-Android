@@ -13,6 +13,7 @@ import org.koin.dsl.module
 import retrofit2.Retrofit
 
 object BreweryListDI {
+
     private val services: Module = module {
         factory<BreweryListService> {
             get<Retrofit>().create(BreweryListService::class.java)

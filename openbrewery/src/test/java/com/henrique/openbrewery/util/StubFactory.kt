@@ -3,8 +3,8 @@ package com.henrique.openbrewery.util
 import com.henrique.datasource.datasource.brewerydetail.domain.model
 .BreweryDetail as DatasourceBreweryDetail
 import com.henrique.openbrewery.domain.brewery.model.Brewery
-import com.henrique.openbrewery.domain.brewerydetail.model.BreweryDetail
-import com.henrique.openbrewery.domain.brewerydetail.model.BreweryDetailItem
+import com.henrique.openbrewery.brewerydetail.domain.model.BreweryDetailModel
+import com.henrique.openbrewery.brewerydetail.domain.model.BreweryDetailItem
 import com.henrique.openbrewery.brewerylist.domain.model.BreweryListItem
 import com.henrique.datasource.datasource.brewery.domain.model.Brewery as DatasourceBrewery
 import com.henrique.openbrewery.brewerylist.domain.model.BreweryAddress
@@ -83,7 +83,7 @@ class StubFactory {
         createdAt = TestConstants.createdAt
     )
 
-    fun breweryDetail() = BreweryDetail(
+    fun breweryDetail() = BreweryDetailModel(
         id = TestConstants.id,
         name = TestConstants.name,
         breweryType = TestConstants.breweryType,

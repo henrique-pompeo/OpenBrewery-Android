@@ -6,6 +6,7 @@ import retrofit2.http.Query
 import retrofit2.http.Url
 
 internal interface BreweryListService {
+
     @GET
     suspend fun getBreweryList(
         @Url url: String = EMPTY,

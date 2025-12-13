@@ -20,7 +20,7 @@
 
     <fragment
         android:id="@+id/breweryDetailFragment"
-        android:name="com.henrique.openbrewery.presentation.brewerydetail.fragment.BreweryDetailFragment"
+        android:name="com.henrique.openbrewery.brewerydetail.presentation.fragment.BreweryDetailFragment"
         android:label="Brewery Details"
         tools:layout="@layout/brewery_detail_fragment">
     </fragment>

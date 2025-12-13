@@ -9,8 +9,9 @@ import com.henrique.openbrewery.brewerylist.domain.usecase.BreweryListUseCase
 import kotlinx.coroutines.launch
 
 internal class BreweryListViewModel(
-    private val breweryListUseCase: BreweryListUseCase,
+    private val breweryListUseCase: BreweryListUseCase
 ): ViewModel() {
+
     private val _breweryListState = MutableLiveData<BreweryListState?>()
     val breweryListState: LiveData<BreweryListState?> get() = _breweryListState
 

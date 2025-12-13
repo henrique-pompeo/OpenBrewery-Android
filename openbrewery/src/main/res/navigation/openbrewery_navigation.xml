@@ -16,11 +16,11 @@
     </fragment>
     <fragment
         android:id="@+id/breweryDetailFragment"
-        android:name="com.henrique.openbrewery.presentation.brewerydetail.fragment.BreweryDetailFragment"
+        android:name="com.henrique.openbrewery.brewerydetail.presentation.fragment.BreweryDetailFragment"
         android:label="BreweryDetailFragment"
         tools:layout="@layout/brewery_detail_fragment" >
         <argument
-            android:name="id"
+            android:name="obdbId"
             app:argType="string" />
     </fragment>
 

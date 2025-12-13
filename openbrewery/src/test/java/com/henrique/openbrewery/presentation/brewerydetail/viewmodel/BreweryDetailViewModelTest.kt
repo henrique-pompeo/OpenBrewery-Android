@@ -1,20 +1,14 @@
 package com.henrique.openbrewery.presentation.brewerydetail.viewmodel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import androidx.lifecycle.Observer
-import com.henrique.openbrewery.domain.brewerydetail.model.BreweryDetailState
-import com.henrique.openbrewery.domain.brewerydetail.usecase.BreweryDetailUseCase
+import com.henrique.openbrewery.brewerydetail.domain.model.BreweryDetailState
+import com.henrique.openbrewery.brewerydetail.domain.usecase.BreweryDetailUseCase
+import com.henrique.openbrewery.brewerydetail.presentation.viewmodel.BreweryDetailViewModel
 import com.henrique.openbrewery.util.StubFactory
 import com.henrique.openbrewery.util.TestConstants
-import io.mockk.CapturingSlot
-import io.mockk.Runs
 import io.mockk.clearAllMocks
 import io.mockk.coEvery
-import io.mockk.every
-import io.mockk.just
 import io.mockk.mockk
-import io.mockk.slot
-import io.mockk.verifySequence
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
