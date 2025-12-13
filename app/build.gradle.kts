@@ -50,7 +50,6 @@ android {
 dependencies {
 
     // Modules
-    implementation(project(":datasource"))
     implementation(project(":openbrewery"))
 
     // Core

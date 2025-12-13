@@ -42,7 +42,6 @@ android {
 dependencies {
 
     // Modules
-    implementation(project(":datasource"))
 
     // Core
     implementation(libs.core.ktx)
@@ -77,11 +76,6 @@ dependencies {
     // Retrofit
     implementation(libs.retrofit)
     implementation(libs.retrofit.converter.gson)
-
-    // Room
-    implementation(libs.room.runtime)
-    implementation(libs.room.ktx)
-    annotationProcessor(libs.room.compiler)
 
     // Test
     testImplementation(libs.junit)

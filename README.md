@@ -22,6 +22,8 @@ Repository created to develop an Android app that shows Open Brewery API content
 The results shown at brewery list is gotten from https://api.openbrewerydb.org/v1/breweries/ 
 through GET HTTP request. This API returns a brewery list in a JSON array and the application is 
 responsible for converting the data into a readable one. Example:
+GET https://api.openbrewerydb.org/v1/breweries?per_page=3
+The result obtained is:
 
 ```json
 [
@@ -36,8 +38,8 @@ responsible for converting the data into a readable one. Example:
     "state_province": "Oklahoma",
     "postal_code": "73069-8224",
     "country": "United States",
-    "longitude": "-97.46818222",
-    "latitude": "35.25738891",
+    "longitude": -97.46818222,
+    "latitude": 35.25738891,
     "phone": "4058160490",
     "website_url": "http://www.405brewing.com",
     "state": "Oklahoma",
@@ -72,8 +74,8 @@ responsible for converting the data into a readable one. Example:
     "state_province": "Wisconsin",
     "postal_code": "53406-3920",
     "country": "United States",
-    "longitude": "-87.88336350209435",
-    "latitude": "42.72010826899558",
+    "longitude": -87.883363502094,
+    "latitude": 42.720108268996,
     "phone": "2624847553",
     "website_url": "https://www.1ofusbrewing.com",
     "state": "Wisconsin",
@@ -105,8 +107,8 @@ The result obtained is:
   "state_province": "Ohio",
   "postal_code": "45213",
   "country": "United States",
-  "longitude": "-84.4137736",
-  "latitude": "39.1885752",
+  "longitude": -84.4137736,
+  "latitude": 39.1885752,
   "phone": "5138368733",
   "website_url": "http://www.madtreebrewing.com",
   "state": "Ohio",
@@ -165,27 +167,9 @@ The Interfaces are responsible for handling the communication between the domain
 
 The data layer is responsible for handling the data operations of the application.
 
-#### DataProvider
-
-The DataProvider is responsible for handling the data operations. In this project, it handles with 
-local data using Room library.
-
 ##### Configuration
 
 The configuration is responsible for handling the database configuration.
-
-##### DAO
-
-The DAO is responsible for handling the database operations.
-
-##### Entity
-
-The Entity is responsible for handling the database entities.
-
-#### DataSource
-
-The DataSource is responsible for handling the data operations. In this project, it handles with 
-remote data using Retrofit library.
 
 ##### Repository
 
@@ -263,9 +247,3 @@ Gradle dependencies.
 ### Retrofit
 - com.squareup.retrofit2:retrofit
 - com.squareup.retrofit2:converter-gson
-
-### Room
-- androidx.room:room-runtime
-- androidx.room:room-ktx
-- androidx.room:room-compiler
-- androidx.room:room-compiler

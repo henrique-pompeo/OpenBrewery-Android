@@ -22,4 +22,3 @@ dependencyResolutionManagement {
 rootProject.name = "Open Brewery Android"
 include(":app")
 include(":openbrewery")
-include (":datasource")

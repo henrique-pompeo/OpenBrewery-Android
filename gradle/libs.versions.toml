@@ -7,7 +7,6 @@ koin = "4.1.1"
 coroutines = "1.10.2"
 navigation = "2.9.6"
 retrofit = "3.0.0"
-room = "2.8.4"
 coreKtx = "1.17.0"
 testCore = "1.7.0"
 archCoreTesting = "2.2.0"
@@ -70,11 +69,6 @@ okhttp-logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-i
 # Retrofit
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
 retrofit-converter-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit" }
-
-# Room
-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
 
 # Robolectric
 robolectric = { group = "org.robolectric", name = "robolectric", version.ref = "robolectric" }
