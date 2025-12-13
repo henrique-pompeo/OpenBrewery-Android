@@ -1,9 +1,7 @@
 package com.henrique.openbrewery.brewerylist.domain.interfaces.repository
 
-import com.henrique.datasource.datasource.brewery.domain.model.Brewery
+import com.henrique.openbrewery.brewerylist.data.dto.BreweryListItemDTO
 
-interface BreweryListRepository {
-    suspend fun getBreweryList() : List<Brewery>
-    suspend fun getDatabaseBreweryList() : List<Brewery>
-    suspend fun insertBreweryList(breweryList: List<Brewery>)
+internal interface BreweryListRepository {
+    suspend fun getBreweryList(): List<BreweryListItemDTO>
 }

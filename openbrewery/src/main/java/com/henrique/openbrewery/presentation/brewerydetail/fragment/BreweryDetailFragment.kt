@@ -11,7 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.henrique.openbrewery.R
 import com.henrique.openbrewery.databinding.BreweryDetailFragmentBinding
-import com.henrique.openbrewery.domain.brewery.model.BreweryType
+import com.henrique.openbrewery.domain.brewerydetail.model.BreweryType
 import com.henrique.openbrewery.domain.brewerydetail.mappers.BreweryDetailItemMapper
 import com.henrique.openbrewery.domain.brewerydetail.model.BreweryDetailItem
 import com.henrique.openbrewery.domain.brewerydetail.model.BreweryDetailState
@@ -115,10 +115,10 @@ class BreweryDetailFragment : Fragment() {
         }
     }
 
-    private fun getAddressText(address: String?) : String? =
+    private fun getAddressText(address: String?): String? =
         address?.replace("null", "")?.trim()
 
-    private fun getCityText(city: String?) : String? =
+    private fun getCityText(city: String?): String? =
         city?.replace("null", "")?.trim()
 
     private fun updateBreweryTypeDescription() {

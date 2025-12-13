@@ -1,8 +1,7 @@
 package com.henrique.openbrewery.brewerylist.domain.usecase
 
-import com.henrique.openbrewery.brewerylist.domain.model.BreweryListState
+import com.henrique.openbrewery.brewerylist.domain.model.BreweryListItemModel
 
-interface BreweryListUseCase {
-    suspend fun getBreweryList() : BreweryListState
-    suspend fun getDatabaseBreweryList() : BreweryListState
+internal interface BreweryListUseCase {
+    suspend fun getBreweryList(): List<BreweryListItemModel>
 }

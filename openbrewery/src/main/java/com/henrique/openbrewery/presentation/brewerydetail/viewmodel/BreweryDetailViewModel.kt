@@ -10,7 +10,7 @@ import kotlinx.coroutines.launch
 
 class BreweryDetailViewModel(
     private val breweryDetailUseCase: BreweryDetailUseCase,
-) : ViewModel() {
+): ViewModel() {
     private val _breweryDetailState = MutableLiveData<BreweryDetailState>()
     val breweryDetailState: LiveData<BreweryDetailState> get() = _breweryDetailState
 

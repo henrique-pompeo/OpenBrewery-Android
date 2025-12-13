@@ -13,14 +13,12 @@ import com.henrique.openbrewery.brewerylist.domain.model.BreweryListState
 import com.henrique.openbrewery.brewerylist.presentation.adapter.BreweryListAdapter
 import com.henrique.openbrewery.brewerylist.presentation.viewmodel.BreweryListViewModel
 import com.henrique.openbrewery.databinding.BreweryListFragmentBinding
-import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class BreweryListFragment : Fragment() {
 
     private var binding: BreweryListFragmentBinding? = null
     private val viewModel: BreweryListViewModel by viewModel()
-    private val breweryListItemMapper: BreweryListItemMapper by inject()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -49,7 +47,7 @@ class BreweryListFragment : Fragment() {
                     when (it) {
                         is BreweryListState.Loading -> updateScreen(showLoading = true)
                         is BreweryListState.Success -> updateScreen(breweryList =
-                        breweryListItemMapper.toList(it.breweryList))
+                            BreweryListItemMapper.toList(it.breweryList))
                         is BreweryListState.Error -> updateScreen(showError = true)
                     }
                 }

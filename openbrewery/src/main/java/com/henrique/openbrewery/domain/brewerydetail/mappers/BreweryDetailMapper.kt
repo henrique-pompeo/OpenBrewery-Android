@@ -4,7 +4,7 @@ import com.henrique.datasource.datasource.brewerydetail.domain.model.BreweryDeta
 import com.henrique.openbrewery.domain.brewerydetail.model.BreweryDetail
 
 class BreweryDetailMapper {
-    fun toDomain(datasourceBrewery: DatasourceBreweryDetail) : BreweryDetail {
+    fun toDomain(datasourceBrewery: DatasourceBreweryDetail): BreweryDetail {
         return BreweryDetail(
             id = datasourceBrewery.id,
             name = datasourceBrewery.name,

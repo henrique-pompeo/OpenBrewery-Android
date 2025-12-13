@@ -6,5 +6,5 @@ import retrofit2.http.Url
 
 interface BreweryDetailService {
     @GET
-    suspend fun getBreweryDetails(@Url id: String) : BreweryDetailDTO
+    suspend fun getBreweryDetails(@Url id: String): BreweryDetailDTO
 }

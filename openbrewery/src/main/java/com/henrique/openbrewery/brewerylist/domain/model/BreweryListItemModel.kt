@@ -1,6 +1,9 @@
 package com.henrique.openbrewery.brewerylist.domain.model
 
-internal class BreweryAddress (
+internal class BreweryListItemModel(
+    val id: String,
+    val name: String,
+    val breweryType: String,
     val address1: String?,
     val address2: String?,
     val address3: String?,
@@ -8,5 +11,10 @@ internal class BreweryAddress (
     val stateProvince: String,
     val postalCode: String,
     val country: String,
+    val longitude: Number?,
+    val latitude: Number?,
+    val phone: String?,
+    val websiteUrl: String?,
+    val state: String,
     val street: String?
 )

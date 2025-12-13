@@ -7,7 +7,7 @@ import com.henrique.openbrewery.domain.brewerydetail.model.BreweryDetailState
 class BreweryDetailUseCaseImpl(
     private val breweryDetailMapper: BreweryDetailMapper,
     private val breweryDetailRepository: BreweryDetailRepository
-) : BreweryDetailUseCase {
+): BreweryDetailUseCase {
     override suspend fun getBreweryDetails(id: String): BreweryDetailState {
         var breweryDetailState: BreweryDetailState = BreweryDetailState.Error
         runCatching {

@@ -4,7 +4,7 @@ import com.henrique.openbrewery.domain.brewerydetail.model.BreweryDetailItem
 import com.henrique.openbrewery.domain.brewerydetail.model.BreweryDetail
 
 class BreweryDetailItemMapper {
-    fun toItem(breweryDetail: BreweryDetail) : BreweryDetailItem {
+    fun toItem(breweryDetail: BreweryDetail): BreweryDetailItem {
         return BreweryDetailItem(
             id = breweryDetail.id,
             name = breweryDetail.name,

@@ -1,4 +1,4 @@
-package com.henrique.openbrewery.domain.brewery.model
+package com.henrique.openbrewery.domain.brewerydetail.model
 
 enum class BreweryType(val value: String) {
     MICRO("micro"),

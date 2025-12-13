@@ -8,7 +8,7 @@ import com.henrique.datasource.datasource.brewerydetail.domain.model.BreweryDeta
 class BreweryDetailDataSourceImpl(
     private val breweryDetailService: BreweryDetailService,
     private val breweryDetailMapper: BreweryDetailMapper
-) : BreweryDetailDataSource {
+): BreweryDetailDataSource {
     override suspend fun getBreweryDetails(id: String): BreweryDetail {
         return breweryDetailMapper.toDomain(
             breweryDetailService.getBreweryDetails(id)

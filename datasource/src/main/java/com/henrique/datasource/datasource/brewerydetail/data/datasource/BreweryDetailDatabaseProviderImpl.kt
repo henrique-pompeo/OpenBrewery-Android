@@ -8,7 +8,7 @@ import com.henrique.datasource.datasource.brewerydetail.domain.model.BreweryDeta
 class BreweryDetailDatabaseProviderImpl(
     private val breweryDao: BreweryDao,
     private val breweryDetailMapper: BreweryDetailMapper
-) : BreweryDetailDatabaseProvider {
+): BreweryDetailDatabaseProvider {
     override suspend fun getBreweryDetails(id: String): BreweryDetail {
         return breweryDetailMapper.toDomainEntity(
             breweryDao.getBreweryDetails(id)

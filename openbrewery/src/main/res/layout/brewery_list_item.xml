@@ -23,20 +23,10 @@
         android:layout_width="@dimen/dimen_0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/dimen_10dp"
-        app:layout_constraintEnd_toStartOf="@id/breweryListItemDistance"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/breweryListItemTitle"
         tools:text="3301 Madison Rd, address_2, address_3, null, Cincinnati, Ohio, null, 45209-1132, United States"/>
-
-    <TextView
-        android:id="@+id/breweryListItemDistance"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="12sp"
-        app:drawableTopCompat="@drawable/location_dot_solid"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/breweryListItemAddress"
-        tools:text="Distance" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

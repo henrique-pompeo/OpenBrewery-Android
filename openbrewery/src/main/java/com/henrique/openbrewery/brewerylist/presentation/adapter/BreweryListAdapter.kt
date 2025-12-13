@@ -7,10 +7,10 @@ import com.henrique.openbrewery.databinding.BreweryListItemBinding
 import com.henrique.openbrewery.brewerylist.presentation.viewholder.BreweryListViewHolder
 import com.henrique.openbrewery.brewerylist.domain.model.BreweryListItem
 
-class BreweryListAdapter(
+internal class BreweryListAdapter(
     private val breweryList: List<BreweryListItem>,
     private val onItemClicked: (String) -> Unit
-) : RecyclerView.Adapter<BreweryListViewHolder>() {
+): RecyclerView.Adapter<BreweryListViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BreweryListViewHolder {
         return BreweryListViewHolder(

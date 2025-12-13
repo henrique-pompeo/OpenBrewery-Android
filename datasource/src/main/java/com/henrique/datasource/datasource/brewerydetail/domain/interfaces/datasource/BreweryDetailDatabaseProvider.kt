@@ -3,5 +3,5 @@ package com.henrique.datasource.datasource.brewerydetail.domain.interfaces.datas
 import com.henrique.datasource.datasource.brewerydetail.domain.model.BreweryDetail
 
 interface BreweryDetailDatabaseProvider {
-    suspend fun getBreweryDetails(id: String) : BreweryDetail
+    suspend fun getBreweryDetails(id: String): BreweryDetail
 }
